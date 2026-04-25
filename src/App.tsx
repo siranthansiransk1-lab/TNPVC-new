@@ -13,6 +13,7 @@ import Network from "./pages/Network.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import SiranthanSiran from "./pages/SiranthanSiran.tsx";
 import Srinivasan from "./pages/Srinivasan.tsx";
+import Register from "./pages/Register.tsx";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/ai-pvc-groups" element={<AiPvcGroups />} />
           <Route path="/siranthan-siran" element={<SiranthanSiran />} />
           <Route path="/srinivasan" element={<Srinivasan />} />
+          <Route path="/register" element={<Register />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

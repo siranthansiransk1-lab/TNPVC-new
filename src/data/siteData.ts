@@ -72,10 +72,8 @@ export const navItems: NavItem[] = [
   { label: "Contractors", path: "/contractors" },
   { label: "Clients", path: "/clients" },
   { label: "Labour", path: "/labour" },
-  { label: "AI-PVC Groups", path: "/ai-pvc-groups", shortLabel: "AI-PVC" },
-  { label: "Siranthan Siran", path: "/siranthan-siran", shortLabel: "Siranthan" },
-  { label: "Srinivasan", path: "/srinivasan" },
   { label: "Partnership Transparency", path: "/ai-pvc-groups" },
+  { label: "Register", path: "/register", shortLabel: "Register" },
 ];
 
 export const seoByPath: Record<string, SeoConfig> = {
@@ -139,6 +137,11 @@ export const seoByPath: Record<string, SeoConfig> = {
     description:
       "Read Srinivasan's journey from village hardship and carpentry mastery to innovation leadership in PVC and UPVC interiors.",
     keywords: ["Srinivasan TNPVC", "PVC founder story", "wood to PVC interiors"],
+  },
+  "/register": {
+    title: "Register | Join TN-PVC Interiors Network",
+    description: "Register to join the TN-PVC Interiors community as a client, contractor, or labour team member and grow your trade presence in Tamil Nadu.",
+    keywords: ["register PVC", "join TN-PVC", "interior trade registration"],
   },
 };
 

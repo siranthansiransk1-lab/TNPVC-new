@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowUpRight, Facebook, Instagram, Menu, MessageCircleMore, Phone, Twitter, Youtube } from "lucide-react";
+import { ArrowUpRight, ChevronRight, Facebook, Instagram, Menu, MessageCircleMore, Phone, Twitter, Youtube, X, LayoutGrid, MapPin, ChevronsUpDown, Globe, Sparkles, HardHat, Users, Wrench, ShieldCheck, UserPlus, CreditCard } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -170,11 +170,11 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
-            {navItems.slice(0, 7).map((item) => (
+            {navItems.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
-                className="group relative rounded-full px-4 py-2 text-[11px] font-black tracking-wide text-muted-foreground transition-all hover:text-primary"
+                className="group relative rounded-full px-4 py-2 text-[13px] font-semibold tracking-wide text-muted-foreground transition-all hover:text-primary"
                 activeClassName="text-primary bg-primary/5"
                 end={item.path === "/"}
               >
@@ -196,7 +196,6 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
             </a>
           </div>
 
-          {/* Mobile menu */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button
@@ -208,49 +207,82 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                 <Menu className="size-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[85vw] max-w-sm border-l border-white/20 bg-white/80 backdrop-blur-3xl p-0 flex flex-col shadow-2xl">
-              <SheetHeader className="border-b border-border/20 px-8 py-10 text-left shrink-0 bg-primary/5">
-                <div className="flex items-center gap-4 mb-4">
-                  <img src={brandAssets.tnPvcLogo} alt="" className="size-12 rounded-2xl shadow-lg" />
-                  <div>
-                    <SheetTitle className="text-2xl font-black tracking-tight leading-none">{siteName}</SheetTitle>
-                    <SheetDescription className="text-[10px] font-bold text-primary mt-1 uppercase tracking-widest">{siteTagline}</SheetDescription>
-                  </div>
+            <SheetContent 
+              side="left" 
+              className="w-[85vw] max-w-[340px] bg-transparent p-0 flex flex-col border-none shadow-none sm:max-w-[340px] [&>button]:hidden"
+            >
+
+
+              <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col h-full bg-white rounded-r-[2.5rem] shadow-[20px_0_40px_-15px_rgba(0,0,0,0.1)] relative z-40">
+                {/* Header (Logo & Close Button) */}
+                <div className="flex items-center justify-between mb-8">
+                  <Link
+                    to="/"
+                    className="flex items-center gap-3 transition-opacity hover:opacity-80 focus-visible:ring-offset-4"
+                    onClick={() => setOpen(false)}
+                  >
+                    <img
+                      src={brandAssets.tnPvcLogo}
+                      alt=""
+                      className="size-10 rounded-xl object-contain"
+                    />
+                    <div>
+                      <p className="text-base font-black tracking-tight text-foreground">
+                        TN-PVC
+                      </p>
+                      <p className="text-[10px] font-bold tracking-wide text-muted-foreground">
+                        Interiors
+                      </p>
+                    </div>
+                  </Link>
+                  <SheetClose className="size-10 rounded-xl bg-surface/50 border border-border/40 text-muted-foreground flex items-center justify-center hover:text-foreground hover:bg-surface transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                    <X className="size-5" />
+                    <span className="sr-only">Close menu</span>
+                  </SheetClose>
                 </div>
-              </SheetHeader>
-              <div className="flex flex-1 flex-col justify-between p-8 overflow-y-auto">
-                <nav className="flex flex-col gap-3" aria-label="Mobile navigation">
-                  {navItems.map((item) => (
-                    <SheetClose asChild key={item.path}>
-                      <NavLink
-                        to={item.path}
-                        end={item.path === "/"}
-                        className={cn(
-                          "flex h-14 items-center rounded-2xl px-6 text-sm font-black transition-all border border-transparent",
-                          location.pathname === item.path
-                            ? "bg-primary text-primary-foreground shadow-xl shadow-primary/20"
-                            : "text-muted-foreground hover:bg-white hover:text-foreground hover:border-border/40 hover:shadow-sm",
-                        )}
-                      >
-                        {item.label}
-                      </NavLink>
-                    </SheetClose>
-                  ))}
+
+                {/* Nav Links */}
+                <nav className="flex flex-col gap-1.5 mb-8" aria-label="Mobile navigation">
+                  {navItems.map((item) => {
+                    const navIcons: Record<string, React.ElementType> = {
+                      "/network": Globe,
+                      "/benefits": Sparkles,
+                      "/contractors": HardHat,
+                      "/clients": Users,
+                      "/labour": Wrench,
+                      "/ai-pvc-groups": ShieldCheck,
+                      "/register": UserPlus,
+                    };
+                    const Icon = navIcons[item.path] || LayoutGrid;
+                    
+                    return (
+                      <SheetClose asChild key={item.path}>
+                        <NavLink
+                          to={item.path}
+                          end={item.path === "/"}
+                          className={cn(
+                            "flex items-center justify-start text-left gap-4 px-4 py-3.5 rounded-2xl text-[14px] font-semibold transition-all",
+                            location.pathname === item.path
+                              ? "bg-primary/10 text-primary"
+                              : "text-foreground hover:bg-muted/50"
+                          )}
+                        >
+                          <Icon className={cn("size-5", location.pathname === item.path ? "text-primary" : "text-muted-foreground")} />
+                          {item.label}
+                        </NavLink>
+                      </SheetClose>
+                    );
+                  })}
                 </nav>
 
-                <div className="space-y-6 border-t border-border/20 pt-8">
-                  <div className="flex items-center gap-4 px-2">
-                    <img src={brandAssets.aiPvcLogo} alt="" className="size-12 rounded-2xl grayscale" />
-                    <p className="text-[10px] font-black tracking-widest text-muted-foreground uppercase">
-                      Powered by AI-PVC Groups
-                    </p>
-                  </div>
-                  <a
-                    href="tel:+918489143405"
-                    className="primary-btn w-full py-5 rounded-[1.5rem] text-sm font-black shadow-2xl shadow-primary/30"
-                  >
-                    <Phone className="mr-2 size-4" aria-hidden="true" />
-                    Call Leadership
+                {/* Bottom Profile */}
+                <div className="mt-6 pt-6">
+                  <p className="text-xs font-bold text-muted-foreground mb-3 px-1">Need help?</p>
+                  <a href="tel:+918870826404" className="flex items-center gap-3 px-4 py-3 rounded-[1.25rem] border border-border/50 hover:bg-muted/50 transition-colors">
+                    <div className="size-9 rounded-full bg-primary flex items-center justify-center text-white text-[10px] font-black shrink-0">
+                      TN
+                    </div>
+                    <span className="text-sm font-bold text-foreground">TN-PVC Support</span>
                   </a>
                 </div>
               </div>

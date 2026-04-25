@@ -19,6 +19,7 @@ import {
   siteDescription,
 } from "@/data/siteData";
 import { cn } from "@/lib/utils";
+import { RegisterForm } from "@/components/site/RegisterForm";
 
 const Home = () => {
   const seo = seoByPath["/"];
@@ -42,6 +43,10 @@ const Home = () => {
           </>
         }
         description="Leverage a connected digital ecosystem and community-first coordination to streamline your projects, reduce delays, and drive consistent growth across Tamil Nadu."
+        actions={[
+          { label: "Explore Network", to: "/network" },
+          { label: "Register Profile", to: "#register", secondary: true, icon: UserCheck }
+        ]}
         bentoItems={[
           {
             image: brandAssets.heroInterior,
@@ -68,29 +73,32 @@ const Home = () => {
             className: "md:col-span-1 md:row-span-1"
           }
         ]}
-        actions={[
-          { label: "Learn More", to: "/benefits", secondary: true, icon: ChevronRight },
-          { label: "Get Started", to: "/network", icon: ArrowRight },
-        ]}
       />
 
-      {/* ─── Stats Section (Floating Cards like Reference) ─── */}
-      <section className="-mt-12 relative z-20 pb-20">
+      {/* ─── Stats Section (Modern Bento Bar) ─── */}
+      <section className="-mt-16 relative z-20 pb-20">
         <div className="container">
-          <div className="grid gap-6 md:grid-cols-3">
-            {[
-              { label: "Client Satisfaction", value: "250+", accent: "bg-blue-500" },
-              { label: "Community Members", value: "2k+", accent: "bg-primary" },
-              { label: "Districts Covered", value: "38", accent: "bg-indigo-500" },
-            ].map((stat, i) => (
-              <div key={stat.label} className="float-card group relative overflow-hidden flex flex-col items-center justify-center text-center py-10">
-                <div className={cn("absolute top-0 left-0 h-1.5 w-full", stat.accent)} />
-                <p className="text-4xl font-black tracking-tight text-foreground">{stat.value}</p>
-                <p className="mt-2 text-sm font-bold text-muted-foreground tracking-wide">{stat.label}</p>
-                {/* Subtle grid pattern background */}
-                <div className="absolute inset-0 -z-10 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, #000 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
-              </div>
-            ))}
+          <div className="bg-white/70 backdrop-blur-3xl border border-white/20 rounded-[2.5rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] p-2 md:p-4">
+            <div className="grid divide-y md:divide-y-0 md:divide-x divide-border/20 md:grid-cols-3">
+              {[
+                { label: "Client Satisfaction", value: "250+", icon: MessageCircleMore, color: "text-blue-600" },
+                { label: "Community Members", value: "2k+", icon: Users2, color: "text-primary" },
+                { label: "Districts Covered", value: "38", icon: MapPin, color: "text-indigo-600" },
+              ].map((stat) => {
+                const Icon = stat.icon;
+                return (
+                  <div key={stat.label} className="group flex items-center gap-6 px-8 py-10 transition-colors hover:bg-primary/5 rounded-[2rem]">
+                    <div className={cn("flex size-16 shrink-0 items-center justify-center rounded-2xl bg-white shadow-lg transition-transform group-hover:scale-110", stat.color)}>
+                      <Icon className="size-8" />
+                    </div>
+                    <div>
+                      <p className="text-4xl font-black tracking-tight text-foreground">{stat.value}</p>
+                      <p className="text-xs font-black uppercase tracking-widest text-muted-foreground mt-1">{stat.label}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -344,7 +352,7 @@ const Home = () => {
                     <img
                       src={founder.image}
                       alt={founder.name}
-                      className="aspect-[4/5] w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
+                      className="aspect-[4/5] w-full object-cover transition-all duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
                   </div>
@@ -374,24 +382,44 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ─── Final CTA ─── */}
-      <section className="section-padding bg-mesh">
-        <div className="container text-center space-y-10">
-          <SectionIntro
-            eyebrow="Ready to begin?"
-            title="Discover the full TN-PVC network."
-            description="Join thousands of professionals and homeowners building a better PVC interior ecosystem."
-            align="center"
-          />
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/benefits" className="primary-btn h-14 px-10 group">
-              Get Started Today
-              <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <a href="tel:+918870826404" className="secondary-btn h-14 px-10 group">
-              Contact Support
-              <PhoneCall className="ml-2 size-5 transition-transform group-hover:scale-110" />
-            </a>
+      {/* ─── Final Enrollment Section ─── */}
+      <section id="register" className="section-padding bg-mesh relative overflow-hidden">
+        <div className="container relative z-10">
+          <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+            <div className="space-y-8">
+              <SectionIntro
+                eyebrow="Growth & Trade"
+                title={
+                  <>
+                    How can We <span className="text-primary">Help?</span>
+                  </>
+                }
+                description="Get in touch with our community leads for network onboarding, project coordination, or trade support. Join the fastest growing PVC network today."
+              />
+              
+              <div className="space-y-6">
+                {[
+                  "Request a business lead",
+                  "Learn which tier is right for you",
+                  "Get onboarding help for labour teams"
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-4 group">
+                    <div className="flex size-6 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                      <CheckCircle2 className="size-3.5" />
+                    </div>
+                    <span className="font-bold text-foreground/80">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute -top-20 -right-20 size-64 bg-primary/10 rounded-full blur-3xl opacity-50" />
+              <RegisterForm 
+                title="Enroll in the Network" 
+                description="Join thousands of professionals building a better PVC interior ecosystem." 
+              />
+            </div>
           </div>
         </div>
       </section>
