@@ -21,7 +21,6 @@ import aiPvcLogo from "@/assets/ai-pvc-groups-logo.png";
 import tnPvcLogo from "@/assets/tn-pvc-logo.png";
 import siranthanFounder from "@/assets/siranthan-founder.png";
 import srinivasanFounder from "@/assets/srinivasan-founder.jpg";
-import anubrindhaFounder from "@/assets/anubrindha-founder.jpg";
 import dexazReference from "@/assets/dexaz-reference.jpg";
 import heroInterior from "@/assets/hero-interior.png";
 import bentoPvcWall from "@/assets/bento-pvc-wall.png";
@@ -76,7 +75,7 @@ export const navItems: NavItem[] = [
   { label: "AI-PVC Groups", path: "/ai-pvc-groups", shortLabel: "AI-PVC" },
   { label: "Siranthan Siran", path: "/siranthan-siran", shortLabel: "Siranthan" },
   { label: "Srinivasan", path: "/srinivasan" },
-  { label: "Anubrindha", path: "/anubrindha" },
+  { label: "Partnership Transparency", path: "/ai-pvc-groups" },
 ];
 
 export const seoByPath: Record<string, SeoConfig> = {
@@ -140,12 +139,6 @@ export const seoByPath: Record<string, SeoConfig> = {
     description:
       "Read Srinivasan's journey from village hardship and carpentry mastery to innovation leadership in PVC and UPVC interiors.",
     keywords: ["Srinivasan TNPVC", "PVC founder story", "wood to PVC interiors"],
-  },
-  "/anubrindha": {
-    title: "Anubrindha | Managing director | TN-PVC Interiors",
-    description:
-      "Discover Anubrindha's operations leadership, family roots in interiors, and role in scaling TN-PVC Interiors across Tamil Nadu.",
-    keywords: ["Anubrindha TNPVC", "operations manager interiors", "women leaders Tamil Nadu"],
   },
 };
 
@@ -301,29 +294,6 @@ export const founders = [
       "He first worked simply to survive, then gradually learned wooden carpentry and built three decades of hands-on experience in the trade.",
       "As companies introduced PVC material for interior use, he recognised its eco-friendly potential and made the bold decision to shift from wood-based work into PVC interior systems.",
       "Despite opposition, disruption, and repeated struggles, he continued developing new ideas in PVC and UPVC execution and eventually helped build TN-PVC Interiors and AI-PVC Groups into a serious community movement.",
-    ],
-  },
-  {
-    slug: "anubrindha",
-    name: "Anubrindha",
-    role: "Managing Director, TN-PVC Interiors",
-    image: anubrindhaFounder,
-    phone: "Leadership contact via TN-PVC network",
-    email: "Operations contact available through TN-PVC Interiors",
-    link: companyLinks.website,
-    intro:
-      "Anubrindha brings family-rooted knowledge of interiors together with modern operations management to help TN-PVC Interiors scale with discipline and care.",
-    highlights: [
-      "Raised in a family deeply connected to construction and interior labour.",
-      "Completed BBA CA with strong academic performance and added finance and ERP certifications.",
-      "Leads project quality, worker welfare, and day-to-day operations for the TN-PVC ecosystem.",
-    ],
-    story: [
-      "Anubrindha was born and raised in Trichy, Tamil Nadu, where interior work was already part of the family's everyday life and identity.",
-      "Her parents were labour professionals in interiors and construction, and her brother specialised in glass work, giving her a practical understanding of the trade from a young age.",
-      "She pursued formal education in business administration with computer applications, graduating in 2022 from Kongunadu Arts and Science College with 82%.",
-      "To strengthen her operational abilities, she added training in Tally Prime, ERP 9, and banking, making her well suited to both people coordination and system management.",
-      "At TN-PVC Interiors, she helps align digital systems, field execution, worker welfare, and customer delivery so the network can grow with consistency across Tamil Nadu.",
     ],
   },
 ] as const;

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Seo } from "@/components/seo/Seo";
 import { PageHero, SectionIntro } from "@/components/site/PageHero";
 import TNMap from "@/components/site/TNMap";
-import { SiteLayout } from "@/components/site/SiteLayout";
+import { SiteLayout, SocialLinks } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import {
   audienceBenefits,
@@ -333,27 +333,30 @@ const Home = () => {
               title="A field-driven community backed by builders and creators."
               description="TN-PVC Interiors is powered by strong experience from the trade and digital execution built for long-term growth."
             />
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-8 sm:grid-cols-2">
               {founders.map((founder) => (
                 <Link
                   key={founder.slug}
                   to={`/${founder.slug}`}
                   className="group flex flex-col"
                 >
-                  <div className="overflow-hidden rounded-2xl border border-border/40 bg-card shadow-sm transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:border-primary/20">
+                  <div className="overflow-hidden rounded-[2rem] border border-border/40 bg-card shadow-sm transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:border-primary/20">
                     <img
                       src={founder.image}
                       alt={founder.name}
-                      className="aspect-[4/5] w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-110"
+                      className="aspect-[4/5] w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
                       loading="lazy"
                     />
                   </div>
-                  <div className="mt-6 text-center">
-                    <h3 className="text-base font-black tracking-tight text-foreground transition-colors group-hover:text-primary">
+                  <div className="mt-8 text-center sm:text-left px-4">
+                    <h3 className="text-xl font-black tracking-tight text-foreground transition-colors group-hover:text-primary">
                       {founder.name}
                     </h3>
-                    <p className="mt-2 text-[10px] font-black tracking-wide text-muted-foreground whitespace-normal">
+                    <p className="mt-2 text-xs font-bold tracking-wide text-primary uppercase">
                       {founder.role.split(',')[0]}
+                    </p>
+                    <p className="mt-3 text-sm font-medium text-muted-foreground line-clamp-2">
+                      {founder.intro}
                     </p>
                   </div>
                 </Link>

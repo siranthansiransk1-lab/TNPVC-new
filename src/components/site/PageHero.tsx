@@ -31,6 +31,7 @@ type PageHeroProps = {
   image?: string;
   bentoItems?: BentoItem[]; // New prop for bento gallery
   titleClassName?: string;
+  topContent?: ReactNode;
 };
 
 export const PageHero = ({ 
@@ -43,12 +44,18 @@ export const PageHero = ({
   centered = false,
   image,
   bentoItems,
-  titleClassName
+  titleClassName,
+  topContent
 }: PageHeroProps) => {
   if (centered) {
     return (
       <section className="relative overflow-hidden bg-mesh pt-12 pb-24 lg:pt-16 lg:pb-32">
         <div className="container relative z-10 flex flex-col items-center text-center">
+          {topContent && (
+            <div className="animate-reveal mb-8">
+              {topContent}
+            </div>
+          )}
           {/* Eyebrow / Badge */}
           <div className="animate-reveal mb-8">
             <Link to="/benefits" className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-white/50 px-5 py-2 text-[10px] font-black tracking-wide text-foreground backdrop-blur-md transition-all hover:border-primary/40 hover:bg-white">

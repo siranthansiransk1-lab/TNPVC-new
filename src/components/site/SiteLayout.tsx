@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowUpRight, Facebook, Instagram, Menu, Phone, Twitter, Youtube } from "lucide-react";
+import { ArrowUpRight, Facebook, Instagram, Menu, MessageCircleMore, Phone, Twitter, Youtube } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -21,13 +21,27 @@ type SiteLayoutProps = {
   children: ReactNode;
 };
 
-const SocialFloat = () => (
-  <div className="fixed left-3 md:left-6 top-1/2 z-40 -translate-y-1/2 flex flex-col gap-3 md:gap-5 animate-float">
+export const SocialLinks = ({ className, vertical = false }: { className?: string, vertical?: boolean }) => (
+  <div className={cn(
+    "flex gap-3 md:gap-4",
+    vertical ? "flex-col" : "flex-row",
+    className
+  )}>
     {[
-      { icon: Instagram, href: "https://instagram.com", label: "Instagram", bg: "bg-pink-600", delay: "delay-1" },
+      { icon: Instagram, href: "https://www.instagram.com/siranthan_siran?igsh=aDZ4dGx4cHdtdmZr", label: "Instagram", bg: "bg-pink-600", delay: "delay-1" },
       { icon: Youtube, href: "https://youtube.com", label: "YouTube", bg: "bg-red-600", delay: "delay-2" },
-      { icon: Facebook, href: "https://facebook.com", label: "Facebook", bg: "bg-blue-700", delay: "delay-3" },
-      { icon: Twitter, href: "https://twitter.com", label: "Twitter", bg: "bg-sky-500", delay: "delay-4" },
+      { icon: Facebook, href: "https://www.facebook.com/srinivasan.x", label: "Facebook", bg: "bg-blue-700", delay: "delay-3" },
+      { 
+        icon: () => (
+          <svg className="size-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.411.002 12.048c0 2.12.54 4.19 1.566 6.02L0 24l6.105-1.602a11.832 11.832 0 005.937 1.597h.005c6.634 0 12.043-5.411 12.046-12.048a11.804 11.804 0 00-3.489-8.452z"/>
+          </svg>
+        ), 
+        href: "https://wa.me/918870826404", 
+        label: "WhatsApp", 
+        bg: "bg-green-600", 
+        delay: "delay-4" 
+      },
     ].map((item, i) => (
       <a
         key={item.label}
@@ -35,7 +49,7 @@ const SocialFloat = () => (
         target="_blank"
         rel="noreferrer"
         className={cn(
-          "group relative flex size-10 md:size-12 items-center justify-center rounded-xl md:rounded-2xl text-white shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-110 hover:shadow-primary/40 animate-reveal",
+          "group relative flex size-10 md:size-12 items-center justify-center rounded-xl md:rounded-2xl text-white shadow-xl transition-all duration-500 hover:-translate-y-1 hover:scale-110 hover:shadow-primary/40 animate-reveal",
           item.bg,
           item.delay
         )}
@@ -52,18 +66,49 @@ const SocialFloat = () => (
         <span className="absolute inset-0 -z-10 rounded-xl md:rounded-2xl bg-white/40 opacity-0 transition-opacity group-hover:animate-ping group-hover:opacity-100" />
 
         {/* Tooltip */}
-        <span className="absolute left-full ml-4 rounded-lg bg-foreground px-2 py-1 text-[10px] font-black tracking-wide text-background opacity-0 transition-all group-hover:ml-6 group-hover:opacity-100">
+        <span className="absolute bottom-full mb-3 rounded-lg bg-foreground px-2 py-1 text-[10px] font-black tracking-wide text-background opacity-0 transition-all group-hover:mb-4 group-hover:opacity-100 whitespace-nowrap">
           {item.label}
         </span>
       </a>
     ))}
-    <div className="mx-auto h-20 w-px bg-gradient-to-b from-border to-transparent mt-2" />
+  </div>
+);
+
+const PageLoader = ({ isNavigating }: { isNavigating: boolean }) => (
+  <div className={cn(
+    "fixed inset-0 z-[100] flex items-center justify-center bg-background transition-all duration-700 ease-in-out",
+    isNavigating ? "visible opacity-100" : "invisible opacity-0 pointer-events-none"
+  )}>
+    <div className="relative flex flex-col items-center gap-8 p-12 text-center">
+      {/* Logo with pulse */}
+      <div className="relative">
+        <div className="absolute inset-0 size-32 rounded-[2.5rem] bg-primary/10 animate-ping opacity-20" />
+        <div className="relative size-32 rounded-[2.5rem] bg-white shadow-2xl flex items-center justify-center border border-border/40">
+          <img src={brandAssets.tnPvcLogo} alt="" className="size-20 object-contain animate-float" />
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h2 className="text-2xl font-black tracking-tight text-foreground">
+          TN-PVC <span className="text-primary">Interiors</span>
+        </h2>
+        <p className="text-sm font-bold text-muted-foreground tracking-wide max-w-[240px]">
+          Connecting Tamil Nadu's PVC Trade Ecosystem...
+        </p>
+      </div>
+
+      {/* Progress Bar */}
+      <div className="w-64 h-1.5 bg-muted rounded-full overflow-hidden relative">
+        <div className="absolute inset-0 bg-primary animate-loader-progress rounded-full" />
+      </div>
+    </div>
   </div>
 );
 
 export const SiteLayout = ({ children }: SiteLayoutProps) => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -72,16 +117,20 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Scroll to top on route change
+  // Scroll to top and trigger loader on route change
   useEffect(() => {
-    // Ensure the scroll happens after React Router renders the new page
-    setTimeout(() => {
+    setIsNavigating(true);
+    const timer = setTimeout(() => {
       window.scrollTo(0, 0);
-    }, 10);
+      setIsNavigating(false);
+    }, 800);
+    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground selection:bg-primary/10 selection:text-primary">
+      <PageLoader isNavigating={isNavigating} />
+      
       {/* ─── Header ─── */}
       <header
         className={cn(
@@ -96,6 +145,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
               : "bg-transparent py-0 px-0"
           )}
         >
+
           {/* Logo */}
           <Link
             to="/"
@@ -158,23 +208,28 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                 <Menu className="size-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[85vw] max-w-sm border-l border-border/40 bg-background p-0 flex flex-col">
-              <SheetHeader className="border-b border-border/20 px-8 py-6 text-left shrink-0">
-                <SheetTitle className="text-xl font-black tracking-tight">{siteName}</SheetTitle>
-                <SheetDescription className="text-xs font-medium text-muted-foreground">{siteTagline}</SheetDescription>
+            <SheetContent side="right" className="w-[85vw] max-w-sm border-l border-white/20 bg-white/80 backdrop-blur-3xl p-0 flex flex-col shadow-2xl">
+              <SheetHeader className="border-b border-border/20 px-8 py-10 text-left shrink-0 bg-primary/5">
+                <div className="flex items-center gap-4 mb-4">
+                  <img src={brandAssets.tnPvcLogo} alt="" className="size-12 rounded-2xl shadow-lg" />
+                  <div>
+                    <SheetTitle className="text-2xl font-black tracking-tight leading-none">{siteName}</SheetTitle>
+                    <SheetDescription className="text-[10px] font-bold text-primary mt-1 uppercase tracking-widest">{siteTagline}</SheetDescription>
+                  </div>
+                </div>
               </SheetHeader>
               <div className="flex flex-1 flex-col justify-between p-8 overflow-y-auto">
-                <nav className="space-y-2" aria-label="Mobile navigation">
+                <nav className="flex flex-col gap-3" aria-label="Mobile navigation">
                   {navItems.map((item) => (
                     <SheetClose asChild key={item.path}>
                       <NavLink
                         to={item.path}
                         end={item.path === "/"}
                         className={cn(
-                          "flex h-12 items-center rounded-xl px-4 text-sm font-bold transition-all",
+                          "flex h-14 items-center rounded-2xl px-6 text-sm font-black transition-all border border-transparent",
                           location.pathname === item.path
-                            ? "bg-primary/10 text-primary"
-                            : "text-muted-foreground hover:bg-surface hover:text-foreground",
+                            ? "bg-primary text-primary-foreground shadow-xl shadow-primary/20"
+                            : "text-muted-foreground hover:bg-white hover:text-foreground hover:border-border/40 hover:shadow-sm",
                         )}
                       >
                         {item.label}
@@ -184,18 +239,18 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                 </nav>
 
                 <div className="space-y-6 border-t border-border/20 pt-8">
-                  <div className="flex items-center gap-4">
-                    <img src={brandAssets.aiPvcLogo} alt="" className="size-12 rounded-xl" />
-                    <p className="text-[10px] font-bold tracking-wide text-muted-foreground">
+                  <div className="flex items-center gap-4 px-2">
+                    <img src={brandAssets.aiPvcLogo} alt="" className="size-12 rounded-2xl grayscale" />
+                    <p className="text-[10px] font-black tracking-widest text-muted-foreground uppercase">
                       Powered by AI-PVC Groups
                     </p>
                   </div>
                   <a
                     href="tel:+918489143405"
-                    className="primary-btn w-full py-4 text-sm"
+                    className="primary-btn w-full py-5 rounded-[1.5rem] text-sm font-black shadow-2xl shadow-primary/30"
                   >
                     <Phone className="mr-2 size-4" aria-hidden="true" />
-                    Call leadership
+                    Call Leadership
                   </a>
                 </div>
               </div>
@@ -204,8 +259,14 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
         </div>
       </header>
 
+      {/* ─── Sticky Social Island (Centered) ─── */}
+      <div className="fixed top-20 left-1/2 -translate-x-1/2 z-[60] pointer-events-none">
+        <div className="pointer-events-auto flex items-center gap-3 bg-white/60 backdrop-blur-3xl border border-white/20 p-3 rounded-[2rem] shadow-2xl transition-all duration-500 hover:scale-105 hover:bg-white/80">
+          <SocialLinks className="gap-3" />
+        </div>
+      </div>
+
       {/* ─── Main ─── */}
-      <SocialFloat />
       <main id="main-content" className="relative pt-20">
         {children}
       </main>
@@ -238,7 +299,16 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                     <svg className="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>
                   )
                 },
-                { label: "Website", href: "https://www.dexaz.in", icon: <ArrowUpRight className="size-5" /> },
+                {
+                  label: "YouTube", href: "https://youtube.com", icon: (
+                    <svg className="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
+                  )
+                },
+                {
+                  label: "WhatsApp", href: "https://wa.me/918870826404", icon: (
+                    <svg className="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.411.002 12.048c0 2.12.54 4.19 1.566 6.02L0 24l6.105-1.602a11.832 11.832 0 005.937 1.597h.005c6.634 0 12.043-5.411 12.046-12.048a11.804 11.804 0 00-3.489-8.452z"/></svg>
+                  )
+                },
               ].map((social) => (
                 <a
                   key={social.label}
@@ -257,7 +327,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
           {/* Links grid */}
           <div className="grid gap-12 sm:grid-cols-2">
             <div className="space-y-6">
-              <p className="text-[10px] font-bold tracking-wide text-primary">Contact support</p>
+              <p className="text-sm font-bold tracking-wide text-primary uppercase">Contact support</p>
               <div className="space-y-3">
                 <a className="block text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="tel:+918870826404">
                   Srinivasan · +91 8870826404
@@ -271,8 +341,8 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
               </div>
             </div>
             <div className="space-y-6">
-              <p className="text-[10px] font-bold tracking-wide text-primary">Quick links</p>
-              <nav className="space-y-3 flex flex-col" aria-label="Footer links">
+              <p className="text-sm font-bold tracking-wide text-primary uppercase">Quick links</p>
+              <nav className="space-y-3 flex flex-col items-start text-left" aria-label="Footer links">
                 <Link className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/network">Our network</Link>
                 <Link className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/benefits">Business benefits</Link>
                 <Link className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/contractors">For contractors</Link>

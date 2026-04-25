@@ -109,6 +109,10 @@
    ============================================================ */
 
 @layer components {
+  .container {
+    padding-top: 50px;
+  }
+
   /* ─── 8pt Spacing Containers ─── */
   .section-padding {
     @apply py-16 lg:py-24; /* 64px, 96px (multiples of 8) */
@@ -202,6 +206,16 @@
 
   .animate-soft-glow {
     animation: soft-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes loader-progress {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+  }
+
+  .animate-loader-progress {
+    animation: loader-progress 1.5s ease-in-out infinite;
   }
 }
 

@@ -4,7 +4,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import AiPvcGroups from "./pages/AiPvcGroups.tsx";
-import Anubrindha from "./pages/Anubrindha.tsx";
 import Benefits from "./pages/Benefits.tsx";
 import Clients from "./pages/Clients.tsx";
 import Contractors from "./pages/Contractors.tsx";
@@ -33,7 +32,6 @@ const App = () => (
           <Route path="/ai-pvc-groups" element={<AiPvcGroups />} />
           <Route path="/siranthan-siran" element={<SiranthanSiran />} />
           <Route path="/srinivasan" element={<Srinivasan />} />
-          <Route path="/anubrindha" element={<Anubrindha />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
