@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
-import { ArrowUpRight, ChevronRight, Facebook, Instagram, Menu, MessageCircleMore, Phone, Twitter, Youtube, X, LayoutGrid, MapPin, ChevronsUpDown, Globe, Sparkles, HardHat, Users, Wrench, ShieldCheck, UserPlus, CreditCard } from "lucide-react";
+import { ArrowUpRight, ChevronRight, ChevronDown, Facebook, Instagram, Menu, MessageCircleMore, Phone, Twitter, Youtube, X, LayoutGrid, MapPin, ChevronsUpDown, Globe, Sparkles, HardHat, Users, Wrench, ShieldCheck, UserPlus, CreditCard } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+import { LanguageSwitcher } from "@/components/site/LanguageSwitcher";
 import { NavLink } from "@/components/NavLink";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,6 +15,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { brandAssets, navItems, siteName, siteTagline } from "@/data/siteData";
 import { cn } from "@/lib/utils";
 
@@ -125,7 +132,8 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
       {/* ─── Header ─── */}
       <header
         className={cn(
-          "fixed top-0 left-0 w-full z-50 h-20 transition-all duration-500 flex items-center p-4",
+          "fixed left-0 w-full z-50 h-20 transition-all duration-500 flex items-center px-4",
+          scrolled ? "top-5" : "top-0"
         )}
       >
         <div
@@ -162,8 +170,34 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
           {/* Desktop nav */}
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
             {navItems.map((item) => {
-              const isHash = item.path.startsWith("/#");
-              if (isHash) {
+              if (item.subItems) {
+                return (
+                  <DropdownMenu key={item.label} modal={false}>
+                    <DropdownMenuTrigger className="group relative rounded-full px-4 py-2 text-sm font-semibold tracking-wide text-muted-foreground transition-all hover:text-primary outline-none flex items-center gap-1">
+                      <span className="relative z-10">{item.shortLabel ?? item.label}</span>
+                      <ChevronDown className="relative z-10 size-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" className="w-48 rounded-2xl p-2 shadow-xl border-border/50 bg-white/95 backdrop-blur-xl">
+                      <div className="flex flex-col gap-1">
+                        {item.subItems.map((subItem) => (
+                          <DropdownMenuItem key={subItem.path} asChild>
+                            <NavLink
+                              to={subItem.path}
+                              className="flex items-center justify-start text-left px-3 py-2 text-sm font-medium rounded-xl transition-colors cursor-pointer w-full text-foreground hover:bg-muted/80 hover:text-primary data-[active=true]:bg-primary/10 data-[active=true]:text-primary data-[active=true]:font-bold outline-none"
+                              activeClassName="bg-primary/10 text-primary font-bold"
+                            >
+                              {subItem.label}
+                            </NavLink>
+                          </DropdownMenuItem>
+                        ))}
+                      </div>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                );
+              }
+
+              const isHash = item.path?.startsWith("/#");
+              if (isHash && item.path) {
                 return (
                   <a
                     key={item.path}
@@ -177,7 +211,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
               return (
                 <NavLink
                   key={item.path}
-                  to={item.path}
+                  to={item.path!}
                   className="group relative rounded-full px-4 py-2 text-sm font-semibold tracking-wide text-muted-foreground transition-all hover:text-primary"
                   activeClassName="text-primary bg-primary/5"
                   end={item.path === "/"}
@@ -190,8 +224,9 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
             })}
           </nav>
 
-          {/* CTA */}
-          <div className="hidden lg:block">
+          {/* Actions */}
+          <div className="hidden lg:flex items-center gap-4">
+            <LanguageSwitcher />
             <a
               href="tel:+918870826404"
               className="primary-btn h-14 px-6 text-sm" // 56px height
@@ -216,9 +251,15 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
               side="left" 
               className="w-[85vw] max-w-[340px] bg-transparent p-0 flex flex-col border-none shadow-none sm:max-w-[340px] [&>button]:hidden"
             >
+              {/* Close Button Outside */}
+              <div className="absolute -right-14 top-4 z-50">
+                <SheetClose className="size-10 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white/30 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-white">
+                  <X className="size-5" />
+                  <span className="sr-only">Close menu</span>
+                </SheetClose>
+              </div>
 
-
-              <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col h-full bg-white rounded-r-[2.5rem] shadow-[20px_0_40px_-15px_rgba(0,0,0,0.1)] relative z-40">
+              <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col h-full bg-white rounded-r-[20px] shadow-[20px_0_40px_-15px_rgba(0,0,0,0.1)] relative z-40">
                 {/* Header (Logo & Close Button) */}
                 <div className="flex items-center justify-between mb-8">
                   <Link
@@ -240,10 +281,6 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                       </p>
                     </div>
                   </Link>
-                  <SheetClose className="size-10 rounded-xl bg-surface/50 border border-border/40 text-muted-foreground flex items-center justify-center hover:text-foreground hover:bg-surface transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-                    <X className="size-5" />
-                    <span className="sr-only">Close menu</span>
-                  </SheetClose>
                 </div>
 
                 {/* Nav Links */}
@@ -258,10 +295,38 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                       "/ai-pvc-groups": ShieldCheck,
                       "/#register": UserPlus,
                     };
-                    const Icon = navIcons[item.path] || LayoutGrid;
-                    const isHash = item.path.startsWith("/#");
                     
-                    if (isHash) {
+                    if (item.subItems) {
+                      return (
+                        <div key={item.label} className="flex flex-col gap-1.5 mt-2 mb-2">
+                          <p className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">{item.label}</p>
+                          {item.subItems.map((subItem) => {
+                            const SubIcon = navIcons[subItem.path] || LayoutGrid;
+                            return (
+                              <SheetClose asChild key={subItem.path}>
+                                <NavLink
+                                  to={subItem.path}
+                                  className={cn(
+                                    "flex items-center justify-start text-left gap-4 px-4 py-3.5 rounded-2xl text-sm font-semibold transition-all",
+                                    location.pathname === subItem.path
+                                      ? "bg-primary/10 text-primary"
+                                      : "text-foreground hover:bg-muted/50"
+                                  )}
+                                >
+                                  <SubIcon className={cn("size-5", location.pathname === subItem.path ? "text-primary" : "text-muted-foreground")} />
+                                  {subItem.label}
+                                </NavLink>
+                              </SheetClose>
+                            );
+                          })}
+                        </div>
+                      );
+                    }
+
+                    const Icon = item.path ? navIcons[item.path] || LayoutGrid : LayoutGrid;
+                    const isHash = item.path?.startsWith("/#");
+                    
+                    if (isHash && item.path) {
                       return (
                         <SheetClose asChild key={item.path}>
                           <a
@@ -281,7 +346,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                     return (
                       <SheetClose asChild key={item.path}>
                         <NavLink
-                          to={item.path}
+                          to={item.path!}
                           end={item.path === "/"}
                           className={cn(
                             "flex items-center justify-start text-left gap-4 px-4 py-3.5 rounded-2xl text-sm font-semibold transition-all",
@@ -299,14 +364,22 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                 </nav>
 
                 {/* Bottom Profile */}
-                <div className="mt-6 pt-6">
-                  <p className="text-xs font-bold text-muted-foreground mb-3 px-1">Need help?</p>
-                  <a href="tel:+918870826404" className="flex items-center gap-3 px-4 py-3 rounded-[1.25rem] border border-border/50 hover:bg-muted/50 transition-colors">
-                    <div className="size-9 rounded-full bg-primary flex items-center justify-center text-white text-[10px] font-black shrink-0">
-                      TN
+                <div className="mt-6 pt-6 flex flex-col gap-4">
+                  <div>
+                    <p className="text-xs font-bold text-muted-foreground mb-3 px-1">Language</p>
+                    <div className="flex px-1">
+                      <LanguageSwitcher />
                     </div>
-                    <span className="text-sm font-bold text-foreground">TN-PVC Support</span>
-                  </a>
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-muted-foreground mb-3 px-1">Need help?</p>
+                    <a href="tel:+918870826404" className="flex items-center gap-3 px-4 py-3 rounded-[1.25rem] border border-border/50 hover:bg-muted/50 transition-colors">
+                      <div className="size-9 rounded-full bg-primary flex items-center justify-center text-white text-[10px] font-black shrink-0">
+                        TN
+                      </div>
+                      <span className="text-sm font-bold text-foreground">TN-PVC Support</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </SheetContent>

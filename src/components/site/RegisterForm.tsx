@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckCircle2, ChevronRight, MapPin, Mail, Phone, User, Building2, Wrench, Users } from "lucide-react";
+import { CheckCircle2, ChevronRight, MapPin, Mail, Phone, User, Building2, Wrench, Users, Factory, Package, Store, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -29,8 +29,9 @@ export const RegisterForm = ({ title = "Enroll in the Network", description = "F
     email: "",
     state: "",
     city: "",
+    address: "",
     mobile: "",
-    userType: "Client"
+    userType: "Contractor"
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -154,6 +155,24 @@ export const RegisterForm = ({ title = "Enroll in the Network", description = "F
             </div>
           </div>
 
+          {/* Full Address */}
+          <div className="relative group">
+            <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
+              Full Address
+            </label>
+            <div className="relative">
+              <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+              <input
+                required
+                type="text"
+                placeholder="Door No, Street, Landmark..."
+                className="w-full h-14 pl-11 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm"
+                value={formData.address}
+                onChange={(e) => setFormData({...formData, address: e.target.value})}
+              />
+            </div>
+          </div>
+
           {/* Mobile */}
           <div className="relative group">
             <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
@@ -175,11 +194,14 @@ export const RegisterForm = ({ title = "Enroll in the Network", description = "F
           {/* User Type */}
           <div className="space-y-4">
             <p className="text-[10px] font-black uppercase tracking-widest text-primary">I am registering as a:</p>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {[
-                { id: "Client", icon: Users },
-                { id: "Labour", icon: Wrench },
-                { id: "Contractors", icon: Building2 }
+                { id: "Contractor", icon: Building2 },
+                { id: "Labour Contractor", icon: Users },
+                { id: "Distributor", icon: Truck },
+                { id: "Dealer", icon: Store },
+                { id: "Manufacture", icon: Factory },
+                { id: "Hardware Supplier", icon: Package }
               ].map((type) => (
                 <label
                   key={type.id}

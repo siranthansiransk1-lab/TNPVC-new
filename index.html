@@ -78,6 +78,41 @@
 
   <body>
     <div id="root"></div>
+    <div id="google_translate_element" style="display:none;"></div>
+    
+    <!-- Fix for React crashing when Google Translate modifies the DOM -->
+    <script>
+      if (typeof Node === 'function' && Node.prototype) {
+        const originalRemoveChild = Node.prototype.removeChild;
+        Node.prototype.removeChild = function(child) {
+          if (child.parentNode !== this) {
+            console.warn('Prevented React crash from Google Translate (removeChild)', child, this);
+            return child;
+          }
+          return originalRemoveChild.apply(this, arguments);
+        };
+
+        const originalInsertBefore = Node.prototype.insertBefore;
+        Node.prototype.insertBefore = function(newNode, referenceNode) {
+          if (referenceNode && referenceNode.parentNode !== this) {
+            console.warn('Prevented React crash from Google Translate (insertBefore)', referenceNode, this);
+            return newNode;
+          }
+          return originalInsertBefore.apply(this, arguments);
+        };
+      }
+    </script>
+
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,hi,ta,te,kn,ml,bn,mr,gu,pa',
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

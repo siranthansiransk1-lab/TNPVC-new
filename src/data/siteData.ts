@@ -31,8 +31,9 @@ import heroPartnership from "@/assets/hero-partnership.png";
 
 export type NavItem = {
   label: string;
-  path: string;
+  path?: string;
   shortLabel?: string;
+  subItems?: { label: string; path: string }[];
 };
 
 export type SeoConfig = {
@@ -69,9 +70,14 @@ export const navItems: NavItem[] = [
   { label: "Home", path: "/" },
   { label: "Network", path: "/network" },
   { label: "Benefits", path: "/benefits" },
-  { label: "Contractors", path: "/contractors" },
-  { label: "Clients", path: "/clients" },
-  { label: "Labour", path: "/labour" },
+  {
+    label: "Members",
+    subItems: [
+      { label: "Contractors", path: "/contractors" },
+      { label: "Clients", path: "/clients" },
+      { label: "Labour", path: "/labour" },
+    ],
+  },
   { label: "Partnership Transparency", path: "/ai-pvc-groups" },
   { label: "Register", path: "/#register", shortLabel: "Register" },
 ];
@@ -357,4 +363,14 @@ export const geoCoverage = [
   "Erode",
   "Tiruppur",
   "and all 38 districts across Tamil Nadu",
+];
+
+export const marqueeCities = [
+  "Chennai", "Coimbatore", "Madurai", "Trichy", "Salem", "Erode",
+  "Tiruppur", "Vellore", "Thoothukudi", "Dindigul", "Thanjavur",
+  "Ranipet", "Sivakasi", "Kanchipuram", "Kumbakonam", "Nagercoil",
+  "Pollachi", "Udumalpet", "Ooty", "Hosur", "Karur", "Namakkal",
+  "Dharmapuri", "Krishnagiri", "Villupuram", "Cuddalore", "Nagapattinam",
+  "Mayiladuthurai", "Ariyalur", "Perambalur", "Pudukkottai", "Sivaganga",
+  "Virudhunagar", "Ramanathapuram", "Tenkasi", "Tirunelveli", "Kallakurichi", "Chengalpattu",
 ];
