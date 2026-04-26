@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
+import { SocialLinks } from "@/components/site/SiteLayout";
 import { cn } from "@/lib/utils";
 
 type Action = {
@@ -56,9 +57,14 @@ export const PageHero = ({
               {topContent}
             </div>
           )}
+          {/* Social media icons — placed above eyebrow */}
+          <div className="animate-reveal mb-6">
+            <SocialLinks />
+          </div>
+
           {/* Eyebrow / Badge */}
           <div className="animate-reveal mb-8">
-            <Link to="/benefits" className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-white/50 px-5 py-2 text-[10px] font-black tracking-wide text-foreground backdrop-blur-md transition-all hover:border-primary/40 hover:bg-white">
+            <Link to="/benefits" className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-white/50 px-5 py-2 text-xs font-bold tracking-wide text-foreground backdrop-blur-md transition-all hover:border-primary/40 hover:bg-white">
               {eyebrow}
               <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
@@ -82,27 +88,50 @@ export const PageHero = ({
             <div className="animate-reveal delay-3 mt-10 flex flex-wrap justify-center gap-4">
               {actions.map((action) => {
                 const Icon = action.icon;
+                const isHash = action.to.startsWith("#") || action.to.startsWith("/#");
                 return action.secondary ? (
-                  <Button
-                    asChild
-                    key={action.to}
-                    variant="outline"
-                    className="secondary-btn h-14 px-10 text-base group"
-                  >
-                    <Link to={action.to}>
+                  isHash ? (
+                    <a
+                      key={action.to}
+                      href={action.to}
+                      className="secondary-btn h-14 px-10 text-base group"
+                    >
+                      {action.label}
+                      {Icon && <Icon className="ml-2 size-4 transition-transform group-hover:translate-x-1" />}
+                    </a>
+                  ) : (
+                    <Button
+                      asChild
+                      key={action.to}
+                      variant="outline"
+                      className="secondary-btn h-14 px-10 text-base group"
+                    >
+                      <Link to={action.to}>
+                        {action.label}
+                        {Icon && <Icon className="ml-2 size-4 transition-transform group-hover:translate-x-1" />}
+                      </Link>
+                    </Button>
+                  )
+                ) : (
+                  isHash ? (
+                    <a
+                      key={action.to}
+                      href={action.to}
+                      className="primary-btn h-14 px-10 text-base group"
+                    >
+                      {action.label}
+                      {Icon && <Icon className="ml-2 size-4 transition-transform group-hover:translate-x-1" />}
+                    </a>
+                  ) : (
+                    <Link
+                      key={action.to}
+                      to={action.to}
+                      className="primary-btn h-14 px-10 text-base group"
+                    >
                       {action.label}
                       {Icon && <Icon className="ml-2 size-4 transition-transform group-hover:translate-x-1" />}
                     </Link>
-                  </Button>
-                ) : (
-                  <Link
-                    key={action.to}
-                    to={action.to}
-                    className="primary-btn h-14 px-10 text-base group"
-                  >
-                    {action.label}
-                    {Icon && <Icon className="ml-2 size-4 transition-transform group-hover:translate-x-1" />}
-                  </Link>
+                  )
                 );
               })}
             </div>
@@ -264,7 +293,7 @@ type SectionIntroProps = {
 export const SectionIntro = ({ eyebrow, title, description, align = "left" }: SectionIntroProps) => {
   return (
     <div className={cn("space-y-4", align === "center" && "mx-auto max-w-3xl text-center")}>
-      <p className="text-[10px] font-black tracking-wide text-primary">{eyebrow}</p>
+      <p className="text-xs font-bold tracking-widest uppercase text-primary">{eyebrow}</p>
       <h2 className="text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl">{title}</h2>
       <p className="max-w-2xl text-base font-medium leading-relaxed text-muted-foreground">{description}</p>
     </div>

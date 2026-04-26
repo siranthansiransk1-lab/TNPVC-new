@@ -73,7 +73,7 @@ export const navItems: NavItem[] = [
   { label: "Clients", path: "/clients" },
   { label: "Labour", path: "/labour" },
   { label: "Partnership Transparency", path: "/ai-pvc-groups" },
-  { label: "Register", path: "/register", shortLabel: "Register" },
+  { label: "Register", path: "/#register", shortLabel: "Register" },
 ];
 
 export const seoByPath: Record<string, SeoConfig> = {

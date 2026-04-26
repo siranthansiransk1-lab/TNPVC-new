@@ -42,31 +42,22 @@ export const SocialLinks = ({ className, vertical = false }: { className?: strin
         bg: "bg-green-600", 
         delay: "delay-4" 
       },
-    ].map((item, i) => (
+    ].map((item) => (
       <a
         key={item.label}
         href={item.href}
         target="_blank"
         rel="noreferrer"
+        aria-label={item.label}
         className={cn(
-          "group relative flex size-10 md:size-12 items-center justify-center rounded-xl md:rounded-2xl text-white shadow-xl transition-all duration-500 hover:-translate-y-1 hover:scale-110 hover:shadow-primary/40 animate-reveal",
-          item.bg,
-          item.delay
+          "group relative flex size-10 md:size-11 items-center justify-center rounded-xl text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg",
+          item.bg
         )}
       >
-        <item.icon className="size-4 md:size-5 transition-transform duration-700 group-hover:rotate-[360deg] relative z-10" />
-
-        {/* Attraction: Persistent Pulse Glow */}
-        <span className={cn(
-          "absolute inset-0 -z-10 rounded-xl md:rounded-2xl animate-soft-glow opacity-50",
-          item.bg
-        )} />
-
-        {/* Hover Attraction Ping */}
-        <span className="absolute inset-0 -z-10 rounded-xl md:rounded-2xl bg-white/40 opacity-0 transition-opacity group-hover:animate-ping group-hover:opacity-100" />
+        <item.icon className="size-4 md:size-5 relative z-10" />
 
         {/* Tooltip */}
-        <span className="absolute bottom-full mb-3 rounded-lg bg-foreground px-2 py-1 text-[10px] font-black tracking-wide text-background opacity-0 transition-all group-hover:mb-4 group-hover:opacity-100 whitespace-nowrap">
+        <span className="absolute bottom-full mb-2 rounded-lg bg-foreground px-2 py-1 text-[10px] font-bold tracking-wide text-background opacity-0 transition-opacity group-hover:opacity-100 whitespace-nowrap pointer-events-none">
           {item.label}
         </span>
       </a>
@@ -170,26 +161,40 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                className="group relative rounded-full px-4 py-2 text-[13px] font-semibold tracking-wide text-muted-foreground transition-all hover:text-primary"
-                activeClassName="text-primary bg-primary/5"
-                end={item.path === "/"}
-              >
-                <span className="relative z-10">{item.shortLabel ?? item.label}</span>
-                {/* Subtle indicator for active state */}
-                <span className="absolute bottom-1.5 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-primary transition-all duration-300 group-[.active]:w-4" />
-              </NavLink>
-            ))}
+            {navItems.map((item) => {
+              const isHash = item.path.startsWith("/#");
+              if (isHash) {
+                return (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    className="group relative rounded-full px-4 py-2 text-sm font-semibold tracking-wide text-muted-foreground transition-all hover:text-primary"
+                  >
+                    <span className="relative z-10">{item.shortLabel ?? item.label}</span>
+                  </a>
+                );
+              }
+              return (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className="group relative rounded-full px-4 py-2 text-sm font-semibold tracking-wide text-muted-foreground transition-all hover:text-primary"
+                  activeClassName="text-primary bg-primary/5"
+                  end={item.path === "/"}
+                >
+                  <span className="relative z-10">{item.shortLabel ?? item.label}</span>
+                  {/* Subtle indicator for active state */}
+                  <span className="absolute bottom-1.5 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-primary transition-all duration-300 group-[.active]:w-4" />
+                </NavLink>
+              );
+            })}
           </nav>
 
           {/* CTA */}
           <div className="hidden lg:block">
             <a
               href="tel:+918870826404"
-              className="primary-btn h-11 px-6 text-[13px]" // 44px height (WCAG)
+              className="primary-btn h-14 px-6 text-sm" // 56px height
             >
               <Phone className="mr-2 size-3.5" aria-hidden="true" />
               Contact us
@@ -251,17 +256,35 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                       "/clients": Users,
                       "/labour": Wrench,
                       "/ai-pvc-groups": ShieldCheck,
-                      "/register": UserPlus,
+                      "/#register": UserPlus,
                     };
                     const Icon = navIcons[item.path] || LayoutGrid;
+                    const isHash = item.path.startsWith("/#");
                     
+                    if (isHash) {
+                      return (
+                        <SheetClose asChild key={item.path}>
+                          <a
+                            href={item.path}
+                            className={cn(
+                              "flex items-center justify-start text-left gap-4 px-4 py-3.5 rounded-2xl text-sm font-semibold transition-all",
+                              "text-foreground hover:bg-muted/50"
+                            )}
+                          >
+                            <Icon className="size-5 text-muted-foreground" />
+                            {item.label}
+                          </a>
+                        </SheetClose>
+                      );
+                    }
+
                     return (
                       <SheetClose asChild key={item.path}>
                         <NavLink
                           to={item.path}
                           end={item.path === "/"}
                           className={cn(
-                            "flex items-center justify-start text-left gap-4 px-4 py-3.5 rounded-2xl text-[14px] font-semibold transition-all",
+                            "flex items-center justify-start text-left gap-4 px-4 py-3.5 rounded-2xl text-sm font-semibold transition-all",
                             location.pathname === item.path
                               ? "bg-primary/10 text-primary"
                               : "text-foreground hover:bg-muted/50"
@@ -291,12 +314,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
         </div>
       </header>
 
-      {/* ─── Sticky Social Island (Centered) ─── */}
-      <div className="fixed top-20 left-1/2 -translate-x-1/2 z-[60] pointer-events-none">
-        <div className="pointer-events-auto flex items-center gap-3 bg-white/60 backdrop-blur-3xl border border-white/20 p-3 rounded-[2rem] shadow-2xl transition-all duration-500 hover:scale-105 hover:bg-white/80">
-          <SocialLinks className="gap-3" />
-        </div>
-      </div>
+      {/* Social Island removed — now rendered inline in Hero */}
 
       {/* ─── Main ─── */}
       <main id="main-content" className="relative pt-20">

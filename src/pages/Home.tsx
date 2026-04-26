@@ -45,7 +45,7 @@ const Home = () => {
         description="Leverage a connected digital ecosystem and community-first coordination to streamline your projects, reduce delays, and drive consistent growth across Tamil Nadu."
         actions={[
           { label: "Explore Network", to: "/network" },
-          { label: "Register Profile", to: "#register", secondary: true, icon: UserCheck }
+          { label: "Register Profile", to: "/#register", secondary: true, icon: UserCheck }
         ]}
         bentoItems={[
           {
@@ -269,7 +269,7 @@ const Home = () => {
                 
                 {/* Coverage Badge */}
                 <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 z-30 text-right pointer-events-none">
-                  <p className="text-[10px] font-black tracking-wide text-primary mb-1">Statewide coverage</p>
+                  <p className="text-xs font-bold tracking-wide text-primary mb-1">Statewide coverage</p>
                   <p className="text-xl md:text-3xl font-black text-foreground drop-shadow-sm">38 Districts</p>
                 </div>
               </div>
@@ -303,7 +303,7 @@ const Home = () => {
                 )}
               >
                 {group.highlight && (
-                  <span className="mb-6 inline-flex self-start items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-[10px] font-black text-primary">
+                  <span className="mb-6 inline-flex self-start items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary">
                     Recommended
                   </span>
                 )}

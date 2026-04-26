@@ -10,8 +10,7 @@ const Register = () => {
       <Seo 
         title="Register | Join TN-PVC Interiors Network"
         description="Join the leading PVC trade community in Tamil Nadu."
-        path="/register"
-      />
+        path="/register" keywords={[]}      />
       
       <PageHero
         compact
