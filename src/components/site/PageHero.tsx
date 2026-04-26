@@ -58,13 +58,13 @@ export const PageHero = ({
             </div>
           )}
           {/* Social media icons — placed above eyebrow */}
-          <div className="animate-reveal mb-6">
+          <div className="animate-reveal mb-6 flex justify-center w-full">
             <SocialLinks />
           </div>
 
           {/* Eyebrow / Badge */}
           <div className="animate-reveal mb-8">
-            <Link to="/benefits" className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-white/50 px-5 py-2 text-xs font-bold tracking-wide text-foreground backdrop-blur-md transition-all hover:border-primary/40 hover:bg-white">
+            <Link to="/ai-pvc-groups" className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-white/50 px-5 py-2 text-xs font-bold tracking-wide text-foreground backdrop-blur-md shadow-sm transition-all hover:border-primary/40 hover:bg-white hover:shadow">
               {eyebrow}
               <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
@@ -196,12 +196,18 @@ export const PageHero = ({
           compact && "py-16 lg:py-24",
         )}
       >
-        <div className="space-y-10">
-          <div className="animate-reveal">
-            <span className="eyebrow" role="status">
-              <span className="size-2 rounded-full bg-primary animate-pulse" aria-hidden="true" />
-              {eyebrow}
-            </span>
+        <div className="space-y-8">
+          <div className="space-y-6">
+            <div className="animate-reveal">
+              <SocialLinks />
+            </div>
+            
+            <div className="animate-reveal">
+              <Link to="/ai-pvc-groups" className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-white/50 px-5 py-2 text-xs font-bold tracking-wide text-foreground backdrop-blur-md shadow-sm transition-all hover:border-primary/40 hover:bg-white hover:shadow">
+                {eyebrow}
+                <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
           </div>
 
           <div className="space-y-6">

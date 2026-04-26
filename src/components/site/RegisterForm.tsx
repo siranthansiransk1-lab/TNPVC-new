@@ -35,23 +35,44 @@ export const RegisterForm = ({ title = "Enroll in the Network", description = "F
   });
 
   const renderField = (label: string, placeholder: string, type = "text", valueKey: string) => (
-    <div className="relative group">
-      <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
-        {label}
+    <div className="flex flex-col gap-2">
+      <label className="text-sm font-medium text-slate-600">
+        {label}*
       </label>
-      <div className="relative">
-        <input
-          required
-          type={type}
-          placeholder={placeholder}
-          className={cn(
-            "w-full h-14 pl-4 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm",
-            type === "file" && "pt-3.5 pb-2 text-muted-foreground file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20"
-          )}
-          value={type !== "file" ? formData[valueKey] || "" : undefined}
-          onChange={(e) => setFormData({...formData, [valueKey]: e.target.value})}
-        />
-      </div>
+      <input
+        required
+        type={type}
+        placeholder={placeholder}
+        className={cn(
+          "w-full h-12 px-4 rounded-xl bg-white border border-border/60 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] hover:border-primary/30 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-normal text-foreground placeholder:text-muted-foreground/60 outline-none",
+          type === "file" && "pt-2.5 pb-2 text-muted-foreground file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-medium file:bg-primary/10 file:text-primary hover:file:bg-primary/20"
+        )}
+        value={type !== "file" ? formData[valueKey] || "" : undefined}
+        onChange={(e) => setFormData({...formData, [valueKey]: e.target.value})}
+      />
+    </div>
+  );
+
+  const renderSelect = (label: string, valueKey: string, options: string[], placeholder: string) => (
+    <div className="flex flex-col gap-2">
+      <label className="text-sm font-medium text-slate-600">
+        {label}*
+      </label>
+      <select
+        required
+        className="w-full h-12 px-4 rounded-xl bg-white border border-border/60 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] hover:border-primary/30 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-normal appearance-none cursor-pointer outline-none"
+        value={formData[valueKey] || ""}
+        onChange={(e) => {
+          if (valueKey === 'state') {
+            setFormData({...formData, state: e.target.value, city: ""});
+          } else {
+            setFormData({...formData, [valueKey]: e.target.value});
+          }
+        }}
+      >
+        <option value="">{placeholder}</option>
+        {options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+      </select>
     </div>
   );
 
@@ -88,129 +109,21 @@ export const RegisterForm = ({ title = "Enroll in the Network", description = "F
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2">
-            {/* Name */}
-            <div className="relative group">
-              <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
-                Full Name
-              </label>
-              <div className="relative">
-                <User className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-                <input
-                  required
-                  type="text"
-                  placeholder="John Doe"
-                  className="w-full h-14 pl-11 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm"
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                />
-              </div>
-            </div>
-
-            {/* Email */}
-            <div className="relative group">
-              <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
-                Email Address
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-                <input
-                  required
-                  type="email"
-                  placeholder="john@example.com"
-                  className="w-full h-14 pl-11 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm"
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                />
-              </div>
-            </div>
+            {renderField("Full Name", "Type your name", "text", "name")}
+            {renderField("Email", "Type your email address", "email", "email")}
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2">
-            {/* State */}
-            <div className="relative group">
-              <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
-                State
-              </label>
-              <div className="relative">
-                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-                <select
-                  required
-                  className="w-full h-14 pl-11 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm appearance-none cursor-pointer"
-                  value={formData.state}
-                  onChange={(e) => setFormData({...formData, state: e.target.value, city: ""})}
-                >
-                  <option value="">Select State</option>
-                  {states.map(s => <option key={s} value={s}>{s}</option>)}
-                </select>
-              </div>
-            </div>
-
-            {/* City/District */}
-            <div className="relative group">
-              <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
-                City / District
-              </label>
-              <div className="relative">
-                <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-                {formData.state === "Tamil Nadu" ? (
-                  <select
-                    required
-                    className="w-full h-14 pl-11 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm appearance-none cursor-pointer"
-                    value={formData.city}
-                    onChange={(e) => setFormData({...formData, city: e.target.value})}
-                  >
-                    <option value="">Select District</option>
-                    {tnDistricts.map(d => <option key={d} value={d}>{d}</option>)}
-                  </select>
-                ) : (
-                  <input
-                    required
-                    type="text"
-                    placeholder="Enter your city"
-                    className="w-full h-14 pl-11 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm"
-                    value={formData.city}
-                    onChange={(e) => setFormData({...formData, city: e.target.value})}
-                  />
-                )}
-              </div>
-            </div>
+            {renderSelect("State", "state", states, "Select State")}
+            {formData.state === "Tamil Nadu" ? (
+              renderSelect("City / District", "city", tnDistricts, "Select District")
+            ) : (
+              renderField("City / District", "Enter your city", "text", "city")
+            )}
           </div>
 
-          {/* Full Address */}
-          <div className="relative group">
-            <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
-              Full Address
-            </label>
-            <div className="relative">
-              <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-              <input
-                required
-                type="text"
-                placeholder="Door No, Street, Landmark..."
-                className="w-full h-14 pl-11 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm"
-                value={formData.address}
-                onChange={(e) => setFormData({...formData, address: e.target.value})}
-              />
-            </div>
-          </div>
-
-          {/* Mobile */}
-          <div className="relative group">
-            <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
-              Mobile Number (WhatsApp Preferred)
-            </label>
-            <div className="relative">
-              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-              <input
-                required
-                type="tel"
-                placeholder="+91 00000 00000"
-                className="w-full h-14 pl-11 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm"
-                value={formData.mobile}
-                onChange={(e) => setFormData({...formData, mobile: e.target.value})}
-              />
-            </div>
-          </div>
+          {renderField("Full Address", "Door No, Street, Landmark...", "text", "address")}
+          {renderField("Mobile Number (WhatsApp Preferred)", "+91 00000 00000", "tel", "mobile")}
 
           {/* User Type */}
           <div className="space-y-4">
@@ -259,21 +172,7 @@ export const RegisterForm = ({ title = "Enroll in the Network", description = "F
           {formData.userType === "Labour Contractor" && (
             <div className="grid gap-6 sm:grid-cols-2 animate-reveal">
               {renderField("Square Ft Price", "Enter amount", "number", "squareFtPrice")}
-              <div className="relative group">
-                 <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
-                   Do you drink?
-                 </label>
-                 <select 
-                   required 
-                   className="w-full h-14 pl-4 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm appearance-none cursor-pointer"
-                   value={formData.drinksOrNot || ""}
-                   onChange={(e) => setFormData({...formData, drinksOrNot: e.target.value})}
-                 >
-                   <option value="">Select Option</option>
-                   <option value="No">No</option>
-                   <option value="Yes">Yes</option>
-                 </select>
-              </div>
+              {renderSelect("Do you drink?", "drinksOrNot", ["Yes", "No"], "Select Option")}
             </div>
           )}
 
@@ -297,44 +196,13 @@ export const RegisterForm = ({ title = "Enroll in the Network", description = "F
           {formData.userType === "Distributor" && (
             <div className="grid gap-6 sm:grid-cols-2 animate-reveal">
               {renderField("How you became a Distributor", "Describe briefly", "text", "becomeDistributor")}
-              <div className="relative group">
-                 <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
-                   What Brand do you Distribute?
-                 </label>
-                 <select 
-                   required 
-                   className="w-full h-14 pl-4 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm appearance-none cursor-pointer"
-                   value={formData.distributedBrand || ""}
-                   onChange={(e) => setFormData({...formData, distributedBrand: e.target.value})}
-                 >
-                   <option value="">Select Brand</option>
-                   <option value="Finolex">Finolex</option>
-                   <option value="Supreme">Supreme</option>
-                   <option value="Ashirvad">Ashirvad</option>
-                   <option value="Astral">Astral</option>
-                   <option value="Other">Other</option>
-                 </select>
-              </div>
+              {renderSelect("What Brand do you Distribute?", "distributedBrand", ["Finolex", "Supreme", "Ashirvad", "Astral", "Other"], "Select Brand")}
             </div>
           )}
 
           {formData.userType === "Manufacture" && (
             <div className="grid gap-6 sm:grid-cols-2 animate-reveal">
-              <div className="relative group">
-                 <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
-                   Is the Brand Registered?
-                 </label>
-                 <select 
-                   required 
-                   className="w-full h-14 pl-4 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm appearance-none cursor-pointer"
-                   value={formData.brandRegistered || ""}
-                   onChange={(e) => setFormData({...formData, brandRegistered: e.target.value})}
-                 >
-                   <option value="">Select Option</option>
-                   <option value="Yes">Yes</option>
-                   <option value="No">No</option>
-                 </select>
-              </div>
+              {renderSelect("Is the Brand Registered?", "brandRegistered", ["Yes", "No"], "Select Option")}
               {renderField("Brand Logo", "Upload Image", "file", "brandLogo")}
               {renderField("Brand Website", "https://...", "url", "brandWebsite")}
               {renderField("Brand HQ Location", "Enter location", "text", "brandHq")}
