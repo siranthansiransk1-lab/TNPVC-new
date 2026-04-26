@@ -24,7 +24,7 @@ const tnDistricts = [
 ];
 
 export const RegisterForm = ({ title = "Enroll in the Network", description = "Fill in your details to join the community." }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Record<string, any>>({
     name: "",
     email: "",
     state: "",
@@ -33,6 +33,27 @@ export const RegisterForm = ({ title = "Enroll in the Network", description = "F
     mobile: "",
     userType: "Contractor"
   });
+
+  const renderField = (label: string, placeholder: string, type = "text", valueKey: string) => (
+    <div className="relative group">
+      <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
+        {label}
+      </label>
+      <div className="relative">
+        <input
+          required
+          type={type}
+          placeholder={placeholder}
+          className={cn(
+            "w-full h-14 pl-4 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm",
+            type === "file" && "pt-3.5 pb-2 text-muted-foreground file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20"
+          )}
+          value={type !== "file" ? formData[valueKey] || "" : undefined}
+          onChange={(e) => setFormData({...formData, [valueKey]: e.target.value})}
+        />
+      </div>
+    </div>
+  );
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -233,6 +254,104 @@ export const RegisterForm = ({ title = "Enroll in the Network", description = "F
               ))}
             </div>
           </div>
+
+          {/* Conditional Fields Based on User Type */}
+          {formData.userType === "Labour Contractor" && (
+            <div className="grid gap-6 sm:grid-cols-2 animate-reveal">
+              {renderField("Square Ft Price", "Enter amount", "number", "squareFtPrice")}
+              <div className="relative group">
+                 <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
+                   Do you drink?
+                 </label>
+                 <select 
+                   required 
+                   className="w-full h-14 pl-4 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm appearance-none cursor-pointer"
+                   value={formData.drinksOrNot || ""}
+                   onChange={(e) => setFormData({...formData, drinksOrNot: e.target.value})}
+                 >
+                   <option value="">Select Option</option>
+                   <option value="No">No</option>
+                   <option value="Yes">Yes</option>
+                 </select>
+              </div>
+            </div>
+          )}
+
+          {formData.userType === "Contractor" && (
+            <div className="grid gap-6 sm:grid-cols-2 animate-reveal">
+              {renderField("Shop Location", "Enter location", "text", "shopLocation")}
+              {renderField("Shop Name", "Enter shop name", "text", "shopName")}
+              {renderField("Number of Clients Delivered", "e.g. 50+", "text", "clientsDelivered")}
+              {renderField("Approx Charges per Sq Ft", "e.g. ₹500", "text", "approxCharges")}
+            </div>
+          )}
+
+          {formData.userType === "Dealer" && (
+            <div className="grid gap-6 sm:grid-cols-2 animate-reveal">
+              {renderField("Total Dealership Experience", "e.g. 5 Years", "text", "dealershipExperience")}
+              {renderField("How you got your first Dealership", "Describe briefly", "text", "firstDealership")}
+              {renderField("Dealer For the Brand", "Enter brand name", "text", "dealerBrand")}
+            </div>
+          )}
+
+          {formData.userType === "Distributor" && (
+            <div className="grid gap-6 sm:grid-cols-2 animate-reveal">
+              {renderField("How you became a Distributor", "Describe briefly", "text", "becomeDistributor")}
+              <div className="relative group">
+                 <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
+                   What Brand do you Distribute?
+                 </label>
+                 <select 
+                   required 
+                   className="w-full h-14 pl-4 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm appearance-none cursor-pointer"
+                   value={formData.distributedBrand || ""}
+                   onChange={(e) => setFormData({...formData, distributedBrand: e.target.value})}
+                 >
+                   <option value="">Select Brand</option>
+                   <option value="Finolex">Finolex</option>
+                   <option value="Supreme">Supreme</option>
+                   <option value="Ashirvad">Ashirvad</option>
+                   <option value="Astral">Astral</option>
+                   <option value="Other">Other</option>
+                 </select>
+              </div>
+            </div>
+          )}
+
+          {formData.userType === "Manufacture" && (
+            <div className="grid gap-6 sm:grid-cols-2 animate-reveal">
+              <div className="relative group">
+                 <label className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground z-10 transition-colors group-focus-within:text-primary">
+                   Is the Brand Registered?
+                 </label>
+                 <select 
+                   required 
+                   className="w-full h-14 pl-4 pr-4 rounded-2xl bg-transparent border-2 border-muted hover:border-primary/20 focus:border-primary focus:ring-0 transition-all font-bold text-sm appearance-none cursor-pointer"
+                   value={formData.brandRegistered || ""}
+                   onChange={(e) => setFormData({...formData, brandRegistered: e.target.value})}
+                 >
+                   <option value="">Select Option</option>
+                   <option value="Yes">Yes</option>
+                   <option value="No">No</option>
+                 </select>
+              </div>
+              {renderField("Brand Logo", "Upload Image", "file", "brandLogo")}
+              {renderField("Brand Website", "https://...", "url", "brandWebsite")}
+              {renderField("Brand HQ Location", "Enter location", "text", "brandHq")}
+              {renderField("Registered GST Number", "e.g. 22AAAAA0000A1Z5", "text", "brandGst")}
+            </div>
+          )}
+
+          {formData.userType === "Hardware Supplier" && (
+            <div className="grid gap-6 sm:grid-cols-2 animate-reveal">
+              {renderField("Agency Name", "Enter agency name", "text", "agencyName")}
+              {renderField("Types of Hardware supply", "e.g. Pipes, Fittings", "text", "hardwareTypes")}
+              {renderField("Agency Location", "Enter location", "text", "agencyLocation")}
+              {renderField("Agency Website", "https://...", "url", "agencyWebsite")}
+              {renderField("Agency Contact Number", "+91 00000 00000", "tel", "agencyContact")}
+            </div>
+          )}
+
 
           <Button type="submit" className="w-full h-16 rounded-[1.5rem] text-base font-black shadow-2xl shadow-primary/30 transition-transform active:scale-95 group">
             Enroll Now
