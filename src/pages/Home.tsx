@@ -24,6 +24,21 @@ import { RegisterForm } from "@/components/site/RegisterForm";
 const Home = () => {
   const seo = seoByPath["/"];
 
+  const renderWorkflowCard = (step: any) => {
+    const Icon = step.icon;
+    return (
+      <div className="bg-white p-4 lg:p-5 rounded-2xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-border/50 hover:border-primary/30 hover:shadow-md transition-all duration-300 z-10 relative flex items-start gap-4 h-full">
+        <div className="size-10 lg:size-12 rounded-xl bg-primary/5 flex shrink-0 items-center justify-center">
+          <Icon className="size-5 lg:size-6 text-primary" />
+        </div>
+        <div>
+          <h3 className="text-base font-black text-foreground mb-1 tracking-tight">{step.title}</h3>
+          <p className="text-xs font-medium text-muted-foreground leading-relaxed">{step.description}</p>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <SiteLayout>
       <Seo
@@ -202,32 +217,97 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ─── How it works ─── */}
-      <section className="section-padding overflow-hidden" aria-labelledby="flow-title">
-        <div className="container space-y-16 lg:space-y-24">
+      {/* ─── How it works (Stepped Layout) ─── */}
+      <section className="section-padding overflow-hidden bg-surface/30" aria-labelledby="flow-title">
+        <div className="container space-y-10 lg:space-y-12">
           <SectionIntro
             eyebrow="The workflow"
-            title="From factories to finished interiors, one connected flow."
+            title="From factories to finished interiors."
             description="TN-PVC Interiors reflects the real field journey of a project and makes each layer more visible and collaborative."
             align="center"
           />
-          <div className="grid gap-12 lg:grid-cols-5">
+
+          {/* Desktop Stepped Layout - Highly Optimized for Space */}
+          <div className="hidden md:grid grid-cols-3 max-w-5xl mx-auto gap-0 mt-8 relative">
+            
+            {/* ROW 1: Center */}
+            <div />
+            <div className="relative p-2 pb-8">
+              {renderWorkflowCard(networkFlow[0])}
+              {/* Drop down */}
+              <div className="absolute bottom-0 left-1/2 w-px h-8 bg-primary/20" />
+            </div>
+            <div />
+
+            {/* ROW 2: Left */}
+            <div className="relative p-2 pb-8 pt-0">
+              <div className="absolute top-0 right-0 w-1/2 h-px bg-primary/20" />
+              <div className="absolute top-0 left-1/2 w-px h-2 bg-primary/20" />
+              {renderWorkflowCard(networkFlow[1])}
+              <div className="absolute bottom-0 left-1/2 w-px h-8 bg-primary/20" />
+            </div>
+            <div className="relative">
+              <div className="absolute top-0 left-0 w-1/2 h-px bg-primary/20" />
+            </div>
+            <div />
+
+            {/* ROW 3: Right */}
+            <div className="relative">
+              <div className="absolute top-0 right-0 w-1/2 h-px bg-primary/20" />
+            </div>
+            <div className="relative">
+              <div className="absolute top-0 left-0 w-full h-px bg-primary/20" />
+            </div>
+            <div className="relative p-2 pb-8 pt-0">
+              <div className="absolute top-0 left-0 w-1/2 h-px bg-primary/20" />
+              <div className="absolute top-0 left-1/2 w-px h-2 bg-primary/20" />
+              {renderWorkflowCard(networkFlow[2])}
+              <div className="absolute bottom-0 left-1/2 w-px h-8 bg-primary/20" />
+            </div>
+
+            {/* ROW 4: Center */}
+            <div />
+            <div className="relative p-2 pb-8 pt-0">
+              <div className="absolute top-0 right-0 w-1/2 h-px bg-primary/20" />
+              <div className="absolute top-0 left-1/2 w-px h-2 bg-primary/20" />
+              {renderWorkflowCard(networkFlow[3])}
+              <div className="absolute bottom-0 left-1/2 w-px h-8 bg-primary/20" />
+            </div>
+            <div className="relative">
+              <div className="absolute top-0 left-0 w-1/2 h-px bg-primary/20" />
+            </div>
+
+            {/* ROW 5: Left */}
+            <div className="relative p-2 pt-0">
+              <div className="absolute top-0 right-0 w-1/2 h-px bg-primary/20" />
+              <div className="absolute top-0 left-1/2 w-px h-2 bg-primary/20" />
+              {renderWorkflowCard(networkFlow[4])}
+            </div>
+            <div className="relative">
+              <div className="absolute top-0 left-0 w-1/2 h-px bg-primary/20" />
+            </div>
+            <div />
+          </div>
+
+          {/* Mobile Layout */}
+          <div className="md:hidden space-y-6 mt-12 relative border-l-2 border-primary/10 ml-6 pl-8">
             {networkFlow.map((step, index) => {
               const Icon = step.icon;
               return (
-                <div key={step.title} className="relative text-center group">
-                  {index < networkFlow.length - 1 && (
-                    <div className="absolute left-[calc(50%+32px)] top-10 hidden w-[calc(100%-64px)] border-t-2 border-dashed border-border lg:block" aria-hidden="true" />
-                  )}
-                  <div className="step-circle mx-auto relative z-10 transition-transform group-hover:scale-110">
-                    {String(index + 1).padStart(2, "0")}
+                <div key={step.title} className="bg-white p-6 rounded-2xl shadow-sm border border-border/50 relative">
+                  {/* Timeline dot */}
+                  <div className="absolute top-8 -left-[41px] size-5 rounded-full bg-surface border-4 border-primary/20" />
+                  
+                  <div className="size-10 rounded-xl bg-primary/5 flex items-center justify-center mb-4">
+                    <Icon className="size-5 text-primary" />
                   </div>
-                  <h3 className="mt-8 text-sm font-black tracking-tight">{step.title}</h3>
-                  <p className="mt-2 text-xs font-medium leading-relaxed text-muted-foreground">{step.description}</p>
+                  <h3 className="text-lg font-black mb-2 tracking-tight">{step.title}</h3>
+                  <p className="text-sm font-medium text-muted-foreground">{step.description}</p>
                 </div>
               );
             })}
           </div>
+
         </div>
       </section>
 
