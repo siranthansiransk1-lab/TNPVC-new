@@ -91,8 +91,22 @@ const Home = () => {
         ]}
       />
 
+      {/* ─── Featured Ads Section ─── */}
+      <section className="bg-white py-12 border-b border-border/40">
+        <div className="container">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-2">
+              <span className="size-2 rounded-full bg-green-500 animate-pulse" />
+              <h2 className="text-xs font-black uppercase tracking-[0.2em] text-muted-foreground">Featured Trade Partners</h2>
+            </div>
+            <Link to="/#register" className="text-[10px] font-bold text-primary hover:underline uppercase tracking-widest">Partner with us</Link>
+          </div>
+          <PromoSection />
+        </div>
+      </section>
+
       {/* ─── Stats Section (Modern Bento Bar) ─── */}
-      <section className="-mt-16 relative z-20 pb-20">
+      <section className="relative z-20 py-20 bg-surface/50">
         <div className="container">
           <div className="bg-white/70 backdrop-blur-3xl border border-white/20 rounded-[2.5rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] p-2 md:p-4">
             <div className="grid divide-y md:divide-y-0 md:divide-x divide-border/20 md:grid-cols-3">
@@ -218,8 +232,6 @@ const Home = () => {
         </div>
       </section>
       
-      {/* ─── Advertisement / Featured Partner Section ─── */}
-      <PromoSection />
 
       {/* ─── How it works (Stepped Layout) ─── */}
       <section className="section-padding overflow-hidden bg-surface/30" aria-labelledby="flow-title">

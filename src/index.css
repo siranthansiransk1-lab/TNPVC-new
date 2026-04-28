@@ -260,3 +260,14 @@ body {
   background: none !important;
   box-shadow: none !important;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes shine {
+    from { background-position: 200% center; }
+    to { background-position: -200% center; }
+  }
+
+  .animate-shine {
+    animation: shine 8s linear infinite;
+  }
+}
