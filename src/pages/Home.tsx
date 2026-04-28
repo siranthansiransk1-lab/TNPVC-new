@@ -20,6 +20,7 @@ import {
 } from "@/data/siteData";
 import { cn } from "@/lib/utils";
 import { RegisterForm } from "@/components/site/RegisterForm";
+import { PromoSection } from "@/components/site/PromoSection";
 
 const Home = () => {
   const seo = seoByPath["/"];
@@ -216,6 +217,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+      
+      {/* ─── Advertisement / Featured Partner Section ─── */}
+      <PromoSection />
 
       {/* ─── How it works (Stepped Layout) ─── */}
       <section className="section-padding overflow-hidden bg-surface/30" aria-labelledby="flow-title">
