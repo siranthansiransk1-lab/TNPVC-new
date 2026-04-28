@@ -57,22 +57,27 @@ export const LanguageSwitcher = () => {
           </span>
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-40 max-h-[300px] overflow-y-auto rounded-2xl p-2 shadow-xl border-border/50 bg-white/95 backdrop-blur-xl pointer-events-auto touch-pan-y">
-        <div className="flex flex-col gap-1">
-          {languages.map((lang) => (
-            <DropdownMenuItem
-              key={lang.code}
-              onClick={() => changeLanguage(lang.code)}
-              className={cn(
-                "flex items-center px-3 py-2 text-sm font-medium rounded-xl transition-colors cursor-pointer outline-none",
-                currentLang === lang.code
-                  ? "bg-primary/10 text-primary font-bold focus:bg-primary/20 focus:text-primary"
-                  : "text-foreground focus:bg-muted/80 focus:text-primary"
-              )}
-            >
-              {lang.name}
-            </DropdownMenuItem>
-          ))}
+      <DropdownMenuContent 
+        align="end" 
+        className="w-48 p-0 rounded-2xl shadow-xl border-border/50 bg-white/95 backdrop-blur-xl overflow-hidden"
+      >
+        <div className="max-h-[320px] overflow-y-auto p-2 touch-pan-y">
+          <div className="flex flex-col gap-1">
+            {languages.map((lang) => (
+              <DropdownMenuItem
+                key={lang.code}
+                onClick={() => changeLanguage(lang.code)}
+                className={cn(
+                  "flex items-center px-3 py-2.5 text-sm font-medium rounded-xl transition-colors cursor-pointer outline-none",
+                  currentLang === lang.code
+                    ? "bg-primary/10 text-primary font-bold focus:bg-primary/20 focus:text-primary"
+                    : "text-foreground focus:bg-muted/80 focus:text-primary"
+                )}
+              >
+                {lang.name}
+              </DropdownMenuItem>
+            ))}
+          </div>
         </div>
       </DropdownMenuContent>
     </DropdownMenu>

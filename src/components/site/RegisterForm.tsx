@@ -208,7 +208,7 @@ export const RegisterForm = ({
       const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
       const params = {
-        to_email: "Siranthan.siran.sk.1@gmail.com",
+        to_email: "tn.pvc.interiors.official@gmail.com",
         user_name: data.name, user_email: data.email || "Not provided",
         user_type: data.userType, mobile: data.mobile, message: messageDetails,
       };

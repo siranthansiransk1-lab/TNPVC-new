@@ -53,7 +53,7 @@ export const PageHero = ({
 
   if (centered) {
     return (
-      <section className="relative overflow-hidden bg-mesh pt-12 pb-24 lg:pt-16 lg:pb-32">
+      <section className="relative overflow-hidden bg-mesh pt-4 pb-24 lg:pt-16 lg:pb-32">
         <div className="container relative z-10 flex flex-col items-center text-center">
           {topContent && (
             <div className="animate-reveal mb-8">
@@ -199,7 +199,7 @@ export const PageHero = ({
     <section className="relative overflow-hidden bg-mesh border-b border-border/40">
       <div
         className={cn(
-          "container relative grid gap-16 py-20 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:py-32",
+          "container relative grid gap-12 pt-4 pb-20 lg:gap-16 lg:py-32 lg:items-center",
           compact && "py-16 lg:py-24",
         )}
       >
