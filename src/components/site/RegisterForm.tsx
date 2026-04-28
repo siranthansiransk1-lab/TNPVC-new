@@ -88,7 +88,7 @@ const fieldContainer = (err: boolean) => cn(
       : "border-border/60 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10"
 );
 
-const inputBase = "flex-1 h-full bg-transparent text-sm font-normal text-foreground placeholder:text-muted-foreground/60 outline-none min-w-0";
+const inputBase = "flex-1 h-full bg-transparent text-sm font-normal text-foreground placeholder:text-muted-foreground/60 outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 min-w-0";
 
 const labelBase = (err: boolean) => cn("text-sm font-medium transition-colors", err ? "text-red-500" : "text-slate-600");
 

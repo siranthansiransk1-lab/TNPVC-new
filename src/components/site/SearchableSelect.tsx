@@ -50,7 +50,7 @@ export const SearchableSelect = ({
   );
 
   const triggerClass = cn(
-    "w-full h-12 px-4 rounded-xl bg-white border shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] flex items-center justify-between gap-2 cursor-pointer text-sm font-normal transition-all outline-none select-none",
+    "w-full h-12 px-4 rounded-xl bg-white border shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] flex items-center justify-between gap-2 cursor-pointer text-sm font-normal transition-all outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 select-none",
     hasError
       ? "border-red-400 focus:border-red-500 ring-4 ring-red-500/10 bg-red-50/40"
       : open
@@ -119,7 +119,7 @@ export const SearchableSelect = ({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search..."
-              className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground/60"
+              className="flex-1 bg-transparent text-sm outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground/60"
             />
             {query && (
               <button
