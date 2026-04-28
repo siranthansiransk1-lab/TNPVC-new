@@ -57,8 +57,8 @@ export const LanguageSwitcher = () => {
           </span>
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-40 rounded-2xl p-2 shadow-xl border-border/50 bg-white/95 backdrop-blur-xl">
-        <div className="flex flex-col gap-1 max-h-[300px] overflow-y-auto">
+      <DropdownMenuContent align="end" className="w-40 max-h-[300px] overflow-y-auto rounded-2xl p-2 shadow-xl border-border/50 bg-white/95 backdrop-blur-xl pointer-events-auto touch-pan-y">
+        <div className="flex flex-col gap-1">
           {languages.map((lang) => (
             <DropdownMenuItem
               key={lang.code}

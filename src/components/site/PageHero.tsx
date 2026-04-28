@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
@@ -58,7 +58,11 @@ export const PageHero = ({
             </div>
           )}
           {/* Social media icons — placed above eyebrow */}
-          <div className="animate-reveal mb-6 flex justify-center w-full">
+          <div className="animate-reveal mb-6 flex flex-col items-center w-full">
+            <p className="mb-[30px] text-[11px] font-bold text-muted-foreground flex items-center gap-1.5 uppercase tracking-widest bg-white/50 px-3 py-1 rounded-full border border-border/50 backdrop-blur-md">
+              <ShieldCheck className="size-3.5 text-green-600" /> 
+              Secured by Dexaz Group
+            </p>
             <SocialLinks />
           </div>
 
@@ -198,7 +202,11 @@ export const PageHero = ({
       >
         <div className="space-y-8">
           <div className="space-y-6">
-            <div className="animate-reveal">
+            <div className="animate-reveal flex flex-col items-start">
+              <p className="mb-[30px] text-[11px] font-bold text-muted-foreground flex items-center gap-1.5 uppercase tracking-widest bg-white/50 px-3 py-1 rounded-full border border-border/50 backdrop-blur-md">
+                <ShieldCheck className="size-3.5 text-green-600" /> 
+                Secured by Dexaz Group
+              </p>
               <SocialLinks />
             </div>
             
