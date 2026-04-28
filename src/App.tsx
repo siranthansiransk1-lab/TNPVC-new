@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound.tsx";
 import SiranthanSiran from "./pages/SiranthanSiran.tsx";
 import Srinivasan from "./pages/Srinivasan.tsx";
 import Register from "./pages/Register.tsx";
+import { WhatsAppProvider } from "./context/WhatsAppContext";
 
 const queryClient = new QueryClient();
 
@@ -22,22 +23,24 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/network" element={<Network />} />
-          <Route path="/benefits" element={<Benefits />} />
-          <Route path="/contractors" element={<Contractors />} />
-          <Route path="/clients" element={<Clients />} />
-          <Route path="/labour" element={<Labour />} />
-          <Route path="/ai-pvc-groups" element={<AiPvcGroups />} />
-          <Route path="/siranthan-siran" element={<SiranthanSiran />} />
-          <Route path="/srinivasan" element={<Srinivasan />} />
-          <Route path="/register" element={<Register />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <WhatsAppProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/network" element={<Network />} />
+            <Route path="/benefits" element={<Benefits />} />
+            <Route path="/contractors" element={<Contractors />} />
+            <Route path="/clients" element={<Clients />} />
+            <Route path="/labour" element={<Labour />} />
+            <Route path="/ai-pvc-groups" element={<AiPvcGroups />} />
+            <Route path="/siranthan-siran" element={<SiranthanSiran />} />
+            <Route path="/srinivasan" element={<Srinivasan />} />
+            <Route path="/register" element={<Register />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </WhatsAppProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

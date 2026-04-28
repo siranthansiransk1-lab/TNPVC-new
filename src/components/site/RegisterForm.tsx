@@ -242,9 +242,11 @@ export const RegisterForm = ({
             <h3 className="text-3xl font-black tracking-tight">Registration Received!</h3>
             <p className="text-muted-foreground font-medium">Our leadership team will contact you on WhatsApp shortly.</p>
           </div>
-          <Button onClick={() => { setSubmitted(false); reset(); }} variant="outline" className="rounded-full px-8">
-            Register another profile
-          </Button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button onClick={() => { setSubmitted(false); reset(); }} variant="outline" className="rounded-full px-8 h-12">
+              Register another profile
+            </Button>
+          </div>
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-8 animate-reveal">

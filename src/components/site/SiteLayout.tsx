@@ -23,12 +23,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { brandAssets, navItems, siteName, siteTagline } from "@/data/siteData";
 import { cn } from "@/lib/utils";
+import { useWhatsApp } from "@/context/WhatsAppContext";
 
 type SiteLayoutProps = {
   children: ReactNode;
 };
 
-export const SocialLinks = ({ className, vertical = false }: { className?: string, vertical?: boolean }) => (
+export const SocialLinks = ({ className, vertical = false, onWhatsAppClick }: { className?: string, vertical?: boolean, onWhatsAppClick?: () => void }) => (
   <div className={cn(
     "flex gap-3 md:gap-4",
     vertical ? "flex-col" : "flex-row",
@@ -49,26 +50,30 @@ export const SocialLinks = ({ className, vertical = false }: { className?: strin
         bg: "bg-green-600", 
         delay: "delay-4" 
       },
-    ].map((item) => (
-      <a
-        key={item.label}
-        href={item.href}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={item.label}
-        className={cn(
-          "group relative flex size-10 md:size-11 items-center justify-center rounded-xl text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg",
-          item.bg
-        )}
-      >
-        <item.icon className="size-4 md:size-5 relative z-10" />
+    ].map((item) => {
+      const isWhatsApp = item.label === "WhatsApp";
+      return (
+        <a
+          key={item.label}
+          href={isWhatsApp ? undefined : item.href}
+          target={isWhatsApp ? undefined : "_blank"}
+          rel={isWhatsApp ? undefined : "noreferrer"}
+          onClick={isWhatsApp ? (e) => { e.preventDefault(); onWhatsAppClick?.(); } : undefined}
+          aria-label={item.label}
+          className={cn(
+            "group relative flex size-10 md:size-11 items-center justify-center rounded-xl text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg cursor-pointer",
+            item.bg
+          )}
+        >
+          <item.icon className="size-4 md:size-5 relative z-10" />
 
-        {/* Tooltip */}
-        <span className="absolute bottom-full mb-2 rounded-lg bg-foreground px-2 py-1 text-[10px] font-bold tracking-wide text-background opacity-0 transition-opacity group-hover:opacity-100 whitespace-nowrap pointer-events-none">
-          {item.label}
-        </span>
-      </a>
-    ))}
+          {/* Tooltip */}
+          <span className="absolute bottom-full mb-2 rounded-lg bg-foreground px-2 py-1 text-[10px] font-bold tracking-wide text-background opacity-0 transition-opacity group-hover:opacity-100 whitespace-nowrap pointer-events-none">
+            {item.label}
+          </span>
+        </a>
+      );
+    })}
   </div>
 );
 
@@ -107,6 +112,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
+  const { openWhatsAppModal } = useWhatsApp();
   const location = useLocation();
 
   useEffect(() => {
@@ -432,18 +438,22 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                     <svg className="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.411.002 12.048c0 2.12.54 4.19 1.566 6.02L0 24l6.105-1.602a11.832 11.832 0 005.937 1.597h.005c6.634 0 12.043-5.411 12.046-12.048a11.804 11.804 0 00-3.489-8.452z"/></svg>
                   )
                 },
-              ].map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex size-11 items-center justify-center rounded-xl bg-background text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/20"
-                  aria-label={social.label}
-                >
-                  {social.icon}
-                </a>
-              ))}
+              ].map((social) => {
+                const isWhatsApp = social.label === "WhatsApp";
+                return (
+                  <a
+                    key={social.label}
+                    href={isWhatsApp ? undefined : social.href}
+                    target={isWhatsApp ? undefined : "_blank"}
+                    rel={isWhatsApp ? undefined : "noreferrer"}
+                    onClick={isWhatsApp ? (e) => { e.preventDefault(); openWhatsAppModal(); } : undefined}
+                    className="flex size-11 items-center justify-center rounded-xl bg-background text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/20 cursor-pointer"
+                    aria-label={social.label}
+                  >
+                    {social.icon}
+                  </a>
+                );
+              })}
             </div>
           </div>
 

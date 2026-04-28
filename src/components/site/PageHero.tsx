@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SocialLinks } from "@/components/site/SiteLayout";
 import { cn } from "@/lib/utils";
+import { useWhatsApp } from "@/context/WhatsAppContext";
 
 type Action = {
   label: string;
@@ -48,6 +49,8 @@ export const PageHero = ({
   titleClassName,
   topContent
 }: PageHeroProps) => {
+  const { openWhatsAppModal } = useWhatsApp();
+
   if (centered) {
     return (
       <section className="relative overflow-hidden bg-mesh pt-12 pb-24 lg:pt-16 lg:pb-32">
@@ -63,7 +66,7 @@ export const PageHero = ({
               <ShieldCheck className="size-3.5 text-green-600" /> 
               Secured by Dexaz Group
             </p>
-            <SocialLinks />
+            <SocialLinks onWhatsAppClick={openWhatsAppModal} />
           </div>
 
           {/* Eyebrow / Badge */}
@@ -207,7 +210,7 @@ export const PageHero = ({
                 <ShieldCheck className="size-3.5 text-green-600" /> 
                 Secured by Dexaz Group
               </p>
-              <SocialLinks />
+              <SocialLinks onWhatsAppClick={openWhatsAppModal} />
             </div>
             
             <div className="animate-reveal">
