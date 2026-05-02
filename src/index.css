@@ -98,8 +98,9 @@
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 
-  /* Tap targets for mobile (WCAG) */
-  button, a {
+  /* Tap targets for mobile (WCAG) — excludes plain text nav/footer links */
+  button,
+  a:not(nav[aria-label="Footer links"] a):not(footer a) {
     @apply min-h-[44px] min-w-[44px] inline-flex items-center justify-center;
   }
 }

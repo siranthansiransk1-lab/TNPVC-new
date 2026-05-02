@@ -459,27 +459,29 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
 
           {/* Links grid */}
           <div className="grid gap-8 sm:grid-cols-2">
+            {/* Contact support */}
             <div className="space-y-4">
               <p className="text-xs font-bold tracking-wide text-primary uppercase">Contact support</p>
-              <div className="space-y-2.5">
-                <a className="block text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="tel:+918870826404">
+              <div className="flex flex-col gap-2">
+                <a className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="tel:+918870826404">
                   Srinivasan · +91 8870826404
                 </a>
-                <a className="block text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="tel:+918489143405">
+                <a className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="tel:+918489143405">
                   Siranthan Siran · +91 8489143405
                 </a>
-                <a className="block break-all text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="mailto:siranthan.siran.sk.1@gmail.com">
+                <a className="!block w-full py-1 break-all text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="mailto:siranthan.siran.sk.1@gmail.com">
                   siranthan.siran.sk.1@gmail.com
                 </a>
               </div>
             </div>
+            {/* Quick links */}
             <div className="space-y-4">
               <p className="text-xs font-bold tracking-wide text-primary uppercase">Quick links</p>
-              <nav className="space-y-2.5 flex flex-col items-start text-left" aria-label="Footer links">
-                <Link className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/network">Our network</Link>
-                <Link className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/benefits">Business benefits</Link>
-                <Link className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/contractors">For contractors</Link>
-                <Link className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/clients">For clients</Link>
+              <nav className="flex flex-col gap-2" aria-label="Footer links">
+                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/network">Our network</Link>
+                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/benefits">Business benefits</Link>
+                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/contractors">For contractors</Link>
+                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/clients">For clients</Link>
               </nav>
             </div>
           </div>
