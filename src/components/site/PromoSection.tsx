@@ -44,7 +44,7 @@ export const PromoSection = () => {
   }: any) => (
     <div className="h-full flex flex-col bg-white overflow-hidden rounded-3xl border border-border/50 shadow-sm hover:shadow-md transition-all group">
       {/* Brand Header */}
-      <div className={cn("relative p-5 flex flex-col items-center justify-center text-center text-white overflow-hidden", headerBg)}>
+      <div className={cn("relative p-6 flex flex-col items-center justify-center text-center text-white overflow-hidden", headerBg)}>
         <div className={cn("absolute top-0 right-0 w-24 h-full -skew-x-12 translate-x-12", headerAccent)} />
         <div className="relative z-10 space-y-3">
           <div className="bg-white/10 backdrop-blur-md p-2 rounded-lg inline-block border border-white/20">
@@ -66,25 +66,25 @@ export const PromoSection = () => {
       </div>
 
       {/* Info Body */}
-      <div className="p-4 flex-1 space-y-3 bg-white">
-        <div className="space-y-2">
-          <div className="flex items-center gap-2 group/item">
-            <div className="size-6 rounded-full bg-muted flex items-center justify-center text-muted-foreground group-hover/item:bg-primary/10 group-hover/item:text-primary transition-colors">
-              <Phone className="size-3" />
+      <div className="p-5 lg:p-6 flex-1 space-y-4 bg-white">
+        <div className="space-y-3">
+          <div className="flex items-center gap-2.5 group/item">
+            <div className="size-7 rounded-full bg-muted flex items-center justify-center text-muted-foreground group-hover/item:bg-primary/10 group-hover/item:text-primary transition-colors">
+              <Phone className="size-3.5" />
             </div>
             <span className="text-xs font-black text-foreground">{phone}</span>
           </div>
-          <div className="flex items-center gap-2 group/item">
-            <div className="size-6 rounded-full bg-muted flex items-center justify-center text-muted-foreground group-hover/item:bg-primary/10 group-hover/item:text-primary transition-colors">
-              <MapPin className="size-3" />
+          <div className="flex items-center gap-2.5 group/item">
+            <div className="size-7 rounded-full bg-muted flex items-center justify-center text-muted-foreground group-hover/item:bg-primary/10 group-hover/item:text-primary transition-colors">
+              <MapPin className="size-3.5" />
             </div>
             <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-tight truncate">{location}</span>
           </div>
         </div>
 
-        <div className="pt-3 border-t border-border/50 flex flex-wrap gap-1">
+        <div className="pt-4 border-t border-border/50 flex flex-wrap gap-1.5">
           {tags.map((tag: string) => (
-            <span key={tag} className="px-1.5 py-0.5 bg-muted rounded text-[8px] font-bold text-muted-foreground">
+            <span key={tag} className="px-2 py-1 bg-muted rounded-lg text-[9px] font-bold text-muted-foreground">
               {tag}
             </span>
           ))}
@@ -189,7 +189,7 @@ export const PromoSection = () => {
       </Carousel>
 
       {/* Pagination Indicators (Dots) */}
-      <div className="flex justify-center gap-2 mt-6">
+      <div className="flex justify-center gap-2 mt-8">
         {Array.from({ length: count }).map((_, i) => (
           <button
             key={i}

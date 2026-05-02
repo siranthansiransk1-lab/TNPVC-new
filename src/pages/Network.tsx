@@ -41,13 +41,13 @@ const Network = () => {
       />
 
       <section className="section-padding">
-        <div className="container space-y-16 lg:space-y-24">
+        <div className="container space-y-8">
           <SectionIntro
             eyebrow="Flow model"
             title="Five layers, one platform."
             description="Every successful project depends on timing, communication, and trust across multiple levels of the chain."
           />
-          <div className="grid gap-8 lg:grid-cols-5">
+          <div className="grid gap-5 lg:grid-cols-5">
             {networkFlow.map((step, index) => {
               const Icon = icons[index];
               return (
@@ -58,8 +58,8 @@ const Network = () => {
                     </div>
                     <span className="text-[10px] font-black text-muted-foreground/40">{String(index + 1).padStart(2, "0")}</span>
                   </div>
-                  <h2 className="mt-8 text-lg font-black tracking-tight">{step.title}</h2>
-                  <p className="mt-3 text-sm font-medium leading-relaxed text-muted-foreground">{step.description}</p>
+                  <h2 className="mt-5 text-base font-black tracking-tight">{step.title}</h2>
+                  <p className="mt-2 text-xs font-medium leading-relaxed text-muted-foreground">{step.description}</p>
                 </div>
               );
             })}
@@ -68,18 +68,18 @@ const Network = () => {
       </section>
 
       <section className="section-padding border-y border-border/40 bg-surface/50">
-        <div className="container grid gap-12 lg:grid-cols-2">
+        <div className="container grid gap-6 lg:grid-cols-2">
           <div className="float-card">
             <p className="text-[10px] font-black tracking-wide text-primary">Clarity</p>
-            <h2 className="mt-4 text-2xl font-black tracking-tight">Why the network structure matters.</h2>
-            <div className="mt-8 space-y-4">
+            <h2 className="mt-3 text-xl font-black tracking-tight">Why the network structure matters.</h2>
+            <div className="mt-5 space-y-3">
               {[
                 "Manufacturers gain a clearer path to market demand.",
                 "Distributors reduce friction in regional supply movement.",
                 "Contractors coordinate labour more precisely.",
                 "Clients get access to visible, organised teams.",
               ].map((item) => (
-                <p key={item} className="border-l-4 border-primary/20 pl-6 text-sm font-semibold text-muted-foreground">
+                <p key={item} className="border-l-4 border-primary/20 pl-4 text-sm font-semibold text-muted-foreground leading-relaxed">
                   {item}
                 </p>
               ))}
@@ -88,8 +88,8 @@ const Network = () => {
           <div className="float-card flex flex-col justify-between">
             <div>
               <p className="text-[10px] font-black tracking-wide text-primary">Reach</p>
-              <h2 className="mt-4 text-2xl font-black tracking-tight">A WhatsApp-first hub designed for action.</h2>
-              <p className="mt-6 text-sm font-medium leading-relaxed text-muted-foreground">
+              <h2 className="mt-3 text-xl font-black tracking-tight">A WhatsApp-first hub designed for action.</h2>
+              <p className="mt-4 text-sm font-medium leading-relaxed text-muted-foreground">
                 The network is shaped around tools people already use. WhatsApp helps groups coordinate quickly, while the website adds credibility and structured information for discovery.
               </p>
             </div>

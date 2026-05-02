@@ -266,7 +266,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
               </div>
 
               <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col h-full bg-white rounded-r-[20px] shadow-[20px_0_40px_-15px_rgba(0,0,0,0.1)] relative z-40">
-                {/* Header (Logo & Close Button) */}
+                {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                   <Link
                     to="/"
@@ -370,7 +370,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                 </nav>
 
                 {/* Bottom Profile */}
-                <div className="mt-6 pt-6 flex flex-col gap-4">
+                <div className="mt-auto pt-6 border-t border-border/40 flex flex-col gap-4">
                   <div>
                     <p className="text-xs font-bold text-muted-foreground mb-3 px-1">Language</p>
                     <div className="flex px-1">
@@ -379,7 +379,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                   </div>
                   <div>
                     <p className="text-xs font-bold text-muted-foreground mb-3 px-1">Need help?</p>
-                    <a href="tel:+918870826404" className="flex items-center gap-3 px-4 py-3 rounded-[1.25rem] border border-border/50 hover:bg-muted/50 transition-colors">
+                    <a href="tel:+918870826404" className="flex items-center gap-3 px-4 py-4 rounded-[1.25rem] border border-border/50 hover:bg-muted/50 transition-colors">
                       <div className="size-9 rounded-full bg-primary flex items-center justify-center text-white text-[10px] font-black shrink-0">
                         TN
                       </div>
@@ -402,14 +402,14 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
 
       {/* ─── Footer ─── */}
       <footer className="border-t border-border/40 bg-surface">
-        <div className="container grid gap-16 py-20 lg:grid-cols-[1fr_0.8fr]">
+        <div className="container grid gap-12 lg:gap-16 py-12 lg:py-16 lg:grid-cols-[1fr_0.8fr]">
           {/* Brand block */}
-          <div className="space-y-8">
-            <div className="flex items-center gap-4">
-              <img src={brandAssets.tnPvcLogo} alt="" className="size-12" loading="lazy" />
-              <img src={brandAssets.aiPvcLogo} alt="" className="size-12" loading="lazy" />
+          <div className="space-y-6">
+            <div className="flex items-center gap-3">
+              <img src={brandAssets.tnPvcLogo} alt="" className="size-10" loading="lazy" />
+              <img src={brandAssets.aiPvcLogo} alt="" className="size-10" loading="lazy" />
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3">
               <h2 className="text-xl font-black tracking-tight">TN-PVC Interiors</h2>
               <p className="max-w-md text-sm font-medium leading-relaxed text-muted-foreground">
                 The leading PVC and UPVC trade community for Tamil Nadu. Connecting manufacturers, contractors, and labour teams through digital-first coordination.
@@ -458,10 +458,10 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
           </div>
 
           {/* Links grid */}
-          <div className="grid gap-12 sm:grid-cols-2">
-            <div className="space-y-6">
-              <p className="text-sm font-bold tracking-wide text-primary uppercase">Contact support</p>
-              <div className="space-y-3">
+          <div className="grid gap-8 sm:grid-cols-2">
+            <div className="space-y-4">
+              <p className="text-xs font-bold tracking-wide text-primary uppercase">Contact support</p>
+              <div className="space-y-2.5">
                 <a className="block text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="tel:+918870826404">
                   Srinivasan · +91 8870826404
                 </a>
@@ -473,9 +473,9 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                 </a>
               </div>
             </div>
-            <div className="space-y-6">
-              <p className="text-sm font-bold tracking-wide text-primary uppercase">Quick links</p>
-              <nav className="space-y-3 flex flex-col items-start text-left" aria-label="Footer links">
+            <div className="space-y-4">
+              <p className="text-xs font-bold tracking-wide text-primary uppercase">Quick links</p>
+              <nav className="space-y-2.5 flex flex-col items-start text-left" aria-label="Footer links">
                 <Link className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/network">Our network</Link>
                 <Link className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/benefits">Business benefits</Link>
                 <Link className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/contractors">For contractors</Link>
@@ -487,7 +487,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
 
         {/* Copyright bar */}
         <div className="border-t border-border/20">
-          <div className="container flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
+          <div className="container flex flex-col items-center justify-between gap-3 py-6 sm:flex-row">
             <p className="text-xs font-bold text-muted-foreground">
               © {new Date().getFullYear()} TN-PVC Interiors.
             </p>

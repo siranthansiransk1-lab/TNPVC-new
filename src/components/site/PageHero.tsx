@@ -53,46 +53,46 @@ export const PageHero = ({
 
   if (centered) {
     return (
-      <section className="relative overflow-hidden bg-mesh pt-4 pb-24 lg:pt-16 lg:pb-32">
+      <section className="relative overflow-hidden bg-mesh pt-6 pb-16 lg:pt-16 lg:pb-24">
         <div className="container relative z-10 flex flex-col items-center text-center">
           {topContent && (
-            <div className="animate-reveal mb-8">
+            <div className="animate-reveal mb-6">
               {topContent}
             </div>
           )}
-          {/* Social media icons — placed above eyebrow */}
+          {/* Social + Dexaz badge */}
           <div className="animate-reveal mb-6 flex flex-col items-center w-full">
-            <p className="mb-[30px] text-[11px] font-bold text-muted-foreground flex items-center gap-1.5 uppercase tracking-widest bg-white/50 px-3 py-1 rounded-full border border-border/50 backdrop-blur-md">
-              <ShieldCheck className="size-3.5 text-green-600" /> 
+            <p className="mb-4 text-[11px] font-bold text-muted-foreground flex items-center gap-1.5 uppercase tracking-widest bg-white/50 px-3 py-1 rounded-full border border-border/50 backdrop-blur-md">
+              <ShieldCheck className="size-3.5 text-green-600" />
               Secured by Dexaz Group
             </p>
             <SocialLinks onWhatsAppClick={openWhatsAppModal} />
           </div>
 
-          {/* Eyebrow / Badge */}
-          <div className="animate-reveal mb-8">
-            <Link to="/ai-pvc-groups" className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-white/50 px-5 py-2 text-xs font-bold tracking-wide text-foreground backdrop-blur-md shadow-sm transition-all hover:border-primary/40 hover:bg-white hover:shadow">
+          {/* Eyebrow */}
+          <div className="animate-reveal mb-6">
+            <Link to="/ai-pvc-groups" className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-white/50 px-4 py-1.5 text-xs font-bold tracking-wide text-foreground backdrop-blur-md shadow-sm transition-all hover:border-primary/40 hover:bg-white hover:shadow">
               {eyebrow}
               <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
 
           {/* Headline */}
-          <div className="max-w-4xl space-y-6">
+          <div className="max-w-4xl space-y-4">
             <h1 className={cn(
-              "animate-reveal delay-1 text-4xl font-black leading-[1.1] tracking-tight sm:text-5xl lg:text-7xl lg:leading-[1.2]",
+              "animate-reveal delay-1 text-3xl font-black leading-[1.15] tracking-tight sm:text-4xl lg:text-6xl lg:leading-[1.2]",
               titleClassName
             )}>
               {title}
             </h1>
-            <p className="animate-reveal delay-2 mx-auto max-w-2xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="animate-reveal delay-2 mx-auto max-w-2xl text-sm font-medium leading-relaxed text-muted-foreground sm:text-base">
               {description}
             </p>
           </div>
 
           {/* CTAs */}
           {actions.length > 0 && (
-            <div className="animate-reveal delay-3 mt-10 flex flex-wrap justify-center gap-4">
+            <div className="animate-reveal delay-3 mt-8 flex flex-wrap justify-center gap-3">
               {actions.map((action) => {
                 const Icon = action.icon;
                 const isHash = action.to.startsWith("#") || action.to.startsWith("/#");
@@ -144,9 +144,9 @@ export const PageHero = ({
             </div>
           )}
 
-          {/* Bento Gallery vs Single Image */}
+          {/* Bento Gallery */}
           {bentoItems && bentoItems.length > 0 ? (
-            <div className="animate-reveal delay-3 mt-16 grid w-full max-w-6xl gap-4 grid-cols-1 md:grid-cols-4 md:grid-rows-2">
+            <div className="animate-reveal delay-3 mt-12 grid w-full max-w-5xl gap-4 grid-cols-1 md:grid-cols-4 md:grid-rows-2">
               {bentoItems.map((item, idx) => (
                 <div 
                   key={idx} 
@@ -199,11 +199,11 @@ export const PageHero = ({
     <section className="relative overflow-hidden bg-mesh border-b border-border/40">
       <div
         className={cn(
-          "container relative grid gap-12 pt-4 pb-20 lg:gap-16 lg:py-32 lg:items-center",
-          compact && "py-16 lg:py-24",
+          "container relative grid gap-10 pt-6 pb-16 lg:gap-16 lg:py-24 lg:items-center",
+          compact && "py-12 lg:py-16",
         )}
       >
-        <div className="space-y-8">
+        <div className="space-y-6">
           <div className="space-y-6">
             <div className="animate-reveal flex flex-col items-start">
               <p className="mb-[30px] text-[11px] font-bold text-muted-foreground flex items-center gap-1.5 uppercase tracking-widest bg-white/50 px-3 py-1 rounded-full border border-border/50 backdrop-blur-md">
@@ -309,10 +309,10 @@ type SectionIntroProps = {
 
 export const SectionIntro = ({ eyebrow, title, description, align = "left" }: SectionIntroProps) => {
   return (
-    <div className={cn("space-y-4", align === "center" && "mx-auto max-w-3xl text-center")}>
-      <p className="text-xs font-bold tracking-widest uppercase text-primary">{eyebrow}</p>
-      <h2 className="text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl">{title}</h2>
-      <p className="max-w-2xl text-base font-medium leading-relaxed text-muted-foreground">{description}</p>
+    <div className={cn("space-y-3", align === "center" && "mx-auto max-w-2xl text-center")}>
+      <p className="text-[10px] font-black tracking-widest uppercase text-primary">{eyebrow}</p>
+      <h2 className="text-2xl font-black leading-tight tracking-tight sm:text-3xl">{title}</h2>
+      <p className="text-sm font-medium leading-relaxed text-muted-foreground">{description}</p>
     </div>
   );
 };
