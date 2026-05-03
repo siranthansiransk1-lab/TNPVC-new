@@ -94,7 +94,7 @@ export const PageHero = ({
             <div className="animate-reveal delay-3 mt-8 flex flex-wrap justify-center gap-3">
               {actions.map((action) => {
                 const Icon = action.icon;
-                const isHash = action.to.startsWith("#") || action.to.startsWith("/#");
+                const isHash = action.to.includes("#");
                 return action.secondary ? (
                   isHash ? (
                     <a
@@ -243,29 +243,52 @@ export const PageHero = ({
             <div className="animate-reveal delay-3 flex flex-wrap gap-4">
               {actions.map((action) => {
                 const Icon = action.icon;
+                const isHash = action.to.includes("#");
                 return action.secondary ? (
-                  <Button
-                    asChild
-                    key={action.to}
-                    variant="outline"
-                    className="secondary-btn h-12 px-8 group"
-                  >
-                    <Link to={action.to}>
+                  isHash ? (
+                    <a
+                      key={action.to}
+                      href={action.to}
+                      className="secondary-btn h-12 px-8 group"
+                    >
                       {action.label}
                       {Icon && <Icon className="ml-2 size-4 transition-transform group-hover:translate-x-1" />}
-                    </Link>
-                  </Button>
+                    </a>
+                  ) : (
+                    <Button
+                      asChild
+                      key={action.to}
+                      variant="outline"
+                      className="secondary-btn h-12 px-8 group"
+                    >
+                      <Link to={action.to}>
+                        {action.label}
+                        {Icon && <Icon className="ml-2 size-4 transition-transform group-hover:translate-x-1" />}
+                      </Link>
+                    </Button>
+                  )
                 ) : (
-                  <Link
-                    key={action.to}
-                    to={action.to}
-                    className="primary-btn h-12 px-8 group"
-                  >
-                    {action.label}
-                    {Icon && <Icon className="size-4 transition-transform group-hover:translate-x-1 ml-2" />}
-                  </Link>
+                  isHash ? (
+                    <a
+                      key={action.to}
+                      href={action.to}
+                      className="primary-btn h-12 px-8 group"
+                    >
+                      {action.label}
+                      {Icon && <Icon className="size-4 transition-transform group-hover:translate-x-1 ml-2" />}
+                    </a>
+                  ) : (
+                    <Link
+                      key={action.to}
+                      to={action.to}
+                      className="primary-btn h-12 px-8 group"
+                    >
+                      {action.label}
+                      {Icon && <Icon className="size-4 transition-transform group-hover:translate-x-1 ml-2" />}
+                    </Link>
+                  )
                 );
-              })}
+              }) }
             </div>
           ) : null}
         </div>

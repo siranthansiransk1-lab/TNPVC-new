@@ -79,7 +79,7 @@ export const navItems: NavItem[] = [
     ],
   },
   { label: "Partnership Transparency", path: "/ai-pvc-groups" },
-  { label: "Register", path: "/#register", shortLabel: "Register" },
+  { label: "Register", path: "/register#register-section", shortLabel: "Register" },
 ];
 
 export const seoByPath: Record<string, SeoConfig> = {

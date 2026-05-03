@@ -61,7 +61,7 @@ const Home = () => {
         description="Leverage a connected digital ecosystem and community-first coordination to streamline your projects, reduce delays, and drive consistent growth across Tamil Nadu."
         actions={[
           { label: "Explore Network", to: "/network" },
-          { label: "Register Profile", to: "/#register", secondary: true, icon: UserCheck }
+          { label: "Register Profile", to: "/register#register-section", secondary: true, icon: UserCheck }
         ]}
         bentoItems={[
           {
@@ -99,7 +99,7 @@ const Home = () => {
               <span className="size-2 rounded-full bg-green-500 animate-pulse" />
               <h2 className="text-xs font-black uppercase tracking-[0.2em] text-muted-foreground">Featured Trade Partners</h2>
             </div>
-            <Link to="/#register" className="text-[10px] font-bold text-primary hover:underline uppercase tracking-widest">Partner with us</Link>
+            <Link to="/register#register-section" className="text-[10px] font-bold text-primary hover:underline uppercase tracking-widest">Partner with us</Link>
           </div>
           <PromoSection />
         </div>

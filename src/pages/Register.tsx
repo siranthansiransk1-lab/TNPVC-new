@@ -1,4 +1,4 @@
-import { CheckCircle2, ChevronRight, Mail, Users } from "lucide-react";
+import { CheckCircle2, ChevronRight, Link, Mail, Users } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHero } from "@/components/site/PageHero";
 import { Seo } from "@/components/seo/Seo";
@@ -19,7 +19,7 @@ const Register = () => {
         description="Whether you're a client seeking quality work, a contractor looking for leads, or a labour team ready for projects—register today to grow with us."
       />
 
-      <section className="section-padding bg-mesh overflow-hidden relative">
+      <section id="register-section" className="section-padding bg-mesh overflow-hidden relative">
         <div className="container relative z-10">
           <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:items-start">
             
@@ -65,9 +65,9 @@ const Register = () => {
                   </div>
                   <div>
                     <p className="text-xs font-black tracking-widest text-primary uppercase">Community Docs</p>
-                    <a href="#" className="inline-flex items-center text-sm font-bold hover:text-primary transition-colors">
+                    <Link to="/ai-pvc-groups" className="inline-flex items-center text-sm font-bold hover:text-primary transition-colors">
                       See Docs <ChevronRight className="ml-1 size-4" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

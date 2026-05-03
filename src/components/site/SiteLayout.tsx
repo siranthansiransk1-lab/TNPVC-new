@@ -55,9 +55,9 @@ export const SocialLinks = ({ className, vertical = false, onWhatsAppClick }: { 
       return (
         <a
           key={item.label}
-          href={isWhatsApp ? undefined : item.href}
-          target={isWhatsApp ? undefined : "_blank"}
-          rel={isWhatsApp ? undefined : "noreferrer"}
+          href={item.href}
+          target="_blank"
+          rel="noreferrer"
           onClick={isWhatsApp ? (e) => { e.preventDefault(); onWhatsAppClick?.(); } : undefined}
           aria-label={item.label}
           className={cn(
@@ -121,15 +121,25 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Scroll to top and trigger loader on route change
+  // Scroll to top or hash and trigger loader on route change
   useEffect(() => {
     setIsNavigating(true);
     const timer = setTimeout(() => {
-      window.scrollTo(0, 0);
+      if (location.hash) {
+        const id = location.hash.replace("#", "");
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.scrollTo(0, 0);
+        }
+      } else {
+        window.scrollTo(0, 0);
+      }
       setIsNavigating(false);
     }, 800);
     return () => clearTimeout(timer);
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground selection:bg-primary/10 selection:text-primary">
@@ -299,7 +309,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                       "/clients": Users,
                       "/labour": Wrench,
                       "/ai-pvc-groups": ShieldCheck,
-                      "/#register": UserPlus,
+                      "/register#register-section": UserPlus,
                     };
                     
                     if (item.subItems) {
@@ -443,9 +453,9 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                 return (
                   <a
                     key={social.label}
-                    href={isWhatsApp ? undefined : social.href}
-                    target={isWhatsApp ? undefined : "_blank"}
-                    rel={isWhatsApp ? undefined : "noreferrer"}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
                     onClick={isWhatsApp ? (e) => { e.preventDefault(); openWhatsAppModal(); } : undefined}
                     className="flex size-11 items-center justify-center rounded-xl bg-background text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/20 cursor-pointer"
                     aria-label={social.label}

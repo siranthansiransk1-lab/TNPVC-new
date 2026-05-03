@@ -8,6 +8,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+declare global {
+  interface Window {
+    google: any;
+    googleTranslateElementInit: () => void;
+  }
+}
+
 const languages = [
   { code: "en", name: "English" },
   { code: "hi", name: "Hindi" },
@@ -27,14 +34,31 @@ export const LanguageSwitcher = () => {
   useEffect(() => {
     // Read the googtrans cookie to find active language
     const match = document.cookie.match(/(?:^|; )googtrans=([^;]*)/);
+    let langCode = "en";
+    
     if (match) {
       const val = match[1];
-      const langCode = val.split('/')[2];
-      if (langCode) {
-        setCurrentLang(langCode);
-      }
+      langCode = val.split('/')[2] || "en";
+      setCurrentLang(langCode);
+    }
+
+    // Load Google Translate script dynamically if not English or when needed
+    if (langCode !== "en" && !window.google?.translate) {
+      const script = document.createElement("script");
+      script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
+      document.body.appendChild(script);
     }
   }, []);
+
+  const handleOpenChange = (open: boolean) => {
+    if (open && !window.google?.translate) {
+      const script = document.createElement("script");
+      script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  };
 
   const changeLanguage = (code: string) => {
     if (code === "en") {
@@ -48,7 +72,7 @@ export const LanguageSwitcher = () => {
   };
 
   return (
-    <DropdownMenu modal={false}>
+    <DropdownMenu modal={false} onOpenChange={handleOpenChange}>
       <DropdownMenuTrigger asChild>
         <button className="flex items-center gap-2 rounded-full border border-border/50 bg-white/50 backdrop-blur-sm px-3 py-2 text-xs font-semibold text-foreground transition-all hover:bg-white hover:text-primary hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
           <Globe className="size-4" />
