@@ -195,11 +195,14 @@ export const PageHero = ({
     );
   }
 
+  const hasVisuals = (bentoItems && bentoItems.length > 0) || image || aside;
+
   return (
     <section className="relative overflow-hidden bg-mesh border-b border-border/40">
       <div
         className={cn(
-          "container relative grid gap-10 pt-6 pb-16 lg:gap-16 lg:py-24 lg:items-center",
+          "container relative grid grid-cols-1 gap-12 pt-12 pb-16 lg:gap-20 lg:py-24 lg:items-center",
+          hasVisuals ? "lg:grid-cols-[1.1fr_0.9fr]" : "lg:grid-cols-1",
           compact && "py-12 lg:py-16",
         )}
       >
@@ -221,14 +224,17 @@ export const PageHero = ({
             </div>
           </div>
 
-          <header className="space-y-6">
+          <header className={cn(
+            "space-y-6",
+            hasVisuals ? "lg:max-w-[560px]" : "lg:max-w-3xl lg:text-center lg:mx-auto"
+          )}>
             <h1 className={cn(
               "animate-reveal delay-1 text-4xl font-black leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1.2]",
               titleClassName
             )}>
               {title}
             </h1>
-            <p className="animate-reveal delay-2 max-w-2xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="animate-reveal delay-2 text-base font-medium leading-relaxed text-muted-foreground sm:text-lg lg:leading-normal">
               {description}
             </p>
           </header>
@@ -264,36 +270,37 @@ export const PageHero = ({
           ) : null}
         </div>
 
-        <div className="animate-reveal delay-3 lg:ml-auto w-full max-w-lg">
+        <div className="animate-reveal delay-3 lg:ml-auto w-full max-w-xl">
           {bentoItems && bentoItems.length > 0 ? (
-            <div className="grid grid-cols-2 gap-3 w-full">
+            <div className="grid grid-cols-2 gap-4 w-full">
               {bentoItems.map((item, idx) => (
-                <div 
+                <article 
                   key={idx} 
                   className={cn(
                     "float-card group relative flex flex-col overflow-hidden p-0 transition-all hover:shadow-xl hover:-translate-y-1",
                     item.className
                   )}
                 >
-                  <div className="relative h-full w-full aspect-square">
+                  <figure className="relative h-full w-full aspect-square">
                     <img 
                       src={item.image} 
                       alt={item.title} 
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                      loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 flex flex-col justify-end text-left">
+                    <figcaption className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 flex flex-col justify-end text-left">
                       <h3 className="text-sm font-black text-white leading-tight">{item.title}</h3>
-                    </div>
-                  </div>
-                </div>
+                    </figcaption>
+                  </figure>
+                </article>
               ))}
             </div>
           ) : image ? (
-            <div className="relative overflow-hidden rounded-[2rem] border border-border/40 shadow-2xl">
-              <img src={image} alt="" className="w-full object-cover aspect-video" />
-            </div>
+            <figure className="relative overflow-hidden rounded-[2rem] border border-border/40 shadow-2xl">
+              <img src={image} alt="" className="w-full object-cover aspect-video" loading="lazy" />
+            </figure>
           ) : null}
-          {aside && <div className="mt-6">{aside}</div>}
+          {aside && <aside className="mt-6">{aside}</aside>}
         </div>
       </div>
     </section>

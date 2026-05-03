@@ -28,17 +28,20 @@ const Network = () => {
           { label: "See benefits", to: "/benefits" },
           { label: "Contact leadership", to: "/anubrindha", secondary: true },
         ]}
-        aside={
-          <div className="float-card">
-            <p className="text-[10px] font-black tracking-wide text-primary">Coverage</p>
-            <div className="mt-6 flex flex-wrap gap-2">
+      />
+
+      <section className="py-8 bg-surface/50 border-b border-border/40">
+        <div className="container">
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="text-[10px] font-black tracking-wide text-primary uppercase shrink-0">Statewide Coverage</span>
+            <div className="flex flex-wrap gap-2">
               {geoCoverage.map((place) => (
-                <span key={place} className="inline-flex rounded-lg bg-surface px-3 py-1.5 text-[11px] font-bold text-muted-foreground border border-border/40">{place}</span>
+                <span key={place} className="inline-flex rounded-lg bg-white px-3 py-1.5 text-[10px] font-bold text-muted-foreground border border-border/40 shadow-sm">{place}</span>
               ))}
             </div>
           </div>
-        }
-      />
+        </div>
+      </section>
 
       <section className="section-padding">
         <div className="container space-y-8">

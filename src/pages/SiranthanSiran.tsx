@@ -17,18 +17,12 @@ const SiranthanSiran = () => {
         eyebrow="Founder story"
         title="Siranthan Siran"
         description={founder.intro}
-        bentoItems={[
-          { image: brandAssets.bentoShowroom, title: "Dexaz Studio", description: "Digital growth." },
-          { image: brandAssets.heroInterior, title: "Vision", description: "Tech ecosystem." },
-          { image: brandAssets.bentoUpvcWindow, title: "AI-PVC", description: "Strategic partner." },
-          { image: brandAssets.bentoPvcWall, title: "TN-PVC", description: "State leader." }
-        ]}
         aside={
-          <figure className="float-card p-0 overflow-hidden">
+          <figure className="float-card p-0 overflow-hidden shadow-2xl">
             <img 
               src={founder.image} 
               alt={founder.name} 
-              className="aspect-[4/4.5] w-full object-cover" 
+              className="aspect-[4/5] w-full object-cover" 
               loading="lazy" 
             />
           </figure>
