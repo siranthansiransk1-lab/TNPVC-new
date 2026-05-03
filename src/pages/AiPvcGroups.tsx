@@ -60,46 +60,51 @@ const AiPvcGroups = () => {
             </div>
             
             {/* Right Visual */}
-            <div className="relative aspect-[3/4] md:aspect-auto md:h-full min-h-[450px] md:min-h-[600px] rounded-[24px] lg:rounded-[32px] overflow-hidden p-4 sm:p-6 lg:p-10 shadow-2xl group flex items-center justify-center">
+            <figure className="relative aspect-[3/4] md:aspect-auto md:h-full min-h-[450px] md:min-h-[600px] rounded-[24px] lg:rounded-[32px] overflow-hidden p-4 sm:p-6 lg:p-10 shadow-2xl group flex items-center justify-center">
               {/* Background Image & Gradient */}
               <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/40 to-transparent z-10 mix-blend-multiply" />
-              <img src={brandAssets.heroInterior} className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105" alt="TNPVC Interior Ecosystem" />
+              <img 
+                src={brandAssets.heroInterior} 
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105" 
+                alt="TNPVC Interior Ecosystem" 
+                loading="lazy"
+              />
               
               {/* Staggered Cards Container */}
-              <div className="relative z-20 grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6 w-full max-w-sm mx-auto">
+              <figcaption className="relative z-20 grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6 w-full max-w-sm mx-auto">
                 
                 {/* Column 1 */}
                 <div className="space-y-3 sm:space-y-4 lg:space-y-6">
-                  <div className="bg-white/95 backdrop-blur-xl p-4 sm:p-5 lg:p-6 rounded-2xl lg:rounded-3xl shadow-xl transform transition-transform hover:-translate-y-1">
+                  <article className="bg-white/95 backdrop-blur-xl p-4 sm:p-5 lg:p-6 rounded-2xl lg:rounded-3xl shadow-xl transform transition-transform hover:-translate-y-1">
                     <Briefcase className="size-6 sm:size-8 text-primary mb-3 sm:mb-4" strokeWidth={1.5} />
                     <h4 className="font-black text-foreground text-sm sm:text-base lg:text-lg">Contractors</h4>
                     <p className="text-[10px] sm:text-xs font-medium text-muted-foreground mt-0.5">Reliable teams</p>
-                  </div>
+                  </article>
                   
-                  <div className="bg-white/95 backdrop-blur-xl p-4 sm:p-5 lg:p-6 rounded-2xl lg:rounded-3xl shadow-xl transform transition-transform hover:-translate-y-1">
+                  <article className="bg-white/95 backdrop-blur-xl p-4 sm:p-5 lg:p-6 rounded-2xl lg:rounded-3xl shadow-xl transform transition-transform hover:-translate-y-1">
                     <Store className="size-6 sm:size-8 text-primary mb-3 sm:mb-4" strokeWidth={1.5} />
                     <h4 className="font-black text-foreground text-sm sm:text-base lg:text-lg">Dealers</h4>
                     <p className="text-[10px] sm:text-xs font-medium text-muted-foreground mt-0.5">Business flow</p>
-                  </div>
+                  </article>
                 </div>
 
                 {/* Column 2 (Staggered down) */}
                 <div className="space-y-3 sm:space-y-4 lg:space-y-6 mt-8 sm:mt-12 lg:mt-16">
-                  <div className="bg-white/95 backdrop-blur-xl p-4 sm:p-5 lg:p-6 rounded-2xl lg:rounded-3xl shadow-xl transform transition-transform hover:-translate-y-1">
+                  <article className="bg-white/95 backdrop-blur-xl p-4 sm:p-5 lg:p-6 rounded-2xl lg:rounded-3xl shadow-xl transform transition-transform hover:-translate-y-1">
                     <Users className="size-6 sm:size-8 text-primary mb-3 sm:mb-4" strokeWidth={1.5} />
                     <h4 className="font-black text-foreground text-sm sm:text-base lg:text-lg">Carpenters</h4>
                     <p className="text-[10px] sm:text-xs font-medium text-muted-foreground mt-0.5">Steady work</p>
-                  </div>
+                  </article>
                   
-                  <div className="bg-white/95 backdrop-blur-xl p-4 sm:p-5 lg:p-6 rounded-2xl lg:rounded-3xl shadow-xl transform transition-transform hover:-translate-y-1">
+                  <article className="bg-white/95 backdrop-blur-xl p-4 sm:p-5 lg:p-6 rounded-2xl lg:rounded-3xl shadow-xl transform transition-transform hover:-translate-y-1">
                     <Factory className="size-6 sm:size-8 text-primary mb-3 sm:mb-4" strokeWidth={1.5} />
                     <h4 className="font-black text-foreground text-sm sm:text-base lg:text-lg">Manufacturers</h4>
                     <p className="text-[10px] sm:text-xs font-medium text-muted-foreground mt-0.5">Direct reach</p>
-                  </div>
+                  </article>
                 </div>
 
-              </div>
-            </div>
+              </figcaption>
+            </figure>
 
           </div>
 

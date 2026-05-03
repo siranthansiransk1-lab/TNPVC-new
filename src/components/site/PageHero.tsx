@@ -77,8 +77,7 @@ export const PageHero = ({
             </Link>
           </div>
 
-          {/* Headline */}
-          <div className="max-w-4xl space-y-4">
+        <header className="max-w-4xl space-y-4">
             <h1 className={cn(
               "animate-reveal delay-1 text-3xl font-black leading-[1.15] tracking-tight sm:text-4xl lg:text-6xl lg:leading-[1.2]",
               titleClassName
@@ -88,7 +87,7 @@ export const PageHero = ({
             <p className="animate-reveal delay-2 mx-auto max-w-2xl text-sm font-medium leading-relaxed text-muted-foreground sm:text-base">
               {description}
             </p>
-          </div>
+          </header>
 
           {/* CTAs */}
           {actions.length > 0 && (
@@ -155,17 +154,18 @@ export const PageHero = ({
                     item.className
                   )}
                 >
-                  <div className="relative h-full w-full">
+                  <figure className="relative h-full w-full">
                     <img 
                       src={item.image} 
                       alt={item.title} 
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                      loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end text-left">
+                    <figcaption className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end text-left">
                       <h3 className="text-lg font-black text-white">{item.title}</h3>
                       <p className="mt-1 text-xs font-medium text-white/70 line-clamp-2">{item.description}</p>
-                    </div>
-                  </div>
+                    </figcaption>
+                  </figure>
                 </div>
               ))}
             </div>
@@ -221,7 +221,7 @@ export const PageHero = ({
             </div>
           </div>
 
-          <div className="space-y-6">
+          <header className="space-y-6">
             <h1 className={cn(
               "animate-reveal delay-1 text-4xl font-black leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1.2]",
               titleClassName
@@ -231,7 +231,7 @@ export const PageHero = ({
             <p className="animate-reveal delay-2 max-w-2xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">
               {description}
             </p>
-          </div>
+          </header>
 
           {actions.length > 0 ? (
             <div className="animate-reveal delay-3 flex flex-wrap gap-4">

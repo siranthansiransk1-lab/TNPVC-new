@@ -146,13 +146,13 @@ const Home = () => {
             {platformBenefits.map((benefit) => {
               const Icon = benefit.icon;
               return (
-                <div key={benefit.title} className="float-card group">
+                <article key={benefit.title} className="float-card group">
                   <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
                     <Icon className="size-5" aria-hidden="true" />
                   </div>
                   <h3 className="mt-5 text-base font-black tracking-tight">{benefit.title}</h3>
                   <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">{benefit.description}</p>
-                </div>
+                </article>
               );
             })}
           </div>

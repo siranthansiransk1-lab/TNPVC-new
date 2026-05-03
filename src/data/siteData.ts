@@ -17,17 +17,17 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-import aiPvcLogo from "@/assets/ai-pvc-groups-logo.png";
-import tnPvcLogo from "@/assets/tn-pvc-logo.png";
-import siranthanFounder from "@/assets/siranthan-founder.png";
-import srinivasanFounder from "@/assets/srinivasan-founder.jpg";
-import dexazReference from "@/assets/dexaz-reference.jpg";
-import heroInterior from "@/assets/hero-interior.png";
-import bentoPvcWall from "@/assets/bento-pvc-wall.png";
-import bentoUpvcWindow from "@/assets/bento-upvc-window.png";
-import bentoInstallation from "@/assets/bento-installation.png";
-import bentoShowroom from "@/assets/bento-showroom.png";
-import heroPartnership from "@/assets/hero-partnership.png";
+import aiPvcLogo from "@/assets/ai-pvc-groups-logo.webp";
+import tnPvcLogo from "@/assets/tn-pvc-logo.webp";
+import siranthanFounder from "@/assets/siranthan-founder.webp";
+import srinivasanFounder from "@/assets/srinivasan-founder.webp";
+import dexazReference from "@/assets/dexaz-reference.webp";
+import heroInterior from "@/assets/hero-interior.webp";
+import bentoPvcWall from "@/assets/bento-pvc-wall.webp";
+import bentoUpvcWindow from "@/assets/bento-upvc-window.webp";
+import bentoInstallation from "@/assets/bento-installation.webp";
+import bentoShowroom from "@/assets/bento-showroom.webp";
+import heroPartnership from "@/assets/hero-partnership.webp";
 
 export type NavItem = {
   label: string;

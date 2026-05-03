@@ -24,9 +24,14 @@ const Srinivasan = () => {
           { image: brandAssets.bentoUpvcWindow, title: "Leadership", description: "Network growth." }
         ]}
         aside={
-          <div className="float-card p-0 overflow-hidden">
-            <img src={founder.image} alt={founder.name} className="aspect-[4/4.2] w-full object-cover" loading="eager" />
-          </div>
+          <figure className="float-card p-0 overflow-hidden">
+            <img 
+              src={founder.image} 
+              alt={founder.name} 
+              className="aspect-[4/4.2] w-full object-cover" 
+              loading="lazy" 
+            />
+          </figure>
         }
       />
 

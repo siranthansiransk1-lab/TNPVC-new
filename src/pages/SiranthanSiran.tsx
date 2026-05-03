@@ -24,9 +24,14 @@ const SiranthanSiran = () => {
           { image: brandAssets.bentoPvcWall, title: "TN-PVC", description: "State leader." }
         ]}
         aside={
-          <div className="float-card p-0 overflow-hidden">
-            <img src={founder.image} alt={founder.name} className="aspect-[4/4.5] w-full object-cover" loading="eager" />
-          </div>
+          <figure className="float-card p-0 overflow-hidden">
+            <img 
+              src={founder.image} 
+              alt={founder.name} 
+              className="aspect-[4/4.5] w-full object-cover" 
+              loading="lazy" 
+            />
+          </figure>
         }
       />
 

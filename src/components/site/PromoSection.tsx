@@ -42,9 +42,9 @@ export const PromoSection = () => {
     headerAccent,
     isRealPlast = false
   }: any) => (
-    <div className="h-full flex flex-col bg-white overflow-hidden rounded-3xl border border-border/50 shadow-sm hover:shadow-md transition-all group">
+    <article className="h-full flex flex-col bg-white overflow-hidden rounded-3xl border border-border/50 shadow-sm hover:shadow-md transition-all group">
       {/* Brand Header */}
-      <div className={cn("relative p-6 flex flex-col items-center justify-center text-center text-white overflow-hidden", headerBg)}>
+      <header className={cn("relative p-6 flex flex-col items-center justify-center text-center text-white overflow-hidden", headerBg)}>
         <div className={cn("absolute top-0 right-0 w-24 h-full -skew-x-12 translate-x-12", headerAccent)} />
         <div className="relative z-10 space-y-3">
           <div className="bg-white/10 backdrop-blur-md p-2 rounded-lg inline-block border border-white/20">
@@ -63,7 +63,7 @@ export const PromoSection = () => {
             <p className="text-[9px] font-bold text-white/80 uppercase tracking-widest">{owner}</p>
           </div>
         </div>
-      </div>
+      </header>
 
       {/* Info Body */}
       <div className="p-5 lg:p-6 flex-1 space-y-4 bg-white">
@@ -90,7 +90,7 @@ export const PromoSection = () => {
           ))}
         </div>
       </div>
-    </div>
+    </article>
   );
 
   const partners = [
