@@ -276,17 +276,17 @@ export const founders = [
   {
     slug: "siranthan-siran",
     name: "Siranthan Siran",
-    role: "CEO & Founder, TN-PVC Interiors • CEO & Founder, Dexaz Studio",
+    role: "Co-Founder, TN-PVC Interiors • Founder, Siran Net Corp",
     image: siranthanFounder,
     phone: "+91 8489143405",
     email: "siranthan.siran.sk.1@gmail.com",
     link: companyLinks.siranthanInstagram,
     intro:
-      "Siranthan Siran is a young entrepreneur from Tamil Nadu building digital ecosystems for trades, businesses, and student-led innovation communities.",
+      "Siranthan Siran is the Co-Founder of TN-PVC Interiors (son of founder Srinivasan) and the visionary founder of Siran Net Corp, engineering digital trade ecosystems and scalable modern solutions.",
     highlights: [
-      "Founded Dexaz Studio while still a student and built a fast-growing tech ecosystem.",
-      "Leads the digital future of TN-PVC Interiors through websites, apps, and brand systems.",
-      "Believes age should never limit ambition, execution, or learning speed.",
+      "Co-Founder of TN-PVC Interiors alongside his father, founder Srinivasan.",
+      "Founder of Siran Net Corp, driving digital innovation and trade ecosystems.",
+      "Leads state-wide digital transformation, operations, and scalable supply networks.",
     ],
     story: [
       "Siranthan's journey began with a strong attraction to computer science, digital creation, coding, editing, and building practical solutions with technology.",

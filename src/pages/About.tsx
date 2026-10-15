@@ -188,7 +188,7 @@ const leadershipMembers = [
     role: "SRINIVASAN / FOUNDER",
     fullTitle: "Founder & Managing Director",
     image: srinivasanFounder,
-    bio: "Pioneering the modern PVC interior landscape in Tamil Nadu with an unwavering commitment to architectural quality, trade empowerment, and lasting customer value.",
+    bio: "Pioneering the modern PVC interior landscape in Tamil Nadu alongside his son and co-founder Siranthan, with an unwavering commitment to architectural quality, trade empowerment, and lasting customer value.",
     quote: "Every journey begins with a decision to build with purpose and integrity.",
     link: "/srinivasan",
     linkLabel: "View Founder Story",
@@ -197,10 +197,10 @@ const leadershipMembers = [
     id: "siranthan",
     name: "Siranthan",
     role: "SIRANTHAN / CO-FOUNDER",
-    fullTitle: "Co-Founder & Operations Lead",
+    fullTitle: "Co-Founder · Founder, Siran Net Corp",
     image: siranthanFounder,
-    bio: "Spearheading state-wide operations, supplier syndication, and digital trade networks to bring modern living solutions to thousands of families across 38 districts.",
-    quote: "True innovation lives at the intersection of craftsmanship and scalable systems.",
+    bio: "Son of founder Srinivasan and the visionary founder of Siran Net Corp. Siranthan spearheads state-wide operations, supplier syndication, and digital trade networks, bridging his family's craftsmanship legacy with modern technology across 38 districts.",
+    quote: "True innovation lives at the intersection of craftsmanship and scalable systems — honoring my father's legacy while engineering our digital future.",
     link: "/siranthan-siran",
     instagram: companyLinks.siranthanInstagram,
     linkLabel: "View Co-Founder Profile",
@@ -958,7 +958,7 @@ export const About = () => {
                       }
                     }}
                     className={`transition-[flex,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] min-w-0 ${isSelected
-                      ? "md:flex-[2.8] lg:flex-[3]"
+                      ? "md:flex-[3] lg:flex-[3.4]"
                       : isInactive
                         ? "md:flex-1 opacity-75 hover:opacity-100"
                         : "md:flex-1 opacity-100"
@@ -1037,14 +1037,14 @@ export const About = () => {
                       >
                         <div className="overflow-hidden min-w-0 min-h-0 h-full">
                           <div
-                            className={`w-full md:w-[320px] lg:w-[350px] md:min-w-[320px] lg:min-w-[350px] shrink-0 h-full flex flex-col justify-center space-y-4 py-3 md:py-2 md:pl-6 md:pr-2 transition-all ease-[cubic-bezier(0.16,1,0.3,1)] ${isSelected
+                            className={`w-full md:w-[330px] lg:w-[360px] md:min-w-[330px] lg:min-w-[360px] shrink-0 h-full flex flex-col justify-center space-y-4 py-3 md:py-2 md:pl-6 md:pr-4 transition-all ease-[cubic-bezier(0.16,1,0.3,1)] ${isSelected
                               ? "opacity-100 visible translate-x-0 duration-400 delay-[100ms] pointer-events-auto"
                               : "opacity-0 invisible -translate-x-3 duration-200 delay-0 pointer-events-none"
                               }`}
                           >
                             <div className="space-y-3">
                               <div>
-                                <p className="text-xs font-bold uppercase tracking-wider text-primary">
+                                <p className="text-xs font-bold uppercase tracking-wide text-primary leading-snug">
                                   {leader.fullTitle}
                                 </p>
                                 <h3 className="text-xl sm:text-2xl font-black text-neutral-100 uppercase tracking-tight mt-1">
