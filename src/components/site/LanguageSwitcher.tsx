@@ -74,8 +74,8 @@ export const LanguageSwitcher = () => {
   return (
     <DropdownMenu modal={false} onOpenChange={handleOpenChange}>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-2 rounded-full border border-border/50 bg-white/50 backdrop-blur-sm px-3 py-2 text-xs font-semibold text-foreground transition-all hover:bg-white hover:text-primary hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-          <Globe className="size-4" />
+        <button className="flex items-center gap-1.5 rounded-full border border-border/50 bg-white/60 backdrop-blur-sm min-h-0 h-9 px-3 text-xs font-semibold text-foreground transition-all hover:bg-white hover:text-primary hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+          <Globe className="size-3.5" />
           <span className="inline-block">
             {languages.find(l => l.code === currentLang)?.name || "Language"}
           </span>

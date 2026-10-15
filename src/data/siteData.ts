@@ -68,18 +68,16 @@ export const brandAssets = {
 
 export const navItems: NavItem[] = [
   { label: "Home", path: "/" },
-  { label: "Network", path: "/network" },
-  { label: "Benefits", path: "/benefits" },
   {
-    label: "Members",
+    label: "About Us",
+    path: "/about",
     subItems: [
-      { label: "Contractors", path: "/contractors" },
-      { label: "Clients", path: "/clients" },
-      { label: "Labour", path: "/labour" },
+      { label: "Our Story", path: "/about" },
+      { label: "Partnership Transparency", path: "/ai-pvc-groups" },
     ],
   },
-  { label: "Partnership Transparency", path: "/ai-pvc-groups" },
-  { label: "Register", path: "/register#register-section", shortLabel: "Register" },
+  { label: "Network", path: "/network" },
+  { label: "Benefits", path: "/benefits" },
 ];
 
 export const seoByPath: Record<string, SeoConfig> = {
@@ -94,6 +92,22 @@ export const seoByPath: Record<string, SeoConfig> = {
       "Tamil Nadu contractors network",
       "AI-PVC Groups",
       "WhatsApp PVC community",
+    ],
+  },
+  "/about": {
+    title: "About Us | TN-PVC Interiors — More Than Interiors. A Network That Builds.",
+    description:
+      "Discover the story of TN-PVC Interiors: from complete interior installations and manufacturing to an expansive 50+ dealer and contractor network across Tamil Nadu.",
+    keywords: [
+      "TN-PVC About Us",
+      "TN-PVC brand story",
+      "PVC manufacturing Tamil Nadu",
+      "50+ PVC dealers Tamil Nadu",
+      "Siranthan Siran",
+      "Srinivasan",
+      "Anu Brindha",
+      "Sanjay Rithik",
+      "interior solutions Tamil Nadu",
     ],
   },
   "/network": {
@@ -262,17 +276,17 @@ export const founders = [
   {
     slug: "siranthan-siran",
     name: "Siranthan Siran",
-    role: "CEO & Founder, TN-PVC Interiors • CEO & Founder, Dexaz Studio",
+    role: "Co-Founder, TN-PVC Interiors • Founder, Siran Net Corp",
     image: siranthanFounder,
     phone: "+91 8489143405",
     email: "siranthan.siran.sk.1@gmail.com",
     link: companyLinks.siranthanInstagram,
     intro:
-      "Siranthan Siran is a young entrepreneur from Tamil Nadu building digital ecosystems for trades, businesses, and student-led innovation communities.",
+      "Siranthan Siran is the Co-Founder of TN-PVC Interiors (son of founder Srinivasan) and the visionary founder of Siran Net Corp, engineering digital trade ecosystems and scalable modern solutions.",
     highlights: [
-      "Founded Dexaz Studio while still a student and built a fast-growing tech ecosystem.",
-      "Leads the digital future of TN-PVC Interiors through websites, apps, and brand systems.",
-      "Believes age should never limit ambition, execution, or learning speed.",
+      "Co-Founder of TN-PVC Interiors alongside his father, founder Srinivasan.",
+      "Founder of Siran Net Corp, driving digital innovation and trade ecosystems.",
+      "Leads state-wide digital transformation, operations, and scalable supply networks.",
     ],
     story: [
       "Siranthan's journey began with a strong attraction to computer science, digital creation, coding, editing, and building practical solutions with technology.",

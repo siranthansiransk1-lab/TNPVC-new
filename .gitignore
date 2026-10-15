@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.playwright-mcp/
+node_modules/
+prompt md/
+.env
+.agent/
+.agents/

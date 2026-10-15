@@ -65,6 +65,23 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        luxury: {
+          dark: "hsl(var(--luxury-dark))",
+          "dark-surface": "hsl(var(--luxury-dark-surface))",
+          "dark-elevated": "hsl(var(--luxury-dark-elevated))",
+          "dark-border": "hsl(var(--luxury-dark-border))",
+          light: "hsl(var(--luxury-light))",
+          "light-surface": "hsl(var(--luxury-light-surface))",
+          "light-border": "hsl(var(--luxury-light-border))",
+          gold: {
+            DEFAULT: "hsl(var(--luxury-gold))",
+            hover: "hsl(var(--luxury-gold-hover))",
+            muted: "hsl(var(--luxury-gold-muted))",
+            glow: "hsl(var(--luxury-gold-glow))",
+          },
+          charcoal: "hsl(var(--luxury-charcoal))",
+          stone: "hsl(var(--luxury-stone))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -96,6 +113,7 @@ export default {
       fontFamily: {
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
         display: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        serif: ["Cinzel", "Cormorant Garamond", "Playfair Display", "Georgia", "serif"],
       },
       boxShadow: {
         soft: "0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04), 0 16px 40px rgba(124,58,237,0.04)",
