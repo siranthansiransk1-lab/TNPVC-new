@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { ReactNode, useRef } from "react";
 import { ArrowUpRight, ChevronRight, ChevronDown, Facebook, Instagram, Menu, MessageCircleMore, Phone, Twitter, Youtube, X, LayoutGrid, MapPin, ChevronsUpDown, Globe, Sparkles, HardHat, Users, Wrench, ShieldCheck, UserPlus, CreditCard } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -39,16 +39,16 @@ export const SocialLinks = ({ className, vertical = false, onWhatsAppClick }: { 
       { icon: Instagram, href: "https://www.instagram.com/siranthan_siran?igsh=aDZ4dGx4cHdtdmZr", label: "Instagram", bg: "bg-pink-600", delay: "delay-1" },
       { icon: Youtube, href: "https://youtube.com", label: "YouTube", bg: "bg-red-600", delay: "delay-2" },
       { icon: Facebook, href: "https://www.facebook.com/srinivasan.x", label: "Facebook", bg: "bg-blue-700", delay: "delay-3" },
-      { 
+      {
         icon: () => (
           <svg className="size-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.411.002 12.048c0 2.12.54 4.19 1.566 6.02L0 24l6.105-1.602a11.832 11.832 0 005.937 1.597h.005c6.634 0 12.043-5.411 12.046-12.048a11.804 11.804 0 00-3.489-8.452z"/>
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.411.002 12.048c0 2.12.54 4.19 1.566 6.02L0 24l6.105-1.602a11.832 11.832 0 005.937 1.597h.005c6.634 0 12.043-5.411 12.046-12.048a11.804 11.804 0 00-3.489-8.452z" />
           </svg>
-        ), 
-        href: "https://wa.me/918870826404", 
-        label: "WhatsApp", 
-        bg: "bg-green-600", 
-        delay: "delay-4" 
+        ),
+        href: "https://wa.me/918870826404",
+        label: "WhatsApp",
+        bg: "bg-green-600",
+        delay: "delay-4"
       },
     ].map((item) => {
       const isWhatsApp = item.label === "WhatsApp";
@@ -121,85 +121,97 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Scroll to top or hash and trigger loader on route change
+  // Only trigger page loader on pathname change (not on in-page hash changes)
+  const prevPathRef = useRef(location.pathname);
   useEffect(() => {
-    setIsNavigating(true);
-    const timer = setTimeout(() => {
-      if (location.hash) {
-        const id = location.hash.replace("#", "");
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        } else {
-          window.scrollTo(0, 0);
-        }
-      } else {
-        window.scrollTo(0, 0);
+    if (prevPathRef.current !== location.pathname) {
+      prevPathRef.current = location.pathname;
+      setIsNavigating(true);
+      const timer = setTimeout(() => {
+        setIsNavigating(false);
+      }, 700);
+      return () => clearTimeout(timer);
+    }
+  }, [location.pathname]);
+
+  // Smooth scroll to hash or top without triggering PageLoader
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
       }
-      setIsNavigating(false);
-    }, 800);
-    return () => clearTimeout(timer);
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, [location.pathname, location.hash]);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground selection:bg-primary/10 selection:text-primary">
       <PageLoader isNavigating={isNavigating} />
-      
+
       {/* ─── Header ─── */}
       <header
         className={cn(
-          "fixed left-0 w-full z-50 h-20 transition-all duration-500 flex items-center px-4",
-          scrolled ? "top-5" : "top-0"
+          "fixed left-0 w-full z-50 h-16 transition-all duration-300 flex items-center px-3 sm:px-4",
+          scrolled ? "top-2.5 sm:top-3" : "top-0"
         )}
       >
         <div
           className={cn(
-            "container flex items-center justify-between transition-all duration-500 rounded-2xl border border-transparent",
+            "container flex items-center justify-between transition-all duration-300 rounded-2xl border",
             scrolled
-              ? "bg-white/80 shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-xl border-border/50 py-3 px-3"
-              : "bg-transparent py-0 px-0"
+              ? "bg-white/85 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-xl border-border/50 py-1.5 px-3 sm:px-4"
+              : "bg-transparent border-transparent py-1.5 px-0"
           )}
         >
 
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-3 transition-opacity hover:opacity-80 focus-visible:ring-offset-4"
+            className="flex items-center gap-2.5 transition-opacity hover:opacity-80 focus-visible:ring-offset-4"
             aria-label="Home - TN-PVC Interiors"
           >
             <img
               src={brandAssets.tnPvcLogo}
               alt=""
-              className="size-10 rounded-xl object-contain"
+              className="size-8 rounded-lg object-contain"
               loading="eager"
             />
             <div className="hidden sm:block">
-              <p className="text-base font-black tracking-tight text-foreground">
+              <p className="text-sm font-black tracking-tight leading-none text-foreground transition-colors">
                 TN-PVC
               </p>
-              <p className="text-[10px] font-bold tracking-wide text-muted-foreground">
+              <p className="text-[9px] font-bold tracking-wider uppercase leading-none mt-0.5 text-muted-foreground transition-colors">
                 Interiors
               </p>
             </div>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
+          <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Main navigation">
             {navItems.map((item) => {
               if (item.subItems) {
+                const isDropdownActive = item.subItems.some((subItem) => location.pathname === subItem.path) || location.pathname === item.path;
                 return (
                   <DropdownMenu key={item.label} modal={false}>
-                    <DropdownMenuTrigger className="group relative rounded-full px-4 py-2 text-sm font-semibold tracking-wide text-muted-foreground transition-all hover:text-primary outline-none flex items-center gap-1">
+                    <DropdownMenuTrigger className={cn(
+                      "group relative min-h-0 rounded-full px-3 py-1.5 text-xs lg:text-[13px] font-semibold tracking-normal transition-all outline-none flex items-center gap-1",
+                      isDropdownActive
+                        ? "text-primary bg-primary/10 font-bold"
+                        : "text-muted-foreground hover:text-primary"
+                    )}>
                       <span className="relative z-10">{item.shortLabel ?? item.label}</span>
-                      <ChevronDown className="relative z-10 size-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                      <ChevronDown className="relative z-10 size-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start" className="w-48 rounded-2xl p-2 shadow-xl border-border/50 bg-white/95 backdrop-blur-xl">
+                    <DropdownMenuContent align="start" className="w-52 rounded-2xl p-2 shadow-xl border-border/50 bg-white/95 backdrop-blur-xl">
                       <div className="flex flex-col gap-1">
                         {item.subItems.map((subItem) => (
                           <DropdownMenuItem key={subItem.path} asChild>
                             <NavLink
                               to={subItem.path}
-                              className="flex items-center justify-start text-left px-3 py-2 text-sm font-medium rounded-xl transition-colors cursor-pointer w-full text-foreground hover:bg-muted/80 hover:text-primary data-[active=true]:bg-primary/10 data-[active=true]:text-primary data-[active=true]:font-bold outline-none"
+                              className="flex items-center justify-start text-left px-3 py-2 text-xs font-medium rounded-xl transition-colors cursor-pointer w-full text-foreground hover:bg-muted/80 hover:text-primary data-[active=true]:bg-primary/10 data-[active=true]:text-primary data-[active=true]:font-bold outline-none"
                               activeClassName="bg-primary/10 text-primary font-bold"
                             >
                               {subItem.label}
@@ -218,7 +230,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                   <a
                     key={item.path}
                     href={item.path}
-                    className="group relative rounded-full px-4 py-2 text-sm font-semibold tracking-wide text-muted-foreground transition-all hover:text-primary"
+                    className="group relative min-h-0 rounded-full px-3 py-1.5 text-xs lg:text-[13px] font-semibold tracking-normal transition-all text-muted-foreground hover:text-primary"
                   >
                     <span className="relative z-10">{item.shortLabel ?? item.label}</span>
                   </a>
@@ -228,28 +240,31 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                 <NavLink
                   key={item.path}
                   to={item.path!}
-                  className="group relative rounded-full px-4 py-2 text-sm font-semibold tracking-wide text-muted-foreground transition-all hover:text-primary"
-                  activeClassName="text-primary bg-primary/5"
+                  className="group relative min-h-0 rounded-full px-3 py-1.5 text-xs lg:text-[13px] font-semibold tracking-normal transition-all text-muted-foreground hover:text-primary"
+                  activeClassName="text-primary bg-primary/10 font-bold"
                   end={item.path === "/"}
                 >
                   <span className="relative z-10">{item.shortLabel ?? item.label}</span>
                   {/* Subtle indicator for active state */}
-                  <span className="absolute bottom-1.5 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-primary transition-all duration-300 group-[.active]:w-4" />
+                  <span className={cn(
+                    "absolute bottom-0.5 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full transition-all duration-300 group-[.active]:w-4",
+                    "bg-primary"
+                  )} />
                 </NavLink>
               );
             })}
           </nav>
 
           {/* Actions */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-2.5 sm:gap-3">
             <LanguageSwitcher />
-            <a
-              href="tel:+918870826404"
-              className="primary-btn h-14 px-6 text-sm" // 56px height
+            <Link
+              to="/register"
+              className="min-h-0 h-9 px-4 text-xs font-bold sm:text-sm shadow-sm inline-flex items-center rounded-xl transition-all primary-btn"
             >
-              <Phone className="mr-2 size-3.5" aria-hidden="true" />
-              Contact us
-            </a>
+              <UserPlus className="mr-1.5 size-3.5" aria-hidden="true" />
+              Register
+            </Link>
           </div>
 
           <Sheet open={open} onOpenChange={setOpen}>
@@ -257,14 +272,14 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="size-11 lg:hidden" // 44px (WCAG)
+                className="size-9 lg:hidden min-h-0"
                 aria-label="Open menu"
               >
-                <Menu className="size-6" />
+                <Menu className="size-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent 
-              side="left" 
+            <SheetContent
+              side="left"
               className="w-[85vw] max-w-[340px] bg-transparent p-0 flex flex-col border-none shadow-none sm:max-w-[340px] [&>button]:hidden"
             >
               {/* Close Button Outside */}
@@ -303,15 +318,13 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                 <nav className="flex flex-col gap-1.5 mb-8" aria-label="Mobile navigation">
                   {navItems.map((item) => {
                     const navIcons: Record<string, React.ElementType> = {
+                      "/about": Sparkles,
                       "/network": Globe,
                       "/benefits": Sparkles,
-                      "/contractors": HardHat,
-                      "/clients": Users,
-                      "/labour": Wrench,
                       "/ai-pvc-groups": ShieldCheck,
-                      "/register#register-section": UserPlus,
+                      "/register": UserPlus,
                     };
-                    
+
                     if (item.subItems) {
                       return (
                         <div key={item.label} className="flex flex-col gap-1.5 mt-2 mb-2">
@@ -341,7 +354,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
 
                     const Icon = item.path ? navIcons[item.path] || LayoutGrid : LayoutGrid;
                     const isHash = item.path?.startsWith("/#");
-                    
+
                     if (isHash && item.path) {
                       return (
                         <SheetClose asChild key={item.path}>
@@ -406,7 +419,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
       {/* Social Island removed — now rendered inline in Hero */}
 
       {/* ─── Main ─── */}
-      <main id="main-content" className="relative pt-20">
+      <main id="main-content" className="relative pt-16">
         {children}
       </main>
 
@@ -445,7 +458,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                 },
                 {
                   label: "WhatsApp", href: "https://wa.me/918870826404", icon: (
-                    <svg className="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.411.002 12.048c0 2.12.54 4.19 1.566 6.02L0 24l6.105-1.602a11.832 11.832 0 005.937 1.597h.005c6.634 0 12.043-5.411 12.046-12.048a11.804 11.804 0 00-3.489-8.452z"/></svg>
+                    <svg className="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.411.002 12.048c0 2.12.54 4.19 1.566 6.02L0 24l6.105-1.602a11.832 11.832 0 005.937 1.597h.005c6.634 0 12.043-5.411 12.046-12.048a11.804 11.804 0 00-3.489-8.452z" /></svg>
                   )
                 },
               ].map((social) => {
@@ -488,10 +501,11 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
             <div className="space-y-4">
               <p className="text-xs font-bold tracking-wide text-primary uppercase">Quick links</p>
               <nav className="flex flex-col gap-2" aria-label="Footer links">
-                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/network">Our network</Link>
-                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/benefits">Business benefits</Link>
-                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/contractors">For contractors</Link>
-                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/clients">For clients</Link>
+                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/about">About Us</Link>
+                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/network">Network & Members</Link>
+                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/benefits">Business Benefits</Link>
+                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/ai-pvc-groups">Partnership Transparency</Link>
+                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/register">Register as Member</Link>
               </nav>
             </div>
           </div>

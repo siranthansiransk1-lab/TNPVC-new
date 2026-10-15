@@ -1,0 +1,185 @@
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - region "Notifications alt+T"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Home - TN-PVC Interiors" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - button "Open menu" [ref=e167] [cursor=pointer]
+    - main [ref=e28]:
+      - main [ref=e29]:
+        - generic [ref=e30]:
+          - img "Contemporary living room with premium interior finishes and architectural lighting" [ref=e32]
+          - generic [ref=e36]:
+            - heading "SPACES THAT TELL A STORY." [level=1] [ref=e37]:
+              - text: SPACES THAT
+              - generic [ref=e38]: TELL A STORY.
+            - paragraph [ref=e39]: At TN-PVC, we don't just create interiors, we create experiences.
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - heading "BEYOND WALLS. BEYOND EXPECTATIONS." [level=2] [ref=e44]: BEYOND WALLS.BEYOND EXPECTATIONS.
+            - paragraph [ref=e45]: From stylish wall panels to elegant wall stickers, custom cupboards to modern TV units — we bring your vision to life with premium TN-PVC solutions.
+            - link "Explore Our Interiors" [ref=e47] [cursor=pointer]:
+              - /url: /clients
+          - generic [ref=e51]:
+            - generic [ref=e52]:
+              - link [ref=e168] [cursor=pointer]:
+                - /url: /clients#wall-panels
+                - img "Modern PVC Wall Panels" [ref=e54]
+                - generic: 01 · PVC
+                - generic:
+                  - generic:
+                    - paragraph: WALL PANELS
+                  - paragraph: Acoustic & Decorative Panels
+              - link [ref=e169] [cursor=pointer]:
+                - /url: /clients#wall-stickers
+                - img "Seamless Wall Stickers & Decorative Films" [ref=e56]
+                - generic: 02 · PVC
+                - generic:
+                  - generic:
+                    - paragraph: WALL STICKERS
+                  - paragraph: Seamless Wallpaper & Films
+              - link [ref=e170] [cursor=pointer]:
+                - /url: /clients#cupboards
+                - img "Custom PVC Cupboards & Wardrobes" [ref=e58]
+                - generic: 03 · PVC
+                - generic:
+                  - generic:
+                    - paragraph: CUPBOARDS
+                  - paragraph: Custom Storage & Wardrobes
+              - link [ref=e171] [cursor=pointer]:
+                - /url: /clients#tv-units
+                - img "Modern PVC Floating TV Units & Consoles" [ref=e60]
+                - generic: 04 · PVC
+                - generic:
+                  - generic:
+                    - paragraph: TV UNITS
+                  - paragraph: Floating Consoles & Wall Units
+            - generic [ref=e172]:
+              - generic [ref=e173]:
+                - button "Go to slide 1" [ref=e174] [cursor=pointer]
+                - button "Go to slide 2" [ref=e175] [cursor=pointer]
+                - button "Go to slide 3" [ref=e176] [cursor=pointer]
+                - button "Go to slide 4" [ref=e177] [cursor=pointer]
+              - generic [ref=e178]:
+                - generic [ref=e179]: 02 / 04
+                - button "Previous interior slide" [ref=e180] [cursor=pointer]
+                - button "Next interior slide" [active] [ref=e183] [cursor=pointer]
+        - generic [ref=e63]:
+          - heading "THE PEOPLE BEHIND THE VISION." [level=2] [ref=e64]: THE PEOPLEBEHIND THE VISION.
+          - paragraph [ref=e65]: A strong team. A shared passion. A bigger tomorrow.
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - heading "OUR TEAM." [level=2] [ref=e187]
+            - generic [ref=e87]:
+              - switch "Toggle List or Grid View" [ref=e88] [cursor=pointer]
+              - generic [ref=e90] [cursor=pointer]: list view
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - generic [ref=e93] [cursor=pointer]:
+                - heading "Kalpana" [level=3] [ref=e95]
+                - paragraph [ref=e97]: LIC Corporate Advisor
+              - generic:
+                - generic:
+                  - generic:
+                    - paragraph: Kalpana serves as the dedicated Life Insurance Corporation (LIC) advisor and employee welfare coordinator for TN-PVC, securing comprehensive life, health, and group protection policies for all company personnel and plant artisans.
+                    - paragraph: Her work ensures that every member of the TN-PVC family operates with financial security and future peace of mind, managing retirement provisions, policy assistance, and welfare benefits tailored to our dedicated workforce.
+                    - blockquote: "\"Empowering and safeguarding our hardworking workforce builds the strongest foundation for our company's future.\""
+                    - generic:
+                      - generic: Employee Welfare & Social Security
+                      - generic: LIC Corporate Advisor
+                  - generic:
+                    - generic:
+                      - img "Kalpana"
+            - generic [ref=e98]:
+              - generic [ref=e99] [cursor=pointer]:
+                - heading "Priyanka" [level=3] [ref=e101]
+                - paragraph [ref=e103]: Telephony Head
+              - generic:
+                - generic:
+                  - generic:
+                    - paragraph: Priyanka heads the central telephony and customer communications desk at TN-PVC, managing all direct client calls, architect inquiries, and regional dealer desk requests across Tamil Nadu with promptness and clarity.
+                    - paragraph: She coordinates seamless communication between prospective buyers, interior contractors, and our technical design team, ensuring inquiries are routed without delay and customer satisfaction is prioritized at every touchpoint.
+                    - blockquote: "\"Clear, responsive communication is the first step toward building trust and flawless interiors.\""
+                    - generic:
+                      - generic: Customer Desk & Inbound Telephony
+                      - generic: Telephony Lead
+                  - generic:
+                    - generic:
+                      - img "Priyanka"
+            - generic [ref=e104]:
+              - generic [ref=e105] [cursor=pointer]:
+                - heading "Jeo" [level=3] [ref=e107]
+                - paragraph [ref=e109]: Field Manager
+              - generic:
+                - generic:
+                  - generic:
+                    - paragraph: Jeo leads TN-PVC's field operations, overseeing on-site interior installations, measurements, contractor supervision, and project timelines across sites in Tamil Nadu.
+                    - paragraph: From preliminary site assessments to final handover inspections, Jeo bridges client visions with on-ground technical execution, ensuring all PVC wall panels, cabinetry, and designer fixtures are installed to zero-defect standards.
+                    - blockquote: "\"True architectural precision isn't just planned on blueprints — it is delivered through diligent field execution.\""
+                    - generic:
+                      - generic: Field Operations & Site Execution
+                      - generic: Field Operations Lead
+                  - generic:
+                    - generic:
+                      - img "Jeo"
+        - generic [ref=e110]:
+          - img "Contemporary residential architecture at twilight overlooking calm water" [ref=e112]
+          - generic [ref=e116]:
+            - generic [ref=e188]:
+              - heading "BUILT WITH VISION. MADE FOR WHAT'S NEXT." [level=2] [ref=e189]: BUILT WITH VISION.MADE FOR WHAT'S NEXT.
+              - paragraph [ref=e190]: Expanding possibilities. Creating better spaces.Growing together.
+              - link "Explore Our Work" [ref=e192] [cursor=pointer]:
+                - /url: /clients
+            - generic [ref=e197]:
+              - img "TN-PVC Brand Logo" [ref=e199]
+              - generic [ref=e200]:
+                - heading "TN-PVC" [level=3] [ref=e201]
+                - paragraph [ref=e202]: INTERIORS | MANUFACTURING | SOLUTIONS
+              - paragraph [ref=e203]: Tamil Nadu's Comprehensive PVC Trade & Interior Ecosystem
+    - contentinfo [ref=e117]:
+      - generic [ref=e118]:
+        - generic [ref=e119]:
+          - generic [ref=e121]:
+            - heading "TN-PVC Interiors" [level=2] [ref=e122]
+            - paragraph [ref=e123]: The leading PVC and UPVC trade community for Tamil Nadu. Connecting manufacturers, contractors, and labour teams through digital-first coordination.
+          - generic [ref=e124]:
+            - link "Facebook" [ref=e125] [cursor=pointer]:
+              - /url: https://www.facebook.com/srinivasan.x
+            - link "Instagram" [ref=e128] [cursor=pointer]:
+              - /url: https://www.instagram.com/siranthan_siran
+            - link "YouTube" [ref=e131] [cursor=pointer]:
+              - /url: https://youtube.com
+            - link "WhatsApp" [ref=e134] [cursor=pointer]:
+              - /url: https://wa.me/918870826404
+        - generic [ref=e137]:
+          - generic [ref=e138]:
+            - paragraph [ref=e139]: Contact support
+            - generic [ref=e140]:
+              - link "Srinivasan · +91 8870826404" [ref=e141] [cursor=pointer]:
+                - /url: tel:+918870826404
+              - link "Siranthan Siran · +91 8489143405" [ref=e142] [cursor=pointer]:
+                - /url: tel:+918489143405
+              - link "siranthan.siran.sk.1@gmail.com" [ref=e143] [cursor=pointer]:
+                - /url: mailto:siranthan.siran.sk.1@gmail.com
+          - generic [ref=e144]:
+            - paragraph [ref=e145]: Quick links
+            - navigation "Footer links" [ref=e146]:
+              - link "About Us" [ref=e147] [cursor=pointer]:
+                - /url: /about
+              - link "Network & Members" [ref=e148] [cursor=pointer]:
+                - /url: /network
+              - link "Business Benefits" [ref=e149] [cursor=pointer]:
+                - /url: /benefits
+              - link "Partnership Transparency" [ref=e150] [cursor=pointer]:
+                - /url: /ai-pvc-groups
+              - link "Register as Member" [ref=e151] [cursor=pointer]:
+                - /url: /register
+      - generic [ref=e153]:
+        - paragraph [ref=e154]: © 2026 TN-PVC Interiors.
+        - paragraph [ref=e155]:
+          - text: Built by
+          - link "Dexaz Groups" [ref=e156] [cursor=pointer]:
+            - /url: https://www.dexaz.in

@@ -49,6 +49,21 @@
     --shadow-color: 258 50% 20% / 0.08;
 
     --radius: 0.75rem; /* 12px (8pt friendly) */
+
+    /* ─── Luxury Editorial Theme Tokens (Cinematic Reference Palette) ─── */
+    --luxury-dark: 220 20% 5%;
+    --luxury-dark-surface: 220 18% 8%;
+    --luxury-dark-elevated: 220 16% 12%;
+    --luxury-dark-border: 220 14% 16%;
+    --luxury-light: 38 33% 97%;
+    --luxury-light-surface: 0 0% 100%;
+    --luxury-light-border: 35 20% 88%;
+    --luxury-gold: 258 75% 52%;
+    --luxury-gold-hover: 258 85% 65%;
+    --luxury-gold-muted: 258 45% 45%;
+    --luxury-gold-glow: 258 75% 60%;
+    --luxury-charcoal: 220 25% 10%;
+    --luxury-stone: 30 10% 45%;
   }
 
   .dark {
@@ -62,10 +77,31 @@
     --muted-foreground: 250 10% 65%;
     --border: 240 15% 15%;
     --ring: 258 85% 65%;
+
+    /* Luxury Editorial Theme Tokens (.dark preservation) */
+    --luxury-dark: 220 20% 4%;
+    --luxury-dark-surface: 220 18% 7%;
+    --luxury-dark-elevated: 220 16% 11%;
+    --luxury-dark-border: 220 14% 15%;
+    --luxury-light: 38 33% 97%;
+    --luxury-light-surface: 0 0% 100%;
+    --luxury-light-border: 35 20% 88%;
+    --luxury-gold: 258 75% 52%;
+    --luxury-gold-hover: 258 85% 65%;
+    --luxury-gold-muted: 258 45% 45%;
+    --luxury-gold-glow: 258 75% 60%;
+    --luxury-charcoal: 220 25% 10%;
+    --luxury-stone: 30 10% 45%;
   }
 }
 
 @layer base {
+  @media (pointer: fine) and (min-width: 768px) {
+    *, *::before, *::after, html, body {
+      cursor: none !important;
+    }
+  }
+
   * {
     @apply border-border;
     outline-color: hsl(var(--ring));
@@ -98,9 +134,9 @@
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 
-  /* Tap targets for mobile (WCAG) — excludes plain text nav/footer links */
-  button,
-  a:not(nav[aria-label="Footer links"] a):not(footer a) {
+  /* Tap targets for mobile (WCAG) — excludes header buttons/links, footer links, and carousel dots */
+  button:not(header button):not([data-carousel-dot]),
+  a:not(header a):not(nav[aria-label="Footer links"] a):not(footer a) {
     @apply min-h-[44px] min-w-[44px] inline-flex items-center justify-center;
   }
 }
@@ -175,6 +211,24 @@
       radial-gradient(at 100% 100%, hsla(258, 80%, 60%, 0.05) 0px, transparent 50%),
       radial-gradient(at 0% 100%, hsla(220, 80%, 60%, 0.05) 0px, transparent 50%),
       hsl(var(--background));
+  }
+
+  /* ─── Luxury Editorial Utilities (Refined to Brand Primary) ─── */
+  .luxury-gold-gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-indigo-400 to-primary;
+  }
+
+  .luxury-gold-border-glow {
+    box-shadow: 0 0 25px -5px hsl(var(--primary) / 0.5);
+  }
+
+  .luxury-card-hover {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+  }
+
+  .luxury-card-hover:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.35), 0 0 30px -10px hsl(var(--primary) / 0.4);
   }
 }
 
@@ -276,3 +330,49 @@ body {
     animation: shine 8s linear infinite;
   }
 }
+
+/* ─── Leadership Card Inline Details Grid Expansion ─── */
+.leader-details-accordion {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  will-change: grid-template-rows;
+}
+
+.leader-details-accordion.is-expanded {
+  grid-template-rows: 1fr;
+}
+
+@media (min-width: 768px) {
+  .leader-details-accordion {
+    grid-template-columns: 0fr;
+    grid-template-rows: 1fr;
+    transition: grid-template-columns 500ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: grid-template-columns;
+  }
+
+  .leader-details-accordion.is-expanded {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+}
+
+/* ─── Scrollbar Hiding Utilities ─── */
+.scrollbar-none::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.scrollbar-none,
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+

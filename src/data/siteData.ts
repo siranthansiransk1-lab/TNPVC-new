@@ -68,18 +68,16 @@ export const brandAssets = {
 
 export const navItems: NavItem[] = [
   { label: "Home", path: "/" },
-  { label: "Network", path: "/network" },
-  { label: "Benefits", path: "/benefits" },
   {
-    label: "Members",
+    label: "About Us",
+    path: "/about",
     subItems: [
-      { label: "Contractors", path: "/contractors" },
-      { label: "Clients", path: "/clients" },
-      { label: "Labour", path: "/labour" },
+      { label: "Our Story", path: "/about" },
+      { label: "Partnership Transparency", path: "/ai-pvc-groups" },
     ],
   },
-  { label: "Partnership Transparency", path: "/ai-pvc-groups" },
-  { label: "Register", path: "/register#register-section", shortLabel: "Register" },
+  { label: "Network", path: "/network" },
+  { label: "Benefits", path: "/benefits" },
 ];
 
 export const seoByPath: Record<string, SeoConfig> = {
@@ -94,6 +92,22 @@ export const seoByPath: Record<string, SeoConfig> = {
       "Tamil Nadu contractors network",
       "AI-PVC Groups",
       "WhatsApp PVC community",
+    ],
+  },
+  "/about": {
+    title: "About Us | TN-PVC Interiors — More Than Interiors. A Network That Builds.",
+    description:
+      "Discover the story of TN-PVC Interiors: from complete interior installations and manufacturing to an expansive 50+ dealer and contractor network across Tamil Nadu.",
+    keywords: [
+      "TN-PVC About Us",
+      "TN-PVC brand story",
+      "PVC manufacturing Tamil Nadu",
+      "50+ PVC dealers Tamil Nadu",
+      "Siranthan Siran",
+      "Srinivasan",
+      "Anu Brindha",
+      "Sanjay Rithik",
+      "interior solutions Tamil Nadu",
     ],
   },
   "/network": {

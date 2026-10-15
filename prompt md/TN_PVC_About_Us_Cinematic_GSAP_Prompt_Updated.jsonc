@@ -1,0 +1,714 @@
+
+{
+  // =========================================================
+  // PROJECT: TN-PVC CINEMATIC ABOUT US EXPERIENCE
+  // DESIGN QUALITY: PREMIUM, AWWWARDS-INSPIRED
+  // EXISTING WEBSITE: https://www.tnpvc.com/
+  // ROUTE SHOWN IN REFERENCE: /about-us
+  // =========================================================
+
+  "project": {
+    "name": "TN-PVC Cinematic About Us",
+    "type": "Existing website enhancement",
+    "targetRoute": "/about-us",
+    "designReference": "Use the attached TN-PVC cinematic\nAbout Us screenshot as the primary visual reference.",
+    "qualityTarget": "Premium art direction, cinematic motion\ndesign, sophisticated editorial layouts, meticulous\nresponsive behavior and production-quality implementation.",
+    "primaryGoal": "Create a continuous, emotionally engaging\nbrand-story experience while preserving the existing\nTN-PVC website and all unrelated functionality."
+  },
+
+  "role": [
+    "Award-winning digital experience designer",
+    "Luxury interior brand art director",
+    "Cinematic motion designer",
+    "Senior React frontend engineer",
+    "GSAP and ScrollTrigger specialist",
+    "Web performance and accessibility engineer"
+  ],
+
+  "mandatoryWorkflow": {
+    "step1": "Inspect the actual repository before changing files.\nIdentify the framework, package manager, routes, navigation,\nshared header and footer, design system, assets, installed\ndependencies and build commands.",
+
+    "step2": "Study the attached screenshot and the live website\nif it is accessible. Treat the screenshot as a visual\nreference, not as an existing implementation.",
+
+    "step3": "Create the About Us page inside the current application.\nFollow the existing routing conventions and reuse shared\ncomponents wherever appropriate.",
+
+    "step4": "Use the exact Cloudinary public URLs provided below.\nBuild reusable image and section components. Do not use\nrandom external image URLs or unrelated placeholder images.",
+
+    "step5": "Implement connected GSAP timelines, responsive\nlayouts, reduced-motion behavior and proper animation cleanup.",
+
+    "step6": "Run the available production build and relevant tests.\nFix implementation errors rather than merely describing them."
+  },
+
+  "criticalIntegrationRules": {
+    "preserveExistingWebsite": true,
+    "preserveHomepage": true,
+    "preserveProductsPage": true,
+    "preserveServicesPage": true,
+    "preserveGalleryPage": true,
+    "preserveContactPage": true,
+    "preserveExistingBrandAssets": true,
+    "preserveExistingNavigationBehavior": true,
+    "reuseExistingHeaderAndFooter": true,
+    "avoidArchitectureRewrite": true,
+    "avoidUnnecessaryDependencies": true,
+
+    "instructions": [
+      "Do not create a separate website or independent application.",
+      "Do not replace the existing homepage or redesign unrelated pages.",
+      "Do not assume the project uses React, Next.js or Vite until\nthe repository confirms it.",
+      "Do not create duplicate routes or duplicate navigation items.",
+      "If /about-us already exists, inspect and improve that route.",
+      "Add About Us to the existing navigation only if it is missing.",
+      "Keep the site's real logo, navigation destinations, quote CTA\nand shared styles wherever possible.",
+      "Do not remove, rename or break working features.",
+      "Do not install a new animation framework when GSAP is already\ninstalled and suitable."
+    ]
+  },
+
+  "creativeDirection": {
+    "concept": "An architectural brand film experienced through\nscrolling, with each scene leading naturally into the next.",
+
+    "visualPersonality": [
+      "Cinematic",
+      "Architectural",
+      "Sophisticated",
+      "Premium",
+      "Minimal",
+      "Human",
+      "Confident"
+    ],
+
+    "artDirection": {
+      "background": "Deep charcoal and architectural black",
+      "lightBackground": "Warm ivory",
+      "accent": "Restrained champagne bronze",
+      "typography": "Elegant editorial serif paired with a clean,\ncontemporary sans-serif",
+      "imageTreatment": "Large architectural frames, carefully\ncomposed crops, subtle grain only if useful, realistic\nlighting, rich shadow detail and restrained contrast",
+      "spacing": "Generous editorial whitespace with deliberate\ncomposition",
+      "borders": "Thin, subtle dividers used sparingly",
+      "buttons": "Refined solid or outlined buttons with understated\nhover motion"
+    },
+
+    "brandRule": "Inspect the actual website before selecting final\ncolors and typography. The cinematic palette must complement\nTN-PVC's authentic brand, not replace its established identity.",
+
+    "avoid": [
+      "Generic corporate card grids",
+      "Excessive rounded cards",
+      "Overused purple gradients",
+      "Random floating decorative elements",
+      "Unnecessary 3D effects",
+      "Excessive zooming or spinning",
+      "Constant animation with no storytelling purpose",
+      "Abrupt scene transitions",
+      "Fake statistics or invented company history",
+      "Unrelated stock imagery presented as company work"
+    ]
+  },
+
+  "cloudinary": {
+    "provider": "Cloudinary",
+    "cloudName": "fwral0nf",
+    "assetFolder": "tn-pvc/about-us",
+    "deliveryPolicy": "Use the exact HTTPS public URLs below.\nUse Cloudinary transformations only when needed and verify\nthe transformed URLs before relying on them.",
+
+    "imageAssets": {
+      "heroInterior": {
+        "url": "https://res.cloudinary.com/fwral0nf/image/upload/v1791963207/tn-pvc/about-us/hero-luxury-interior.jpg",
+        "purpose": "Opening cinematic interior",
+        "alt": "Contemporary living room with premium interior finishes",
+        "fit": "cover",
+        "priority": "high"
+      },
+
+      "wallPanels": {
+        "url": "https://res.cloudinary.com/fwral0nf/image/upload/v1791963240/tn-pvc/about-us/wall-panel-living-room.jpg",
+        "purpose": "Wall panel showcase",
+        "alt": "Modern interior featuring architectural wall finishes",
+        "fit": "cover"
+      },
+
+      "decorativeWalls": {
+        "url": "https://res.cloudinary.com/fwral0nf/image/upload/v1791963246/tn-pvc/about-us/decorative-wall-interior.jpg",
+        "purpose": "Wall stickers and decorative finishes showcase",
+        "alt": "Decorative interior finishes in a modern living space",
+        "fit": "cover"
+      },
+
+      "cupboards": {
+        "url": "https://res.cloudinary.com/fwral0nf/image/upload/v1791963251/tn-pvc/about-us/cupboard-interior.jpg",
+        "purpose": "Cupboards and storage interiors",
+        "alt": "Contemporary interior and fitted storage details",
+        "fit": "cover"
+      },
+
+      "tvConsole": {
+        "url": "https://res.cloudinary.com/fwral0nf/image/upload/v1791963308/tn-pvc/about-us/tv-console-detail.jpg",
+        "purpose": "TV unit and living-room composition",
+        "alt": "Modern residential interior with refined furniture details",
+        "fit": "cover"
+      },
+
+      "interiorDetails": {
+        "url": "https://res.cloudinary.com/fwral0nf/image/upload/v1791963262/tn-pvc/about-us/modern-interior-details.jpg",
+        "purpose": "Secondary editorial interior image",
+        "alt": "Modern interior details and material finishes",
+        "fit": "cover"
+      },
+
+      "projectExecution": {
+        "url": "https://res.cloudinary.com/fwral0nf/image/upload/v1791963266/tn-pvc/about-us/interior-project-work.jpg",
+        "purpose": "Project execution visual reference",
+        "alt": "Construction and project-work reference photograph",
+        "fit": "cover"
+      },
+
+      "manufacturingReference": {
+        "url": "https://res.cloudinary.com/fwral0nf/image/upload/v1791963272/tn-pvc/about-us/industrial-workshop.jpg",
+        "purpose": "Industrial and manufacturing visual reference",
+        "alt": "Industrial work environment reference photograph",
+        "fit": "cover"
+      },
+
+      "teamReference": {
+        "url": "https://res.cloudinary.com/fwral0nf/image/upload/v1791963277/tn-pvc/about-us/team-collaboration.jpg",
+        "purpose": "Supporting teamwork visual reference",
+        "alt": "Professional team collaboration reference photograph",
+        "fit": "cover",
+        "restriction": "Do not portray these people as TN-PVC employees,\ncompany leaders, actual dealers or actual customers."
+      },
+
+      "futureArchitecture": {
+        "url": "https://res.cloudinary.com/fwral0nf/image/upload/v1791963283/tn-pvc/about-us/architectural-future-vision.jpg",
+        "purpose": "Closing architectural visual",
+        "alt": "Contemporary residential architecture at golden hour",
+        "fit": "cover"
+      }
+    },
+
+    "implementationRules": [
+      "Keep these image URLs in one typed, centralized asset manifest.",
+      "Do not scatter literal URLs across components.",
+      "Use semantic alt text appropriate to the actual image.",
+      "Use lazy loading for below-the-fold images.",
+      "Prioritize the hero image without lazy loading it.",
+      "Avoid loading the same large image repeatedly when it can be reused.",
+      "Use responsive srcset or verified Cloudinary transformations\nwhere the project's image architecture supports them.",
+      "Do not store credentials or secret API keys in frontend code.",
+      "Use authentic TN-PVC photography when supplied.",
+      "Treat all listed images as illustrative stock assets, not\nverified photographs of TN-PVC's projects or facilities."
+    ]
+  },
+
+  "storyboard": [
+    {
+      "scene": 1,
+      "id": "cinematic-hero",
+      "label": "ABOUT US",
+      "headline": "SPACES THAT TELL A STORY.",
+      "body": "At TN-PVC, we don't just create interiors,\nwe create experiences.",
+      "image": "heroInterior",
+      "composition": "Full-width cinematic architectural image.\nPlace the headline in a carefully composed dark negative-space\narea. Retain a legible overlay without obscuring the image.",
+      "motion": [
+        "Create a restrained image reveal using clip-path.",
+        "Animate the image with a subtle camera-like push-in.",
+        "Reveal the headline in measured lines.",
+        "Bring in the supporting text after the headline.",
+        "Provide an elegant scroll indicator.",
+        "Transition naturally into the interior solutions scene."
+      ],
+      "interaction": "Use a pinned hero only when appropriate to\nviewport height and device capability. Never trap the user\nor prevent normal scrolling."
+    },
+
+    {
+      "scene": 2,
+      "id": "interior-solutions",
+      "index": "01",
+      "headline": "BEYOND WALLS. BEYOND EXPECTATIONS.",
+      "body": "From stylish wall panels to elegant wall stickers,\ncustom cupboards to modern TV units — TN-PVC brings interior\nideas to life through a connected range of solutions.",
+      "images": [
+        "wallPanels",
+        "decorativeWalls",
+        "cupboards",
+        "tvConsole"
+      ],
+      "layout": "Warm ivory editorial section. Use a concise text\nintroduction beside a refined horizontal image composition.\nPreserve legibility and visual balance on smaller screens.",
+      "cta": {
+        "label": "Explore Our Interiors",
+        "action": "Link to the existing relevant products or gallery route."
+      },
+      "motion": [
+        "Use subtle image masks or clip-path reveals.",
+        "Stagger category labels and image entrances.",
+        "Use restrained hover movement on desktop."
+      ]
+    },
+
+    {
+      "scene": 3,
+      "id": "manufacturing-to-execution",
+      "index": "02",
+      "headline": "FROM MANUFACTURING TO FINISHING.",
+      "body": "Connect material sourcing, product manufacturing,\nproduct supply, dealer coordination, contractor collaboration\nand interior execution in one coherent business story.",
+      "images": [
+        "interiorDetails",
+        "manufacturingReference",
+        "projectExecution"
+      ],
+      "layout": "Dark editorial section with a wide material image,\nlayered supporting photography and a clean process narrative.",
+      "processLabels": [
+        "Manufacturing",
+        "Product Supply",
+        "Dealers",
+        "Contractors",
+        "Workforce Support"
+      ],
+      "motion": [
+        "Build a continuous timeline that follows the process.",
+        "Reveal process labels in sequence.",
+        "Use modest parallax between image layers.",
+        "Keep all important content readable without JavaScript."
+      ],
+      "truthRule": "Describe TN-PVC's actual business capabilities,\nbut do not claim that the specific stock photos depict its\nmanufacturing plant or active projects."
+    },
+
+    {
+      "scene": 4,
+      "id": "leadership",
+      "index": "03",
+      "headline": "THE PEOPLE BEHIND THE VISION.",
+      "body": "A strong team. A shared vision. A bigger tomorrow.",
+      "layout": "Premium dark editorial portrait section with a\ncinematic founder introduction, carefully typeset names,\nindividual leadership details and restrained transitions.",
+
+      "leaders": [
+        {
+          "name": null,
+          "title": "Founder",
+          "portrait": null,
+          "status": "Awaiting verified name and authentic photograph"
+        },
+        {
+          "name": "Sirenthan",
+          "title": "Co-Founder",
+          "portrait": null,
+          "status": "Awaiting authentic photograph and approved bio"
+        },
+        {
+          "name": "Anu Brindha",
+          "title": "Lead Director",
+          "portrait": null,
+          "status": "Confirm official English spelling, title and photo"
+        },
+        {
+          "name": "Sanjay Rithik",
+          "title": "Technology & Marketing Director",
+          "portrait": null,
+          "status": "Awaiting authentic photograph and approved bio"
+        }
+      ],
+
+      "motion": [
+        "Use a distinct cinematic introduction for the founder.",
+        "Reveal authentic portraits with restrained image masks.",
+        "Animate names and titles with editorial precision.",
+        "Use staggered but unhurried transitions between profiles.",
+        "Ensure portrait and text layout adapts to mobile."
+      ],
+
+      "truthRules": [
+        "Never generate or substitute fabricated leadership faces.",
+        "Never assign a stock photograph to a real leader.",
+        "Do not invent personal histories, achievements or credentials.",
+        "Until portraits are supplied, use sophisticated neutral\nportrait placeholders with names and titles as appropriate.",
+        "Do not invent a founder name or biography.",
+        "Keep unpublished biographical details out of the interface."
+      ]
+    },
+
+    {
+      "scene": 5,
+      "id": "partner-network",
+      "index": "04",
+      "headline": "A STRONGER NETWORK. A SHARED VISION.",
+      "body": "Bring dealers, contractors, manufacturers, suppliers\nand workforce support into a connected interior solutions\nnetwork.",
+
+      "images": [
+        "teamReference",
+        "manufacturingReference",
+        "projectExecution"
+      ],
+
+      "networkCategories": [
+        "Dealers",
+        "Contractors",
+        "Manufacturers",
+        "Suppliers",
+        "Workforce"
+      ],
+
+      "layout": "Warm ivory editorial section with a strong text block\nand a clean horizontal gallery of supporting imagery.",
+
+      "statistics": {
+        "dealerCount": null,
+        "yearsLedByFounder": null,
+        "rule": "Do not display 50+ dealers or a five-year company\nhistory as confirmed facts until the company verifies them."
+      },
+
+      "cta": {
+        "label": "Our Partners",
+        "action": "Use an existing relevant route or an approved\ncontact destination. Never fabricate a destination."
+      }
+    },
+
+    {
+      "scene": 6,
+      "id": "future-vision",
+      "index": "05",
+      "headline": "BUILT WITH VISION. MADE FOR WHAT'S NEXT.",
+      "image": "futureArchitecture",
+      "layout": "A spacious cinematic closing composition. Use\narchitectural photography, refined typography, authentic\nTN-PVC branding and an elegant transition into the footer.",
+
+      "elements": [
+        "A confident closing headline",
+        "Authentic TN-PVC logo",
+        "A concise approved brand statement",
+        "Explore Our Work CTA",
+        "Contact Us CTA"
+      ],
+
+      "motion": [
+        "Gradually reveal the architectural image.",
+        "Introduce the closing typography with deliberate timing.",
+        "Transition elegantly into the site's existing footer."
+      ],
+
+      "truthRule": "Use the official logo from the existing repository.\nNever redraw, replace or invent an alternative brand logo."
+    }
+  ],
+
+  "animationSystem": {
+    "primaryLibrary": "GSAP",
+    "plugin": "ScrollTrigger",
+    "implementationPrinciple": "Make scrolling feel like controlling a carefully directed architectural brand film. The page must remain a real, naturally scrollable website; do not turn it into a forced slideshow or hijack the user's scroll.",
+
+    "scrollFeel": {
+      "priority": "Critical",
+      "defaultApproach": "Keep native browser scrolling and touch momentum. Bind important visual changes to scroll progress with GSAP ScrollTrigger so the user feels in control of the pace.",
+      "smoothness": [
+        "Scroll-linked timelines must scrub responsively without noticeable lag behind the user's wheel, trackpad or touch input.",
+        "Use scrub: true for direct one-to-one control, or a small numeric scrub such as 0.25–0.5 seconds only when it adds polish without making the animation feel delayed. Test and tune per scene.",
+        "Use natural easing for entrance and exit tweens that are not directly scrubbed. Do not add easing to every scroll-linked movement if that makes it feel disconnected from scroll position.",
+        "Allow users to scroll up and reverse every scroll-linked transition naturally.",
+        "Do not hijack wheel or touch events, lock body scrolling, or force users through a fixed sequence.",
+        "Do not globally enable scroll-behavior: smooth as a substitute for real animation choreography.",
+        "Do not install a smooth-scroll library by default. If one is already part of the project, integrate it correctly with ScrollTrigger. Only propose Lenis if there is a demonstrated benefit and it can be tested without breaking native input, anchors, accessibility or routing.",
+        "If smooth scrolling is integrated, keep ScrollTrigger updated from the scrolling library's scroll event and keep all scroll positions, anchors and cleanup consistent.",
+        "The page must still scroll normally and remain usable if GSAP fails to load."
+      ]
+    },
+
+    "timelineArchitecture": {
+      "requirements": [
+        "Build one clearly scoped GSAP timeline per major scene or a small number of coordinated timelines where a transition genuinely spans two sections.",
+        "Use ScrollTrigger start and end values that are chosen based on the real section layout and tuned by testing, not copied blindly across every section.",
+        "Use labels in complex timelines to make the order and overlap of image, text, background and detail reveals easy to maintain.",
+        "Let scene transitions overlap slightly so one scene visually hands off to the next; avoid unrelated animations starting and stopping abruptly at section boundaries.",
+        "Use scrubbed timelines for scroll-driven storytelling and ordinary triggered timelines for small entrance details where direct scrubbing would feel unnatural.",
+        "Ensure animations reverse correctly when scrolling upward.",
+        "Avoid creating too many nested ScrollTriggers or timelines for individual words and decorative elements.",
+        "Do not animate the entire page at once. Keep each scene's choreography purposeful and readable."
+      ],
+      "pinningPolicy": {
+        "desktop": "Pin only the hero and, if testing proves useful, one substantial manufacturing/process scene. Pinned sections must have a clear visual purpose and a measured duration.",
+        "mobile": "Default to normal document flow. Disable or greatly simplify pinning on small touch screens and short viewports where pinned content could feel trapped or consume too much screen space.",
+        "rules": [
+          "Do not pin every section.",
+          "Do not use excessive pin durations or leave a blank-looking gap after a pinned scene.",
+          "Set pinSpacing intentionally and verify downstream sections do not jump or overlap incorrectly.",
+          "Verify layout and refresh behavior after fonts and images have loaded.",
+          "Never pin content that users need to read quickly or interact with while scrolling."
+        ]
+      }
+    },
+
+    "transitionChoreography": {
+      "overallDirection": "Transitions must feel like a continuous cinematic camera movement through an architectural editorial film, while the site remains clearly navigable and readable.",
+      "rules": [
+        "Choose one dominant transition idea per scene: a reveal mask, scale drift, background handoff, layered parallax or typography movement. Do not use every effect at once.",
+        "Use clip-path or overflow-hidden masks to reveal images cleanly, with a non-animated fallback state in CSS.",
+        "Use subtle cross-section color changes between charcoal and warm ivory to create rhythm without flashing or hard visual cuts.",
+        "Allow an outgoing image layer to recede or crop while the next scene's image begins to reveal, only where this looks intentional at real scroll speeds.",
+        "Use small overlap between outgoing and incoming text animations; do not make all copy fade out before anything new appears.",
+        "Keep transition durations proportional to viewport and scroll distance. Do not make visitors scroll through long empty pinned moments just to finish an animation.",
+        "Use consistent easing families and image movement scales across scenes so the page feels art-directed as one system.",
+        "Avoid arbitrary flashes, aggressive blur, spinning, rubber-band effects, overlarge zooms and scroll-triggered layout jumps."
+      ],
+      "sceneHandoffs": [
+        "Hero to Interior Solutions: hold the hero long enough to read, subtly push in, then let the warm ivory section enter with a controlled reveal; keep the next section's heading visible at the natural handoff.",
+        "Interior Solutions to Manufacturing: transition from clean ivory editorial framing into a darker material-focused scene. Introduce the material image before staggering process labels.",
+        "Manufacturing to Leadership: reduce industrial movement, resolve the process labels, then reveal the leadership portraits with a calmer, more human pace.",
+        "Leadership to Partner Network: let the portrait sequence finish cleanly and hand off to the brighter network gallery; do not abruptly cut faces or titles mid-animation.",
+        "Partner Network to Future Vision: gradually simplify the gallery, expand the final architectural image into a wide cinematic composition, then reveal the brand signature and CTAs.",
+        "Final Scene to Footer: keep the final composition visually connected to the existing footer without covering, trapping or replacing it."
+      ]
+    },
+
+    "sceneMotion": {
+      "hero": {
+        "trigger": "On page entry and scroll progress",
+        "sequence": [
+          "Reveal the hero image with a restrained clip-path or mask animation.",
+          "Use a subtle image scale shift, for example from approximately 1.04 to 1.0, without a dramatic zoom.",
+          "Reveal the headline line by line with short, staggered movement.",
+          "Bring in body copy and the scroll indicator after the headline is legible.",
+          "If desktop pinning is used, tie the final part of the hero movement to scroll progress and release smoothly into the next section."
+        ]
+      },
+      "interiorSolutions": {
+        "sequence": [
+          "Reveal the section index and heading first.",
+          "Bring images in with staggered mask reveals as they enter the viewport.",
+          "Use slight differences in reveal timing and image crop for editorial rhythm, not random motion.",
+          "Use small hover transforms only on pointer-capable devices; never hide labels or content until hover."
+        ]
+      },
+      "manufacturing": {
+        "sequence": [
+          "Reveal the material detail first, followed by the wider production/supply visual layers.",
+          "Animate the process labels in a clear left-to-right or story sequence consistent with the layout.",
+          "Use subtle parallax depth only on desktop; keep movement minimal on mobile.",
+          "If pinned on desktop, keep the timeline short enough to maintain a strong sense of progress and release cleanly into leadership."
+        ]
+      },
+      "leadership": {
+        "sequence": [
+          "Reveal the section heading before the portraits.",
+          "Reveal each authentic portrait with a restrained crop or mask transition.",
+          "Bring in each person's real name and verified title after the portrait starts to resolve.",
+          "Keep each profile readable long enough; do not make the visitor chase rapidly moving cards.",
+          "Use neutral placeholders until authentic portraits are provided. Never use stock faces as real leadership portraits."
+        ]
+      },
+      "partnerNetwork": {
+        "sequence": [
+          "Bring in network categories and imagery in a measured stagger.",
+          "Do not convert all vertical scrolling into horizontal scrolling or trap touch gestures.",
+          "A horizontal gallery is permitted only if users can operate it naturally and there is an accessible mobile fallback."
+        ]
+      },
+      "closing": {
+        "sequence": [
+          "Expand or reveal the final architectural image with a restrained cinematic mask.",
+          "Introduce the closing headline with clear reading time.",
+          "Reveal the authentic TN-PVC logo and CTAs last, without distracting movement.",
+          "Transition into the existing footer without a sudden jump."
+        ]
+      }
+    },
+
+    "technicalRequirements": [
+      "Inspect the installed GSAP version and existing animation utilities before coding.",
+      "Import and register ScrollTrigger correctly for the project's bundler.",
+      "Use gsap.context() with a scoped root, or the existing framework-compatible GSAP hook if already installed.",
+      "Revert the animation context and kill associated triggers on component unmount.",
+      "Make React StrictMode development remounts safe; no duplicate timelines or ScrollTriggers.",
+      "Use stable element refs or scoped selectors rather than broad global selectors that could animate other pages.",
+      "Call ScrollTrigger.refresh() at appropriate moments after meaningful layout changes or after image/font layout settles; do not call it on every animation frame.",
+      "Use invalidateOnRefresh where dynamic measurements require it, and verify start/end positions after resize or route changes.",
+      "Use matchMedia or equivalent responsive GSAP conditions to enable desktop-only pinning/parallax and create simplified mobile timelines.",
+      "Avoid animating layout-heavy properties continuously; prioritize transforms and opacity.",
+      "Ensure content is visible by default before animation initialization, or provide a fail-safe reveal so a JavaScript error never leaves copy permanently hidden.",
+      "Do not use GSAP SplitText unless already available or the license and installation are appropriate. A lightweight accessible line/word wrapper is acceptable.",
+      "Do not add a second animation or smooth-scroll library without a verified need."
+    ],
+
+    "reducedMotion": {
+      "required": true,
+      "behavior": "Respect prefers-reduced-motion through both CSS and JavaScript. Disable pinned storytelling, large image zooms, parallax and long scrub sequences where necessary. Present all content in normal flow with only minimal or no entrance animation.",
+      "mustRemainUsable": "All text, images, links, leadership information and CTAs must remain visible and accessible when animation is disabled."
+    },
+
+    "performance": {
+      "principles": [
+        "Prefer transform and opacity for continuously animated elements.",
+        "Avoid continuous backdrop-filter blur, oversized filters and large stacks of composited layers.",
+        "Do not add excessive will-change declarations or leave them enabled on every image.",
+        "Lazy-load below-the-fold imagery, prioritize the hero image and reserve image dimensions to avoid layout shift.",
+        "Avoid layout recalculation in every scroll callback; let ScrollTrigger manage scroll-driven updates.",
+        "Keep animation responsive on mid-range mobile devices, not just high-end desktop hardware.",
+        "Do not add Three.js, WebGL or canvas effects without a demonstrated visual benefit and an explicit performance budget."
+      ],
+      "qualityTarget": "Motion should feel smooth and controlled during real mouse-wheel, trackpad, touch and keyboard scrolling. Validate on actual devices when available; do not claim 60 FPS without measuring it."
+    },
+
+    "acceptanceTests": [
+      "Scroll slowly and quickly through the page: no visible stutter, jump, blank gap or abrupt section cut.",
+      "Scroll down and back up: transitions reverse naturally and do not leave elements stuck hidden.",
+      "Use mouse wheel, trackpad, touch drag, Page Down, Page Up, Home, End and anchor links: scrolling remains under the visitor's control.",
+      "Refresh the page at the top and at a mid-page scroll position: layout and triggers initialize correctly.",
+      "Navigate away from and back to About Us: no duplicate triggers or stale animations remain.",
+      "Resize the viewport and rotate a mobile device: pinning, start/end positions and section heights recover correctly.",
+      "Test with prefers-reduced-motion enabled and with animations unavailable: all content remains visible and usable.",
+      "Check mobile for horizontal overflow, pinned-scroll traps, clipped headings and touch gesture conflicts.",
+      "Verify no GSAP console warnings, duplicate trigger IDs, missing target warnings or hydration errors are introduced."
+    ]
+  },
+
+  "responsiveDesign": {
+    "desktop": {
+      "priority": "Full cinematic editorial composition",
+      "features": [
+        "Wide architectural photography",
+        "Carefully balanced negative space",
+        "Connected scene transitions",
+        "Horizontal editorial galleries where appropriate"
+      ]
+    },
+
+    "tablet": {
+      "priority": "Preserve hierarchy without overcrowding",
+      "features": [
+        "Adapt image ratios and gallery widths",
+        "Reduce or remove excessive parallax",
+        "Keep typography readable",
+        "Avoid clipped headings and overflowing timelines"
+      ]
+    },
+
+    "mobile": {
+      "priority": "A deliberately designed mobile experience,\nnot a compressed desktop layout",
+      "features": [
+        "Single-column storytelling where appropriate",
+        "Responsive headline sizes",
+        "Carefully art-directed image crops",
+        "Simplified motion and shorter timelines",
+        "No horizontal page overflow",
+        "No mandatory pinned sections that impede scrolling",
+        "Accessible touch targets",
+        "Preserve the existing mobile navigation"
+      ]
+    },
+
+    "testingWidths": [
+      360,
+      375,
+      393,
+      430,
+      768,
+      1024,
+      1440,
+      1920
+    ]
+  },
+
+  "accessibilityAndPerformance": {
+    "requirements": [
+      "Use semantic section, heading, navigation and link elements.",
+      "Maintain a logical heading hierarchy.",
+      "Ensure readable contrast over images.",
+      "Provide visible keyboard focus states.",
+      "Use meaningful alternative text.",
+      "Use decorative empty alt text for purely decorative images.",
+      "Avoid autoplaying audio.",
+      "Do not rely solely on animation to reveal essential content.",
+      "Use responsive images and appropriate loading priorities.",
+      "Reserve image dimensions to reduce layout shifts.",
+      "Avoid unnecessary video or oversized assets.",
+      "Verify all images load and have a fallback.",
+      "Keep the page usable if JavaScript animations fail.",
+      "Respect browser and device resource constraints."
+    ],
+
+    "coreWebVitals": "Aim for strong real-world loading, visual\nstability and interaction performance. Validate with available\ntooling rather than promising a perfect score."
+  },
+
+  "implementationArchitecture": {
+    "rules": [
+      "Follow the repository's existing language and component patterns.",
+      "Keep page-specific components isolated from unrelated pages.",
+      "Extract repeated image and scene patterns into reusable components.",
+      "Keep content and asset references in a maintainable data structure.",
+      "Keep animation lifecycle separate from unrelated application logic.",
+      "Avoid turning the page into one enormous unmaintainable component.",
+      "Avoid unnecessary state and dependencies.",
+      "Keep links connected to actual existing routes.",
+      "Keep missing company details represented as pending content,\nnot as fabricated finished copy."
+    ],
+
+    "suggestedComponents": [
+      "AboutUsPage",
+      "CinematicHero",
+      "InteriorSolutionsSection",
+      "ManufacturingProcessSection",
+      "LeadershipSection",
+      "PartnerNetworkSection",
+      "FutureVisionSection",
+      "CloudinaryImage",
+      "ScrollScene"
+    ],
+
+    "note": "These are suggested responsibilities, not mandatory\nfilenames. Follow the existing repository architecture."
+  },
+
+  "contentPolicy": {
+    "companyDescription": "TN-PVC provides interior solutions,\nincluding wall panels, wall stickers, cupboards, TV units,\nmanufacturing, product supply, dealership operations,\ncontractor coordination and workforce support.",
+
+    "verifyBeforePublishing": [
+      "Founder's official name",
+      "Founder biography",
+      "Company history and founding timeline",
+      "Claim of approximately five years of founder leadership",
+      "Claim of 50+ dealers",
+      "Anu Brindha's official English spelling and job title",
+      "Any statistics or specific manufacturing claims",
+      "Any award, certification, customer or project claim"
+    ],
+
+    "restrictions": [
+      "Do not invent testimonials.",
+      "Do not invent customer logos.",
+      "Do not invent awards or certifications.",
+      "Do not fabricate company statistics.",
+      "Do not present stock imagery as verified project photography.",
+      "Do not publish placeholder names or biographies as facts."
+    ]
+  },
+
+  "acceptanceCriteria": {
+    "integration": [
+      "About Us works within the current website.",
+      "Existing navigation remains functional.",
+      "Existing homepage, products, services, gallery and contact\nroutes continue working.",
+      "The authentic logo and shared header and footer are preserved."
+    ],
+
+    "visualQuality": [
+      "The page clearly follows the attached visual reference.",
+      "All six story scenes form one connected visual narrative.",
+      "Typography, imagery, whitespace and motion feel intentional.",
+      "Leadership profiles look premium without fabricated portraits.",
+      "The design is coherent on desktop, tablet and mobile."
+    ],
+
+    "technicalQuality": [
+      "Cloudinary assets use the supplied public HTTPS URLs.",
+      "No missing images or broken links.",
+      "GSAP animations clean up correctly.",
+      "Reduced-motion preferences are respected.",
+      "No duplicate ScrollTriggers.",
+      "No obvious horizontal overflow.",
+      "No console errors caused by the implementation.",
+      "Existing unrelated functionality remains intact.",
+      "The production build succeeds."
+    ]
+  },
+
+  "finalInstructions": [
+    "Start by inspecting the repository. Do not assume the page\nhas already been implemented.",
+    "Do not stop after writing a plan, mockup or isolated HTML file.",
+    "Implement the actual route in the existing website.",
+    "Use the attached screenshot as the visual reference.",
+    "Use the provided Cloudinary assets as temporary illustrative\nimagery until authentic company images are available.",
+    "Do not replace the existing site's entire visual identity.",
+    "After implementation, summarize changed files, route changes,\nanimation choices, any dependencies added, tests performed\nand any remaining company information or imagery needed."
+  ]
+}
