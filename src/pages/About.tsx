@@ -31,19 +31,19 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { seoByPath, companyLinks } from "@/data/siteData";
 
 import srinivasanFounder from "@/assets/srinivasan-founder.webp";
-import siranthanFounder from "@/assets/siranthan-founder.png";
-import anubrindhaFounder from "@/assets/anubrindha.png";
-import sanjayRithikPortrait from "@/assets/sanjay-rithik-portrait.png";
+import siranthanFounder from "@/assets/siranthan-founder.webp";
+import anubrindhaFounder from "@/assets/anubrindha.webp";
+import sanjayRithikPortrait from "@/assets/sanjay-rithik-portrait.webp";
 import warehouseSuppliers from "@/assets/warehouse-suppliers.jpg";
 import dealersHandshake from "@/assets/dealers-handshake.jpg";
 import tnPvcLogo from "@/assets/tn-pvc-logo.webp";
-import wallPanelImg from "@/assets/wall-panel.jpg";
-import wallStickersImg from "@/assets/wall-stickers.jpg";
-import capboardImg from "@/assets/capboard.jpg";
-import tvUnitsImg from "@/assets/tv-units.jpg";
-import priyankaImg from "@/assets/Priyanka.png";
-import kalpanaImg from "@/assets/kalpana-LIC.png";
-import jeoImg from "@/assets/jeo.jpeg";
+import wallPanelImg from "@/assets/wall-panel.webp";
+import wallStickersImg from "@/assets/wall-stickers.webp";
+import capboardImg from "@/assets/capboard.webp";
+import tvUnitsImg from "@/assets/tv-units.webp";
+import priyankaImg from "@/assets/Priyanka.webp";
+import kalpanaImg from "@/assets/kalpana-LIC.webp";
+import jeoImg from "@/assets/jeo.webp";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger, Flip);
