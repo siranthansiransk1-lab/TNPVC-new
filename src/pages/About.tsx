@@ -31,7 +31,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { seoByPath, companyLinks } from "@/data/siteData";
 
 import srinivasanFounder from "@/assets/srinivasan-founder.webp";
-import siranthanFounder from "@/assets/siranthan-founder.png";
+import siranthanFounder from "@/assets/siranthan-founder.webp";
 import anubrindhaFounder from "@/assets/anubrindha.webp";
 import sanjayRithikPortrait from "@/assets/sanjay-rithik-portrait.webp";
 import warehouseSuppliers from "@/assets/warehouse-suppliers.jpg";
