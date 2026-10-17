@@ -7,22 +7,15 @@ import { RegisterForm } from "@/components/site/RegisterForm";
 const Register = () => {
   return (
     <SiteLayout>
-      <Seo 
+      <Seo
         title="Register | Join TN-PVC Interiors Network"
         description="Join the leading PVC trade community in Tamil Nadu."
-        path="/register" keywords={[]}      />
-      
-      <PageHero
-        compact
-        eyebrow="Community Enrollment"
-        title="Join the TN-PVC Ecosystem"
-        description="Whether you're a client seeking quality work, a contractor looking for leads, or a labour team ready for projects—register today to grow with us."
-      />
+        path="/register" keywords={[]} />
 
-      <section id="register-section" className="section-padding bg-mesh overflow-hidden relative">
+      <section id="register-section" className="section-padding overflow-hidden relative">
         <div className="container relative z-10">
           <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:items-start">
-            
+
             {/* ─── Left Side: Content ─── */}
             <div className="space-y-12">
               <div className="space-y-6">
@@ -50,7 +43,7 @@ const Register = () => {
               </div>
 
               <div className="grid gap-6 sm:grid-cols-2 pt-8">
-                <div className="float-card p-6 space-y-4 border-none shadow-lg bg-white/50 backdrop-blur-sm">
+                <div className="float-card p-6 space-y-4 border border-border/60 shadow-sm bg-card">
                   <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
                     <Mail className="size-5" />
                   </div>
@@ -59,7 +52,7 @@ const Register = () => {
                     <a href="mailto:hello@tnpvc.co.in" className="text-sm font-bold hover:text-primary transition-colors">hello@tnpvc.co.in</a>
                   </div>
                 </div>
-                <div className="float-card p-6 space-y-4 border-none shadow-lg bg-white/50 backdrop-blur-sm">
+                <div className="float-card p-6 space-y-4 border border-border/60 shadow-sm bg-card">
                   <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
                     <Users className="size-5" />
                   </div>
@@ -75,10 +68,6 @@ const Register = () => {
 
             {/* ─── Right Side: Form ─── */}
             <div className="relative">
-              {/* Decorative elements */}
-              <div className="absolute -top-20 -right-20 size-64 bg-primary/10 rounded-full blur-3xl" />
-              <div className="absolute -bottom-20 -left-20 size-64 bg-secondary/10 rounded-full blur-3xl" />
-
               <RegisterForm />
             </div>
 

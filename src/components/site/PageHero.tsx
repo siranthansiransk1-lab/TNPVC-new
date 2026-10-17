@@ -36,12 +36,12 @@ type PageHeroProps = {
   topContent?: ReactNode;
 };
 
-export const PageHero = ({ 
-  eyebrow, 
-  title, 
-  description, 
-  actions = [], 
-  aside, 
+export const PageHero = ({
+  eyebrow,
+  title,
+  description,
+  actions = [],
+  aside,
   compact = false,
   centered = false,
   image,
@@ -64,7 +64,7 @@ export const PageHero = ({
           <div className="animate-reveal mb-6 flex flex-col items-center w-full">
             <p className="mb-4 text-[11px] font-bold text-muted-foreground flex items-center gap-1.5 uppercase tracking-widest bg-white/50 px-3 py-1 rounded-full border border-border/50 backdrop-blur-md">
               <ShieldCheck className="size-3.5 text-green-600" />
-              Secured by Dexaz Group
+              Secured by Rimio
             </p>
             <SocialLinks onWhatsAppClick={openWhatsAppModal} />
           </div>
@@ -77,7 +77,7 @@ export const PageHero = ({
             </Link>
           </div>
 
-        <header className="max-w-4xl space-y-4">
+          <header className="max-w-4xl space-y-4">
             <h1 className={cn(
               "animate-reveal delay-1 text-3xl font-black leading-[1.15] tracking-tight sm:text-4xl lg:text-6xl lg:leading-[1.2]",
               titleClassName
@@ -147,18 +147,18 @@ export const PageHero = ({
           {bentoItems && bentoItems.length > 0 ? (
             <div className="animate-reveal delay-3 mt-12 grid w-full max-w-5xl gap-4 grid-cols-1 md:grid-cols-4 md:grid-rows-2">
               {bentoItems.map((item, idx) => (
-                <div 
-                  key={idx} 
+                <div
+                  key={idx}
                   className={cn(
                     "float-card group relative flex flex-col overflow-hidden p-0 transition-all hover:shadow-2xl hover:-translate-y-1",
                     item.className
                   )}
                 >
                   <figure className="relative h-full w-full">
-                    <img 
-                      src={item.image} 
-                      alt={item.title} 
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"
                     />
                     <figcaption className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end text-left">
@@ -173,10 +173,10 @@ export const PageHero = ({
             <div className="animate-reveal delay-3 relative mt-16 w-full max-w-5xl">
               <div className="relative overflow-hidden rounded-[2rem] border border-border/40 shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent z-10" />
-                <img 
-                  src={image} 
-                  alt="" 
-                  className="w-full object-cover aspect-[21/9]" 
+                <img
+                  src={image}
+                  alt=""
+                  className="w-full object-cover aspect-[21/9]"
                 />
               </div>
             </div>
@@ -208,14 +208,7 @@ export const PageHero = ({
       >
         <div className="space-y-6">
           <div className="space-y-6">
-            <div className="animate-reveal flex flex-col items-start">
-              <p className="mb-[30px] text-[11px] font-bold text-muted-foreground flex items-center gap-1.5 uppercase tracking-widest bg-white/50 px-3 py-1 rounded-full border border-border/50 backdrop-blur-md">
-                <ShieldCheck className="size-3.5 text-green-600" /> 
-                Secured by Dexaz Group
-              </p>
-              <SocialLinks onWhatsAppClick={openWhatsAppModal} />
-            </div>
-            
+
             <div className="animate-reveal">
               <Link to="/ai-pvc-groups" className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-white/50 px-5 py-2 text-xs font-bold tracking-wide text-foreground backdrop-blur-md shadow-sm transition-all hover:border-primary/40 hover:bg-white hover:shadow">
                 {eyebrow}
@@ -288,7 +281,7 @@ export const PageHero = ({
                     </Link>
                   )
                 );
-              }) }
+              })}
             </div>
           ) : null}
         </div>
@@ -297,18 +290,18 @@ export const PageHero = ({
           {bentoItems && bentoItems.length > 0 ? (
             <div className="grid grid-cols-2 gap-4 w-full">
               {bentoItems.map((item, idx) => (
-                <article 
-                  key={idx} 
+                <article
+                  key={idx}
                   className={cn(
                     "float-card group relative flex flex-col overflow-hidden p-0 transition-all hover:shadow-xl hover:-translate-y-1",
                     item.className
                   )}
                 >
                   <figure className="relative h-full w-full aspect-square">
-                    <img 
-                      src={item.image} 
-                      alt={item.title} 
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"
                     />
                     <figcaption className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 flex flex-col justify-end text-left">

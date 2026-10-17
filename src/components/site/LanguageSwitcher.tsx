@@ -28,7 +28,13 @@ const languages = [
   { code: "pa", name: "Punjabi" }
 ];
 
-export const LanguageSwitcher = () => {
+export const LanguageSwitcher = ({ 
+  isTransparent, 
+  className 
+}: { 
+  isTransparent?: boolean; 
+  className?: string; 
+}) => {
   const [currentLang, setCurrentLang] = useState("en");
 
   useEffect(() => {
@@ -74,8 +80,16 @@ export const LanguageSwitcher = () => {
   return (
     <DropdownMenu modal={false} onOpenChange={handleOpenChange}>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-1.5 rounded-full border border-border/50 bg-white/60 backdrop-blur-sm min-h-0 h-9 px-3 text-xs font-semibold text-foreground transition-all hover:bg-white hover:text-primary hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-          <Globe className="size-3.5" />
+        <button 
+          className={cn(
+            "flex items-center gap-1.5 rounded-full min-h-0 h-9 px-3 text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+            isTransparent
+              ? "border border-white/25 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:border-white/40 shadow-xs"
+              : "border border-border/50 bg-white/60 backdrop-blur-sm text-foreground hover:bg-white hover:text-primary hover:border-primary/30",
+            className
+          )}
+        >
+          <Globe className={cn("size-3.5", isTransparent ? "text-white" : "text-muted-foreground")} />
           <span className="inline-block">
             {languages.find(l => l.code === currentLang)?.name || "Language"}
           </span>

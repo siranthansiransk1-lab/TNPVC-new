@@ -113,7 +113,8 @@ export default {
       fontFamily: {
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
         display: ["Inter", "system-ui", "-apple-system", "sans-serif"],
-        serif: ["Cinzel", "Cormorant Garamond", "Playfair Display", "Georgia", "serif"],
+        serif: ["'Cormorant Garamond'", "Cinzel", "Playfair Display", "Georgia", "serif"],
+        editorial: ["'Cormorant Garamond'", "Playfair Display", "serif"],
       },
       boxShadow: {
         soft: "0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04), 0 16px 40px rgba(124,58,237,0.04)",

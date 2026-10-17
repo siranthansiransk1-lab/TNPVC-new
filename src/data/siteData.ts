@@ -18,10 +18,9 @@ import {
 } from "lucide-react";
 
 import aiPvcLogo from "@/assets/ai-pvc-groups-logo.webp";
-import tnPvcLogo from "@/assets/tn-pvc-logo.webp";
+import tnPvcLogo from "@/assets/Tnpvc-logo.webp";
 import siranthanFounder from "@/assets/siranthan-founder.webp";
 import srinivasanFounder from "@/assets/srinivasan-founder.webp";
-import dexazReference from "@/assets/dexaz-reference.webp";
 import heroInterior from "@/assets/hero-interior.webp";
 import bentoPvcWall from "@/assets/bento-pvc-wall.webp";
 import bentoUpvcWindow from "@/assets/bento-upvc-window.webp";
@@ -57,7 +56,6 @@ export const companyLinks = {
 export const brandAssets = {
   tnPvcLogo,
   aiPvcLogo,
-  dexazReference,
   heroInterior,
   bentoPvcWall,
   bentoUpvcWindow,
@@ -68,14 +66,7 @@ export const brandAssets = {
 
 export const navItems: NavItem[] = [
   { label: "Home", path: "/" },
-  {
-    label: "About Us",
-    path: "/about",
-    subItems: [
-      { label: "Our Story", path: "/about" },
-      { label: "Partnership Transparency", path: "/ai-pvc-groups" },
-    ],
-  },
+  { label: "About Us", path: "/about" },
   { label: "Network", path: "/network" },
   { label: "Benefits", path: "/benefits" },
 ];

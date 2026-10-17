@@ -6,6 +6,7 @@ import { Flip } from "gsap/Flip";
 import { useGSAP } from "@gsap/react";
 import {
   ArrowRight,
+  ArrowDown,
   ArrowDownLeft,
   ArrowUpRight,
   Boxes,
@@ -25,6 +26,7 @@ import {
   ExternalLink,
   MessageCircle,
 } from "lucide-react";
+import { useHeroAnimation } from "@/hooks/useHeroAnimation";
 
 import { Seo } from "@/components/seo/Seo";
 import { SiteLayout } from "@/components/site/SiteLayout";
@@ -36,14 +38,14 @@ import anubrindhaFounder from "@/assets/anubrindha.webp";
 import sanjayRithikPortrait from "@/assets/sanjay-rithik-portrait.webp";
 import warehouseSuppliers from "@/assets/warehouse-suppliers.jpg";
 import dealersHandshake from "@/assets/dealers-handshake.jpg";
-import tnPvcLogo from "@/assets/tn-pvc-logo.webp";
+import tnPvcLogo from "@/assets/Tnpvc-logo.svg";
 import wallPanelImg from "@/assets/wall-panel.webp";
 import wallStickersImg from "@/assets/wall-stickers.webp";
 import capboardImg from "@/assets/capboard.webp";
 import tvUnitsImg from "@/assets/tv-units.webp";
-import priyankaImg from "@/assets/Priyanka.webp";
+import PriyangaImg from "@/assets/Priyanka.webp";
 import kalpanaImg from "@/assets/kalpana-LIC.webp";
-import jeoImg from "@/assets/jeo.webp";
+import JoeImg from "@/assets/jeo.webp";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger, Flip);
@@ -222,14 +224,36 @@ const leadershipMembers = [
     role: "SANJAY RITHIK / TECHNOLOGY & MARKETING DIRECTOR",
     fullTitle: "Technology & Marketing Director",
     image: sanjayRithikPortrait,
-    bio: "Architecting digital-first trade experiences, omnichannel dealer portals, and high-impact marketing initiatives that position TN-PVC as a modern market leader.",
-    quote: "Connecting every craftsman, dealer, and homeowner through seamless digital trade.",
-    link: "/network",
-    linkLabel: "Explore Ecosystem",
+    bio: "Founder of Rimio, building technology-driven products and digital ecosystems that empower businesses to operate smarter and scale faster. At TN-PVC Interiors, he leads technology strategy, digital transformation, omnichannel dealer platforms, and growth-focused marketing initiatives, connecting craftsmen, dealers, and homeowners through seamless digital experiences.",
+    quote: "Building technology that connects people, empowers businesses, and transforms traditional industries.",
+    link: "https://www.rimio.in",
+    linkLabel: "View Profile",
   },
 ];
 
 const teamMembers = [
+  {
+    id: "Priyanga",
+    name: "Priyanga",
+    role: "Telephony Head",
+    dept: "Customer Desk & Inbound Telephony",
+    badge: "Telephony Lead",
+    bio: "Priyanga heads the central telephony and customer communications desk at TN-PVC, managing all direct client calls, architect inquiries, and regional dealer desk requests across Tamil Nadu with promptness and clarity.",
+    bio2: "She coordinates seamless communication between prospective buyers, interior contractors, and our technical design team, ensuring inquiries are routed without delay and customer satisfaction is prioritized at every touchpoint.",
+    quote: "Clear, responsive communication is the first step toward building trust and flawless interiors.",
+    image: PriyangaImg,
+  },
+  {
+    id: "Joe",
+    name: "Joe",
+    role: "Field Manager",
+    dept: "Field Operations & Site Execution",
+    badge: "Field Operations Lead",
+    bio: "Joe leads TN-PVC's field operations, overseeing on-site interior installations, measurements, contractor supervision, and project timelines across sites in Tamil Nadu.",
+    bio2: "From preliminary site assessments to final handover inspections, Joe bridges client visions with on-ground technical execution, ensuring all PVC wall panels, cabinetry, and designer fixtures are installed to zero-defect standards.",
+    quote: "True architectural precision isn't just planned on blueprints — it is delivered through diligent field execution.",
+    image: JoeImg,
+  },
   {
     id: "kalpana",
     name: "Kalpana",
@@ -240,40 +264,68 @@ const teamMembers = [
     bio2: "Her work ensures that every member of the TN-PVC family operates with financial security and future peace of mind, managing retirement provisions, policy assistance, and welfare benefits tailored to our dedicated workforce.",
     quote: "Empowering and safeguarding our hardworking workforce builds the strongest foundation for our company's future.",
     image: kalpanaImg,
-  },
-  {
-    id: "priyanka",
-    name: "Priyanka",
-    role: "Telephony Head",
-    dept: "Customer Desk & Inbound Telephony",
-    badge: "Telephony Lead",
-    bio: "Priyanka heads the central telephony and customer communications desk at TN-PVC, managing all direct client calls, architect inquiries, and regional dealer desk requests across Tamil Nadu with promptness and clarity.",
-    bio2: "She coordinates seamless communication between prospective buyers, interior contractors, and our technical design team, ensuring inquiries are routed without delay and customer satisfaction is prioritized at every touchpoint.",
-    quote: "Clear, responsive communication is the first step toward building trust and flawless interiors.",
-    image: priyankaImg,
-  },
-  {
-    id: "jeo",
-    name: "Jeo",
-    role: "Field Manager",
-    dept: "Field Operations & Site Execution",
-    badge: "Field Operations Lead",
-    bio: "Jeo leads TN-PVC's field operations, overseeing on-site interior installations, measurements, contractor supervision, and project timelines across sites in Tamil Nadu.",
-    bio2: "From preliminary site assessments to final handover inspections, Jeo bridges client visions with on-ground technical execution, ensuring all PVC wall panels, cabinetry, and designer fixtures are installed to zero-defect standards.",
-    quote: "True architectural precision isn't just planned on blueprints — it is delivered through diligent field execution.",
-    image: jeoImg,
-  },
+  }
 ];
 
 
+
+// Helper to render "Rimio" mentions as a clickable external link
+const renderWithRimioLink = (text: string) => {
+  if (!text.includes("Rimio")) return text;
+  const parts = text.split("Rimio");
+  return (
+    <>
+      {parts.map((part, index) => (
+        <Fragment key={index}>
+          {part}
+          {index < parts.length - 1 && (
+            <a
+              href="https://www.rimio.in"
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="text-primary underline underline-offset-4 decoration-primary/50 hover:decoration-white hover:text-white transition-colors font-semibold"
+            >
+              Rimio
+            </a>
+          )}
+        </Fragment>
+      ))}
+    </>
+  );
+};
+
+/* ═══════════════════════════════════════════════════════════════════
+   HERO METRICS (Standardized to match Home page editorial bottom bar)
+   ═══════════════════════════════════════════════════════════════════ */
+const ABOUT_HERO_METRICS = [
+  { value: "2,500+", label: "Luxury Interiors Delivered", sublabel: "Residential & commercial spaces" },
+  { value: "38", label: "Districts Across Tamil Nadu", sublabel: "Statewide verified partner reach" },
+  { value: "100%", label: "Factory Direct Fabrication", sublabel: "High-density lead-free PVC boards" },
+  { value: "4.8/5", label: "Client Satisfaction Score", sublabel: "Rated by 500+ homeowners & designers" },
+];
 
 /* ═══════════════════════════════════════════════════════════════════
    MAIN ABOUT COMPONENT
    ═══════════════════════════════════════════════════════════════════ */
 export const About = () => {
   const rootRef = useRef<HTMLDivElement>(null);
-  const heroImageRef = useRef<HTMLDivElement>(null);
-  const heroContentRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Standardized Hero Animation Engine
+  useHeroAnimation(heroRef);
+
+  const handleHeroScrollDown = () => {
+    const scene1 = document.getElementById("scene-01");
+    if (scene1) {
+      scene1.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.scrollTo({
+        top: window.innerHeight * 0.95,
+        behavior: "smooth",
+      });
+    }
+  };
 
   // Interactive state
   const [expandedLeaderId, setExpandedLeaderId] = useState<string | null>(null);
@@ -455,43 +507,7 @@ export const About = () => {
       mm.add(
         "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
         () => {
-          // 1. Hero Pinned Unfold & Zoom Parallax
-          if (heroImageRef.current && heroContentRef.current) {
-            gsap.set(heroImageRef.current, {
-              scale: 1.08,
-              transformOrigin: "center center",
-            });
-
-            const heroTl = gsap.timeline({
-              scrollTrigger: {
-                trigger: "[data-scene='hero']",
-                start: "top top",
-                end: "+=50%",
-                scrub: 1,
-                pin: true,
-                anticipatePin: 1,
-              },
-            });
-
-            heroTl
-              .to(
-                heroImageRef.current,
-                {
-                  scale: 1.0,
-                  ease: "none",
-                },
-                0
-              )
-              .to(
-                heroContentRef.current,
-                {
-                  yPercent: -18,
-                  autoAlpha: 0.1,
-                  ease: "none",
-                },
-                0.2
-              );
-          }
+          // 1. Hero entrance and parallax scroll departure are standardized across Home, About, and Network via useHeroAnimation(heroRef)
 
           // 2. Section Rule Expand Lines (01 ──────)
           const ruleLines = gsap.utils.toArray<HTMLElement>("[data-scene-line]");
@@ -700,9 +716,6 @@ export const About = () => {
           ),
           { autoAlpha: 1, y: 0, scale: 1, scaleX: 1, clipPath: "none" }
         );
-        if (heroImageRef.current) {
-          gsap.set(heroImageRef.current, { scale: 1, clipPath: "none" });
-        }
       });
 
       return () => mm.revert();
@@ -744,51 +757,85 @@ export const About = () => {
         <section
           id="scene-00"
           data-scene="00"
-          className="relative min-h-[92vh] sm:min-h-screen flex items-center justify-start overflow-hidden bg-luxury-dark scroll-mt-0"
+          data-hero="true"
+          ref={heroRef}
+          className="relative h-screen min-h-[620px] max-h-[1100px] w-full flex flex-col justify-between overflow-hidden bg-zinc-950 text-white select-none scroll-mt-0"
+          aria-label="About TN-PVC Hero Showcase"
         >
-          {/* Full-bleed Luxury Interior Background with Parallax Scrub */}
-          <div
-            ref={heroImageRef}
-            className="absolute inset-0 z-0 origin-center will-change-transform"
-          >
+          {/* Background Cinematic Image matching Home's luminous, non-black-heavy treatment */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
+              data-hero-bg
               src={cloudinaryAssets.heroInterior.url}
               alt={cloudinaryAssets.heroInterior.alt}
-              className="h-full w-full object-cover object-center filter brightness-[0.52] contrast-[1.08]"
+              className="w-full h-full object-cover object-center scale-100 will-change-transform"
               loading="eager"
               fetchPriority="high"
             />
-            {/* Cinematic Studio Vignette & Gradients (Zero hardcoded colors) */}
-            <div className="absolute inset-0 bg-gradient-to-t from-luxury-dark via-luxury-dark/30 to-luxury-dark/60" />
-            <div className="absolute inset-0 bg-gradient-to-r from-luxury-dark/80 via-luxury-dark/30 to-transparent" />
+            {/* Top Gradient for Seamless Header Blending matching Home */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/80 pointer-events-none" />
+            {/* Subtle Radial Vignette for Depth matching Home */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(0,0,0,0.55)_100%)] pointer-events-none" />
           </div>
 
-          {/* Left-Aligned Editorial Hero Content (Strictly matching reference screenshot) */}
-          <div
-            ref={heroContentRef}
-            className="container relative z-10 mx-auto px-5 sm:px-8 md:px-12 lg:px-16 pt-24 pb-20 text-left"
-          >
-            <div className="max-w-2xl space-y-5 sm:space-y-6">
+          {/* ─── Top Spacer for Fixed Header matching Home ─── */}
+          <div className="h-16 sm:h-20 w-full relative z-10 shrink-0" />
 
-
-              {/* Headline: SPACES THAT TELL A STORY. */}
-              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight text-white leading-[1.05] uppercase">
-                SPACES THAT
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-400 to-primary inline-block">
-                  TELL A STORY.
-                </span>
-              </h1>
-
-              {/* Subtext */}
-              <p className="max-w-xl text-sm sm:text-base lg:text-lg xl:text-xl font-normal leading-relaxed text-white/80">
-                At TN-PVC, we don't just create interiors,
-                <br className="hidden sm:inline" />
-                we create experiences.
-              </p>
+          {/* ─── Center / Massive Editorial Typography matching Home ─── */}
+          <div className="container relative z-10 my-auto py-2 sm:py-4 flex flex-col justify-center flex-1">
+            {/* Subtle Brand Badge matching Home */}
+            <div data-hero-badge className="mb-3 sm:mb-4">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-semibold tracking-widest uppercase text-white/90 backdrop-blur-md">
+                <Sparkles className="size-3 text-white/80" />
+                <span>Our Heritage & Vision • Est. 2018</span>
+              </span>
             </div>
 
+            {/* Large Editorial Headline matching Home typography */}
+            <div data-hero-headline className="max-w-[1300px]">
+              <h1 className="font-serif font-light text-white text-[9.5vw] sm:text-6xl md:text-7xl lg:text-[5.8rem] xl:text-[7.2rem] tracking-tight leading-[0.92] drop-shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+                Spaces that <span className="italic font-normal">tell</span>
+                <span className="block mt-1 sm:mt-2">a story.</span>
+              </h1>
+            </div>
 
+            {/* Subtext matching Home */}
+            <div data-hero-subtext className="mt-4 sm:mt-6 max-w-xl">
+              <p className="text-sm sm:text-base lg:text-lg font-light leading-relaxed text-white/85 drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+                At TN-PVC, we don't just create interiors — we curate living experiences rooted in architectural precision, direct material mastery, and lasting trust.
+              </p>
+            </div>
+          </div>
+
+          {/* ─── Bottom Stats Bar & Scroll Indicator matching Home ─── */}
+          <div data-hero-bottom className="relative z-10 w-full border-t border-white/15 bg-gradient-to-t from-black/85 via-black/40 to-transparent backdrop-blur-[1px] pt-4 sm:pt-5 pb-6 sm:pb-8 shrink-0">
+            <div className="container flex flex-col lg:flex-row items-start lg:items-end justify-between gap-5 lg:gap-8">
+              {/* 4 Editorial Metrics */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-10 flex-1 w-full lg:w-auto">
+                {ABOUT_HERO_METRICS.map((metric, idx) => (
+                  <div key={idx} className="flex flex-col group">
+                    <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white font-sans drop-shadow-sm group-hover:text-primary-foreground/95 transition-colors">
+                      {metric.value}
+                    </span>
+                    <span className="text-xs sm:text-[13px] font-medium text-white/85 leading-snug mt-1 max-w-[210px] drop-shadow-sm">
+                      {metric.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Scroll Down Action */}
+              <div className="w-full lg:w-auto flex justify-end shrink-0 pt-1 lg:pt-0">
+                <button
+                  onClick={handleHeroScrollDown}
+                  className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold tracking-wider text-white/90 hover:text-white transition-all cursor-pointer group py-1 px-2.5 rounded-lg hover:bg-white/10"
+                  aria-label="Scroll down to explore interiors"
+                >
+                  <span>Explore</span>
+                  <ArrowDown className="size-3.5 transition-transform duration-300 group-hover:translate-y-1 animate-bounce" />
+                </button>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1043,9 +1090,9 @@ export const About = () => {
                               }`}
                           >
                             <div className="space-y-3">
-                              <div>
+                              <div className="hidden md:block">
                                 <p className="text-xs font-bold uppercase tracking-wide text-primary leading-snug">
-                                  {leader.fullTitle}
+                                  {renderWithRimioLink(leader.fullTitle)}
                                 </p>
                                 <h3 className="text-xl sm:text-2xl font-black text-neutral-100 uppercase tracking-tight mt-1">
                                   {leader.name}
@@ -1053,7 +1100,7 @@ export const About = () => {
                               </div>
 
                               <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-normal">
-                                {leader.bio}
+                                {renderWithRimioLink(leader.bio)}
                               </p>
 
                               <blockquote className="border-l-2 border-primary pl-3.5 py-1 text-xs sm:text-sm italic text-neutral-200 font-medium bg-transparent">
@@ -1063,15 +1110,29 @@ export const About = () => {
 
                             {/* Actions: Clean Editorial View Link (No background, No shadow, No close button) */}
                             <div className="pt-2 flex items-center gap-4">
-                              <Link
-                                to={leader.link}
-                                className="group/btn inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary hover:text-white transition-colors shrink-0 py-1"
-                              >
-                                <span className="border-b border-primary/50 group-hover/btn:border-white pb-0.5 transition-colors">
-                                  {leader.linkLabel}
-                                </span>
-                                <ExternalLink className="size-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                              </Link>
+                              {leader.link.startsWith("http") ? (
+                                <a
+                                  href={leader.link}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="group/btn inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary hover:text-white transition-colors shrink-0 py-1"
+                                >
+                                  <span className="border-b border-primary/50 group-hover/btn:border-white pb-0.5 transition-colors">
+                                    {leader.linkLabel}
+                                  </span>
+                                  <ExternalLink className="size-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                                </a>
+                              ) : (
+                                <Link
+                                  to={leader.link}
+                                  className="group/btn inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary hover:text-white transition-colors shrink-0 py-1"
+                                >
+                                  <span className="border-b border-primary/50 group-hover/btn:border-white pb-0.5 transition-colors">
+                                    {leader.linkLabel}
+                                  </span>
+                                  <ExternalLink className="size-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                                </Link>
+                              )}
 
                               {leader.instagram && (
                                 <a
@@ -1104,11 +1165,11 @@ export const About = () => {
         <section
           id="scene-04"
           data-scene="04"
-          className="relative py-20 lg:py-28 bg-white text-black transition-colors duration-500 scroll-mt-16 sm:scroll-mt-20 border-t border-b border-black/10 overflow-hidden"
+          className="relative py-20 lg:py-28 bg-background text-black transition-colors duration-500 scroll-mt-16 sm:scroll-mt-20 border-t border-b border-black/10 overflow-hidden"
         >
           {/* Floating Image Preview on Hover (Smooth lag/damping following pointer with cubic-bezier) */}
           <div
-            className={`pointer-events-none fixed z-40 hidden md:block overflow-hidden rounded-2xl shadow-2xl border-4 border-white bg-black select-none ${hoveredMember && viewMode === "list" && expandedMemberId !== hoveredMember.id
+            className={`pointer-events-none fixed z-40 hidden md:block overflow-hidden shadow-2xl bg-black select-none ${hoveredMember && viewMode === "list" && expandedMemberId !== hoveredMember.id
               ? "opacity-100 scale-100"
               : "opacity-0 scale-95 pointer-events-none"
               }`}

@@ -14,32 +14,32 @@ import { SearchableSelect } from "@/components/site/SearchableSelect";
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const states = [
-  "Tamil Nadu","Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh",
-  "Goa","Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka",
-  "Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram",
-  "Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Telangana",
-  "Tripura","Uttar Pradesh","Uttarakhand","West Bengal",
-  "Andaman and Nicobar Islands","Chandigarh","Dadra and Nagar Haveli and Daman and Diu",
-  "Delhi","Jammu and Kashmir","Ladakh","Lakshadweep","Puducherry",
+  "Tamil Nadu", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+  "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+  "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+  "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Telangana",
+  "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
+  "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu",
+  "Delhi", "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry",
 ];
 
 const tnDistricts = [
-  "Ariyalur","Chengalpattu","Chennai","Coimbatore","Cuddalore","Dharmapuri",
-  "Dindigul","Erode","Kallakurichi","Kanchipuram","Kanyakumari","Karur",
-  "Krishnagiri","Madurai","Mayiladuthurai","Nagapattinam","Namakkal","Nilgiris",
-  "Perambalur","Pudukkottai","Ramanathapuram","Ranipet","Salem","Sivaganga",
-  "Tenkasi","Thanjavur","Theni","Thoothukudi","Tiruchirappalli","Tirunelveli",
-  "Tirupathur","Tiruppur","Tiruvallur","Tiruvannamalai","Tiruvarur","Vellore",
-  "Viluppuram","Virudhunagar",
+  "Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri",
+  "Dindigul", "Erode", "Kallakurichi", "Kanchipuram", "Kanyakumari", "Karur",
+  "Krishnagiri", "Madurai", "Mayiladuthurai", "Nagapattinam", "Namakkal", "Nilgiris",
+  "Perambalur", "Pudukkottai", "Ramanathapuram", "Ranipet", "Salem", "Sivaganga",
+  "Tenkasi", "Thanjavur", "Theni", "Thoothukudi", "Tiruchirappalli", "Tirunelveli",
+  "Tirupathur", "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore",
+  "Viluppuram", "Virudhunagar",
 ];
 
 const userTypes = [
-  { id: "Contractor",        icon: Building2 },
-  { id: "Labour Contractor", icon: Users     },
-  { id: "Distributor",       icon: Truck     },
-  { id: "Dealer",            icon: Store     },
-  { id: "Manufacture",       icon: Factory   },
-  { id: "Hardware Supplier", icon: Package   },
+  { id: "Contractor", icon: Building2 },
+  { id: "Labour Contractor", icon: Users },
+  { id: "Distributor", icon: Truck },
+  { id: "Dealer", icon: Store },
+  { id: "Manufacture", icon: Factory },
+  { id: "Hardware Supplier", icon: Package },
 ] as const;
 
 type UserTypeId = (typeof userTypes)[number]["id"];
@@ -47,20 +47,20 @@ type UserTypeId = (typeof userTypes)[number]["id"];
 // ─── Zod Schema ───────────────────────────────────────────────────────────────
 
 const baseSchema = z.object({
-  name:    z.string().min(2, "Full name must be at least 2 characters"),
-  email:   z.string().optional().refine(
+  name: z.string().min(2, "Full name must be at least 2 characters"),
+  email: z.string().optional().refine(
     (v) => !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
     { message: "Please enter a valid email address" }
   ),
-  state:   z.string().min(1, "Please select your state"),
-  city:    z.string().min(1, "Please enter your city / district"),
+  state: z.string().min(1, "Please select your state"),
+  city: z.string().min(1, "Please enter your city / district"),
   address: z.string().min(5, "Please enter your full address"),
-  mobile:  z.string().min(10, "Mobile number must be at least 10 digits")
-            .regex(/^[+]?[\d\s\-()]{10,15}$/, "Enter a valid mobile number"),
+  mobile: z.string().min(10, "Mobile number must be at least 10 digits")
+    .regex(/^[+]?[\d\s\-()]{10,15}$/, "Enter a valid mobile number"),
   userType: z.string().min(1, "Please select a type"),
   // Conditional optional fields
   squareFtPrice: z.string().optional(), drinksOrNot: z.string().optional(),
-  shopLocation: z.string().optional(),  shopName: z.string().optional(),
+  shopLocation: z.string().optional(), shopName: z.string().optional(),
   clientsDelivered: z.string().optional(), approxCharges: z.string().optional(),
   dealershipExperience: z.string().optional(), firstDealership: z.string().optional(),
   dealerBrand: z.string().optional(), becomeDistributor: z.string().optional(),
@@ -83,14 +83,14 @@ const ErrorMsg = ({ message }: { message?: string }) =>
   ) : null;
 
 const fieldContainer = (err: boolean) => cn(
-  "flex items-center w-full h-12 px-4 rounded-xl bg-white border shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] transition-all hover:border-primary/30",
-  err ? "border-red-400 focus-within:border-red-500 focus-within:ring-4 focus-within:ring-red-500/10 bg-red-50/40"
-      : "border-border/60 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10"
+  "flex items-center w-full h-12 px-4 rounded-xl border bg-transparent transition-all hover:border-primary/40",
+  err ? "border-red-400 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-500/20 bg-red-500/[0.03]"
+    : "border-border/70 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20"
 );
 
 const inputBase = "flex-1 h-full bg-transparent text-sm font-normal text-foreground placeholder:text-muted-foreground/60 outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 min-w-0";
 
-const labelBase = (err: boolean) => cn("text-sm font-medium transition-colors", err ? "text-red-500" : "text-slate-600");
+const labelBase = (err: boolean) => cn("text-sm font-medium transition-colors", err ? "text-red-500" : "text-foreground/80");
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
@@ -98,16 +98,16 @@ export const RegisterForm = ({
   title = "Enroll in the Network",
   description = "Fill in your details to join the community.",
 }) => {
-  const [submitted,   setSubmitted]   = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { register, handleSubmit, watch, control, reset, setValue, formState: { errors } } =
     useForm<FormValues>({
       resolver: zodResolver(baseSchema),
-      defaultValues: { name:"", email:"", state:"", city:"", address:"", mobile:"", userType:"Contractor" },
+      defaultValues: { name: "", email: "", state: "", city: "", address: "", mobile: "", userType: "Contractor" },
     });
 
-  const selectedState    = watch("state");
+  const selectedState = watch("state");
   const selectedUserType = watch("userType") as UserTypeId;
 
   // ── Clearable text input ─────────────────────────────────────────────────
@@ -137,7 +137,7 @@ export const RegisterForm = ({
             <button
               type="button"
               aria-label={`Clear ${label}`}
-              onClick={() => setValue(fieldName, "" as any, { shouldValidate: true })}
+              onClick={() => setValue(fieldName, "" as FormValues[typeof fieldName], { shouldValidate: true })}
               className="ml-2 shrink-0 flex items-center justify-center text-muted-foreground/60 hover:text-red-500 transition-colors"
             >
               <X className="size-4" />
@@ -170,8 +170,8 @@ export const RegisterForm = ({
             className={cn(inputBase, "appearance-none cursor-pointer")}
             {...register(fieldName)}
           >
-            <option value="">{placeholder}</option>
-            {options.map((o) => <option key={o} value={o}>{o}</option>)}
+            <option value="" className="bg-background text-foreground">{placeholder}</option>
+            {options.map((o) => <option key={o} value={o} className="bg-background text-foreground">{o}</option>)}
           </select>
           <div className="flex items-center gap-1.5 ml-2 shrink-0">
             {val && (
@@ -179,8 +179,8 @@ export const RegisterForm = ({
                 type="button"
                 aria-label={`Clear ${label}`}
                 className="flex items-center justify-center text-muted-foreground/60 hover:text-red-500 transition-colors"
-                onMouseDown={(e) => { e.preventDefault(); setValue(fieldName, "" as any, { shouldValidate: true }); }}
-                onTouchEnd={(e)  => { e.preventDefault(); setValue(fieldName, "" as any, { shouldValidate: true }); }}
+                onMouseDown={(e) => { e.preventDefault(); setValue(fieldName, "" as FormValues[typeof fieldName], { shouldValidate: true }); }}
+                onTouchEnd={(e) => { e.preventDefault(); setValue(fieldName, "" as FormValues[typeof fieldName], { shouldValidate: true }); }}
               >
                 <X className="size-4" />
               </button>
@@ -204,9 +204,9 @@ export const RegisterForm = ({
           messageDetails += `${k}: ${value}\n`;
         }
       }
-      const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
       const params = {
         to_email: "tn.pvc.interiors.official@gmail.com",
         user_name: data.name, user_email: data.email || "Not provided",
@@ -230,8 +230,8 @@ export const RegisterForm = ({
   // ─── Render ───────────────────────────────────────────────────────────────
   return (
     <div className={cn(
-      "float-card relative z-10 border-none shadow-2xl p-8 lg:p-12 transition-all duration-500",
-      submitted ? "bg-green-50/90 backdrop-blur-xl" : "bg-white/80 backdrop-blur-2xl"
+      "relative z-10 transition-all duration-500",
+      submitted ? "p-8 lg:p-12 rounded-3xl bg-green-50/90 backdrop-blur-xl border border-green-200" : "bg-transparent p-0"
     )}>
       {submitted ? (
         <div className="py-20 text-center space-y-6 animate-reveal">
@@ -355,10 +355,10 @@ export const RegisterForm = ({
                     <label
                       key={type.id}
                       className={cn(
-                        "relative flex flex-col items-center justify-center gap-3 p-4 rounded-2xl border-2 transition-all cursor-pointer group",
+                        "relative flex flex-col items-center justify-center gap-3 p-4 rounded-2xl border transition-all cursor-pointer group bg-transparent",
                         field.value === type.id
-                          ? "border-primary bg-primary/5 text-primary shadow-lg shadow-primary/10"
-                          : "border-muted hover:border-primary/20 text-muted-foreground"
+                          ? "border-primary bg-primary/5 text-primary shadow-sm"
+                          : "border-border/70 hover:border-primary/30 text-muted-foreground"
                       )}
                     >
                       <input type="radio" name="userType" className="sr-only"
@@ -383,7 +383,7 @@ export const RegisterForm = ({
           {selectedUserType === "Labour Contractor" && (
             <div className="grid gap-6 sm:grid-cols-2 animate-reveal">
               {renderField("Square Ft Price", "Enter amount", "squareFtPrice", "number", false)}
-              {renderSimpleSelect("Do you drink?", "drinksOrNot", ["Yes","No"], "Select Option", false)}
+              {renderSimpleSelect("Do you drink?", "drinksOrNot", ["Yes", "No"], "Select Option", false)}
             </div>
           )}
 
@@ -408,13 +408,13 @@ export const RegisterForm = ({
             <div className="grid gap-6 sm:grid-cols-2 animate-reveal">
               {renderField("How you became a Distributor", "Describe briefly", "becomeDistributor", "text", false)}
               {renderSimpleSelect("What Brand do you Distribute?", "distributedBrand",
-                ["Finolex","Supreme","Ashirvad","Astral","Other"], "Select Brand", false)}
+                ["Finolex", "Supreme", "Ashirvad", "Astral", "Other"], "Select Brand", false)}
             </div>
           )}
 
           {selectedUserType === "Manufacture" && (
             <div className="grid gap-6 sm:grid-cols-2 animate-reveal">
-              {renderSimpleSelect("Is the Brand Registered?", "brandRegistered", ["Yes","No"], "Select Option", false)}
+              {renderSimpleSelect("Is the Brand Registered?", "brandRegistered", ["Yes", "No"], "Select Option", false)}
               {renderField("Brand Website", "https://...", "brandWebsite", "url", false)}
               {renderField("Brand HQ Location", "Enter location", "brandHq", "text", false)}
               {renderField("Registered GST Number", "e.g. 22AAAAA0000A1Z5", "brandGst", "text", false)}

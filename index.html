@@ -1,35 +1,41 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Primary Meta Tags -->
-    <title>TN-PVC Interiors | Tamil Nadu's Premier PVC & UPVC Interior Network</title>
-    <meta name="title" content="TN-PVC Interiors | Tamil Nadu's Premier PVC & UPVC Interior Network" />
-    <meta name="description" content="TN-PVC Interiors connects manufacturers, distributors, contractors, labour teams, and customers across Tamil Nadu through a WhatsApp-first PVC and UPVC interior community." />
-    <meta name="keywords" content="PVC Interiors Tamil Nadu, UPVC Interior Network, PVC Contractors Coimbatore, Chennai PVC Modular Kitchen, PVC Wall Panelers Tamil Nadu, Interior Labour Network, AI-PVC Groups, TN-PVC Connect, Dexaz Groups, Interior Design Ecosystem, Modern PVC Design, PVC Cupboard Work, UPVC Window Installation" />
-    <meta name="author" content="TN-PVC Interiors" />
-    <link rel="canonical" href="https://www.tnpvc.co.in" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.tnpvc.co.in/" />
-    <meta property="og:title" content="TN-PVC Interiors | Tamil Nadu's Premier PVC & UPVC Interior Network" />
-    <meta property="og:description" content="Tamil Nadu's largest digital network for PVC and UPVC interior professionals. Streamlining project execution and community growth." />
-    <meta property="og:image" content="https://www.tnpvc.co.in/og-image.webp" />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.tnpvc.co.in/" />
-    <meta property="twitter:title" content="TN-PVC Interiors | Tamil Nadu's Premier PVC & UPVC Interior Network" />
-    <meta property="twitter:description" content="Tamil Nadu's largest digital network for PVC and UPVC interior professionals." />
-    <meta property="twitter:image" content="https://www.tnpvc.co.in/og-image.webp" />
+  <!-- Primary Meta Tags -->
+  <title>TN-PVC Interiors | Tamil Nadu's Premier PVC & UPVC Interior Network</title>
+  <meta name="title" content="TN-PVC Interiors | Tamil Nadu's Premier PVC & UPVC Interior Network" />
+  <meta name="description"
+    content="TN-PVC Interiors connects manufacturers, distributors, contractors, labour teams, and customers across Tamil Nadu through a WhatsApp-first PVC and UPVC interior community." />
+  <meta name="keywords"
+    content="PVC Interiors Tamil Nadu, UPVC Interior Network, PVC Contractors Coimbatore, Chennai PVC Modular Kitchen, PVC Wall Panelers Tamil Nadu, Interior Labour Network, AI-PVC Groups, TN-PVC Connect, Dexaz Groups, Interior Design Ecosystem, Modern PVC Design, PVC Cupboard Work, UPVC Window Installation" />
+  <meta name="author" content="TN-PVC Interiors" />
+  <link rel="canonical" href="https://www.tnpvc.co.in" />
 
-    <!-- Structured Data (JSON-LD) for SEO -->
-    <script type="application/ld+json">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.tnpvc.co.in/" />
+  <meta property="og:title" content="TN-PVC Interiors | Tamil Nadu's Premier PVC & UPVC Interior Network" />
+  <meta property="og:description"
+    content="Tamil Nadu's largest digital network for PVC and UPVC interior professionals. Streamlining project execution and community growth." />
+  <meta property="og:image" content="https://www.tnpvc.co.in/og-image.webp" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.tnpvc.co.in/" />
+  <meta property="twitter:title" content="TN-PVC Interiors | Tamil Nadu's Premier PVC & UPVC Interior Network" />
+  <meta property="twitter:description"
+    content="Tamil Nadu's largest digital network for PVC and UPVC interior professionals." />
+  <meta property="twitter:image" content="https://www.tnpvc.co.in/og-image.webp" />
+
+  <!-- Structured Data (JSON-LD) for SEO -->
+  <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
@@ -71,48 +77,51 @@
       }
     </script>
 
-    <!-- Fonts: Inter + Luxury Editorial Serifs (Cinzel, Cormorant Garamond) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  </head>
+  <!-- Fonts: Inter + Luxury Editorial Serifs (Cinzel, Cormorant Garamond) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+</head>
 
-  <body>
-    <div id="root"></div>
-    <div id="google_translate_element" style="display:none;"></div>
-    
-    <!-- Fix for React crashing when Google Translate modifies the DOM -->
-    <script>
-      if (typeof Node === 'function' && Node.prototype) {
-        const originalRemoveChild = Node.prototype.removeChild;
-        Node.prototype.removeChild = function(child) {
-          if (child.parentNode !== this) {
-            console.warn('Prevented React crash from Google Translate (removeChild)', child, this);
-            return child;
-          }
-          return originalRemoveChild.apply(this, arguments);
-        };
+<body>
+  <div id="root"></div>
+  <div id="google_translate_element" style="display:none;"></div>
 
-        const originalInsertBefore = Node.prototype.insertBefore;
-        Node.prototype.insertBefore = function(newNode, referenceNode) {
-          if (referenceNode && referenceNode.parentNode !== this) {
-            console.warn('Prevented React crash from Google Translate (insertBefore)', referenceNode, this);
-            return newNode;
-          }
-          return originalInsertBefore.apply(this, arguments);
-        };
-      }
-    </script>
+  <!-- Fix for React crashing when Google Translate modifies the DOM -->
+  <script>
+    if (typeof Node === 'function' && Node.prototype) {
+      const originalRemoveChild = Node.prototype.removeChild;
+      Node.prototype.removeChild = function (child) {
+        if (child.parentNode !== this) {
+          console.warn('Prevented React crash from Google Translate (removeChild)', child, this);
+          return child;
+        }
+        return originalRemoveChild.apply(this, arguments);
+      };
 
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-          pageLanguage: 'en',
-          includedLanguages: 'en,hi,ta,te,kn,ml,bn,mr,gu,pa',
-          autoDisplay: false
-        }, 'google_translate_element');
-      }
-    </script>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+      const originalInsertBefore = Node.prototype.insertBefore;
+      Node.prototype.insertBefore = function (newNode, referenceNode) {
+        if (referenceNode && referenceNode.parentNode !== this) {
+          console.warn('Prevented React crash from Google Translate (insertBefore)', referenceNode, this);
+          return newNode;
+        }
+        return originalInsertBefore.apply(this, arguments);
+      };
+    }
+  </script>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,ta,te,kn,ml,bn,mr,gu,pa',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
