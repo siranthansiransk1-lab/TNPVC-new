@@ -5,7 +5,7 @@ const TNMap = ({ className }: { className?: string }) => {
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
       viewBox="7623.34 -1356.27 411.3 548.64"
-      className={cn("w-full h-full drop-shadow-2xl", className)}
+      className={cn("w-full h-auto", className)}
       aria-hidden="true"
     >
       <g className="fill-primary/5 stroke-primary/30 stroke-[0.8]">

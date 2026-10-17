@@ -114,9 +114,12 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
   const [isNavigating, setIsNavigating] = useState(false);
   const { openWhatsAppModal } = useWhatsApp();
   const location = useLocation();
+  const isDarkHeroPage = ["/", "/about", "/network"].includes(location.pathname);
+  const isTransparentOverDark = !scrolled && isDarkHeroPage;
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 16);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -154,56 +157,85 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
       {/* ─── Header ─── */}
       <header
         className={cn(
-          "fixed left-0 w-full z-50 h-16 transition-all duration-300 flex items-center px-3 sm:px-4",
-          scrolled ? "top-2.5 sm:top-3" : "top-0"
+          "fixed left-0 w-full z-50 transition-all duration-300 flex items-center px-4 sm:px-6 lg:px-8",
+          scrolled ? "top-2.5 sm:top-3 h-16" : "top-0 h-20"
         )}
       >
         <div
           className={cn(
             "container flex items-center justify-between transition-all duration-300 rounded-2xl border",
             scrolled
-              ? "bg-white/85 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-xl border-border/50 py-1.5 px-3 sm:px-4"
-              : "bg-transparent border-transparent py-1.5 px-0"
+              ? "bg-white/90 shadow-[0_8px_30px_rgba(0,0,0,0.08)] backdrop-blur-md border-border/50 py-1.5 px-3 sm:px-5"
+              : "bg-transparent border-transparent shadow-none py-2 px-0"
           )}
         >
 
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2.5 transition-opacity hover:opacity-80 focus-visible:ring-offset-4"
+            className="flex items-center gap-2.5 sm:gap-3 transition-opacity hover:opacity-85 focus-visible:ring-offset-4 group select-none"
             aria-label="Home - TN-PVC Interiors"
           >
             <img
               src={brandAssets.tnPvcLogo}
-              alt=""
-              className="size-8 rounded-lg object-contain"
+              alt="TN-PVC"
+              className={cn(
+                "size-8 sm:size-9 rounded-xl object-contain transition-all duration-300",
+                isTransparentOverDark ? "group-hover:scale-105" : "group-hover:scale-105"
+              )}
               loading="eager"
             />
-            <div className="hidden sm:block">
-              <p className="text-sm font-black tracking-tight leading-none text-foreground transition-colors">
+            <div className="flex flex-col">
+              <p className={cn(
+                "text-sm sm:text-base font-black tracking-tight leading-none transition-colors duration-300",
+                isTransparentOverDark ? "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]" : "text-foreground"
+              )}>
                 TN-PVC
               </p>
-              <p className="text-[9px] font-bold tracking-wider uppercase leading-none mt-0.5 text-muted-foreground transition-colors">
+              <p className={cn(
+                "text-[9px] sm:text-[10px] font-bold tracking-widest uppercase leading-none mt-0.5 transition-colors duration-300",
+                isTransparentOverDark ? "text-white/80 drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]" : "text-muted-foreground"
+              )}>
                 Interiors
               </p>
             </div>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Main navigation">
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
             {navItems.map((item) => {
               if (item.subItems) {
                 const isDropdownActive = item.subItems.some((subItem) => location.pathname === subItem.path) || location.pathname === item.path;
                 return (
                   <DropdownMenu key={item.label} modal={false}>
-                    <DropdownMenuTrigger className={cn(
-                      "group relative min-h-0 rounded-full px-3 py-1.5 text-xs lg:text-[13px] font-semibold tracking-normal transition-all outline-none flex items-center gap-1",
-                      isDropdownActive
-                        ? "text-primary bg-primary/10 font-bold"
-                        : "text-muted-foreground hover:text-primary"
-                    )}>
-                      <span className="relative z-10">{item.shortLabel ?? item.label}</span>
-                      <ChevronDown className="relative z-10 size-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                    <DropdownMenuTrigger
+                      data-text-link
+                      className={cn(
+                        "group relative min-h-0 rounded-full px-3.5 py-1.5 text-xs lg:text-[13px] font-semibold tracking-normal transition-all duration-150 outline-none flex items-center gap-1 select-none",
+                        isTransparentOverDark
+                          ? isDropdownActive
+                            ? "text-white bg-white/20 font-bold backdrop-blur-md border border-white/20"
+                            : "text-white/85"
+                          : isDropdownActive
+                            ? "text-primary bg-primary/10 font-bold"
+                            : "text-muted-foreground",
+                        "hover:text-white"
+                      )}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "absolute inset-0 rounded-full opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-150 ease-out pointer-events-none z-0",
+                          isTransparentOverDark
+                            ? "border border-white/20 bg-white/10 backdrop-blur-md shadow-sm"
+                            : "bg-[rgb(130,117,255)]"
+                        )}
+                      />
+                      <span className="relative z-10 transition-colors duration-150">{item.shortLabel ?? item.label}</span>
+                      <ChevronDown className={cn(
+                        "relative z-10 size-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180 group-hover:text-white",
+                        isTransparentOverDark ? "text-white/80" : "text-muted-foreground"
+                      )} />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="start" className="w-52 rounded-2xl p-2 shadow-xl border-border/50 bg-white/95 backdrop-blur-xl">
                       <div className="flex flex-col gap-1">
@@ -211,10 +243,15 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                           <DropdownMenuItem key={subItem.path} asChild>
                             <NavLink
                               to={subItem.path}
-                              className="flex items-center justify-start text-left px-3 py-2 text-xs font-medium rounded-xl transition-colors cursor-pointer w-full text-foreground hover:bg-muted/80 hover:text-primary data-[active=true]:bg-primary/10 data-[active=true]:text-primary data-[active=true]:font-bold outline-none"
+                              data-text-link
+                              className="group relative flex items-center justify-start text-left px-3 py-2 text-xs font-medium rounded-xl transition-all duration-150 cursor-pointer w-full text-foreground hover:text-white outline-none"
                               activeClassName="bg-primary/10 text-primary font-bold"
                             >
-                              {subItem.label}
+                              <span
+                                aria-hidden="true"
+                                className="absolute inset-0 rounded-xl bg-[rgb(130,117,255)] opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-150 ease-out pointer-events-none z-0"
+                              />
+                              <span className="relative z-10 transition-colors duration-150">{subItem.label}</span>
                             </NavLink>
                           </DropdownMenuItem>
                         ))}
@@ -230,9 +267,23 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                   <a
                     key={item.path}
                     href={item.path}
-                    className="group relative min-h-0 rounded-full px-3 py-1.5 text-xs lg:text-[13px] font-semibold tracking-normal transition-all text-muted-foreground hover:text-primary"
+                    data-text-link
+                    className={cn(
+                      "group relative min-h-0 rounded-full px-3.5 py-1.5 text-xs lg:text-[13px] font-semibold tracking-normal transition-all duration-150 outline-none select-none",
+                      isTransparentOverDark ? "text-white/85" : "text-muted-foreground",
+                      "hover:text-white"
+                    )}
                   >
-                    <span className="relative z-10">{item.shortLabel ?? item.label}</span>
+                    <span
+                      aria-hidden="true"
+                      className={cn(
+                        "absolute inset-0 rounded-full opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-150 ease-out pointer-events-none z-0",
+                        isTransparentOverDark
+                          ? "border border-white/20 bg-white/10 backdrop-blur-md shadow-sm"
+                          : "bg-[rgb(130,117,255)]"
+                      )}
+                    />
+                    <span className="relative z-10 transition-colors duration-150">{item.shortLabel ?? item.label}</span>
                   </a>
                 );
               }
@@ -240,15 +291,32 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                 <NavLink
                   key={item.path}
                   to={item.path!}
-                  className="group relative min-h-0 rounded-full px-3 py-1.5 text-xs lg:text-[13px] font-semibold tracking-normal transition-all text-muted-foreground hover:text-primary"
-                  activeClassName="text-primary bg-primary/10 font-bold"
+                  data-text-link
+                  className={cn(
+                    "group relative min-h-0 rounded-full px-3.5 py-1.5 text-xs lg:text-[13px] font-semibold tracking-normal transition-all duration-150 outline-none select-none",
+                    isTransparentOverDark
+                      ? "text-white/85"
+                      : "text-muted-foreground",
+                    "hover:text-white"
+                  )}
+                  activeClassName={isTransparentOverDark ? "text-white bg-white/20 font-bold backdrop-blur-md border border-white/20" : "text-primary bg-primary/10 font-bold"}
                   end={item.path === "/"}
                 >
-                  <span className="relative z-10">{item.shortLabel ?? item.label}</span>
+                  {/* Selected Hover Background Pill */}
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "absolute inset-0 rounded-full opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-150 ease-out pointer-events-none z-0",
+                      isTransparentOverDark
+                        ? "border border-white/20 bg-white/10 backdrop-blur-md shadow-sm"
+                        : "bg-[rgb(130,117,255)]"
+                    )}
+                  />
+                  <span className="relative z-10 transition-colors duration-150">{item.shortLabel ?? item.label}</span>
                   {/* Subtle indicator for active state */}
                   <span className={cn(
-                    "absolute bottom-0.5 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full transition-all duration-300 group-[.active]:w-4",
-                    "bg-primary"
+                    "absolute bottom-0.5 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full transition-all duration-300 group-[.active]:w-4 z-10",
+                    isTransparentOverDark ? "bg-white" : "bg-primary"
                   )} />
                 </NavLink>
               );
@@ -257,10 +325,15 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
 
           {/* Actions */}
           <div className="hidden lg:flex items-center gap-2.5 sm:gap-3">
-            <LanguageSwitcher />
+            <LanguageSwitcher isTransparent={isTransparentOverDark} />
             <Link
               to="/register"
-              className="min-h-0 h-9 px-4 text-xs font-bold sm:text-sm shadow-sm inline-flex items-center rounded-xl transition-all primary-btn"
+              className={cn(
+                "min-h-0 h-9 px-4 text-xs font-bold sm:text-sm shadow-sm inline-flex items-center rounded-xl transition-all",
+                isTransparentOverDark
+                  ? "bg-primary text-white hover:bg-primary/90 border border-white/20 shadow-md hover:scale-[1.02]"
+                  : "primary-btn"
+              )}
             >
               <UserPlus className="mr-1.5 size-3.5" aria-hidden="true" />
               Register
@@ -272,78 +345,76 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="size-9 lg:hidden min-h-0"
+                className={cn(
+                  "size-9 lg:hidden min-h-0 transition-colors",
+                  isTransparentOverDark ? "text-white hover:bg-white/15 hover:text-white" : "text-foreground"
+                )}
                 aria-label="Open menu"
               >
-                <Menu className="size-5" />
+                <Menu className={cn("size-5", isTransparentOverDark ? "text-white" : "text-foreground")} />
               </Button>
             </SheetTrigger>
             <SheetContent
               side="left"
-              className="w-[85vw] max-w-[340px] bg-transparent p-0 flex flex-col border-none shadow-none sm:max-w-[340px] [&>button]:hidden"
+              className="w-[85vw] max-w-[320px] bg-transparent p-0 flex flex-col border-none shadow-none sm:max-w-[320px] [&>button]:hidden"
             >
-              {/* Close Button Outside */}
-              <div className="absolute -right-14 top-4 z-50">
-                <SheetClose className="size-10 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white/30 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-white">
-                  <X className="size-5" />
-                  <span className="sr-only">Close menu</span>
-                </SheetClose>
-              </div>
+              <SheetTitle className="sr-only">TN-PVC Navigation</SheetTitle>
+              <SheetDescription className="sr-only">Mobile Navigation Drawer</SheetDescription>
 
-              <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col h-full bg-white rounded-r-[20px] shadow-[20px_0_40px_-15px_rgba(0,0,0,0.1)] relative z-40">
+              <div className="flex-1 overflow-y-auto px-5 py-6 flex flex-col h-full bg-luxury-light/75 backdrop-blur-2xl rounded-r-3xl border-r border-black/[0.08] shadow-[20px_0_40px_-15px_rgba(0,0,0,0.15)] relative z-40 text-luxury-charcoal select-none">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center justify-between pb-5 mb-5 border-b border-black/[0.08] relative z-10">
                   <Link
                     to="/"
-                    className="flex items-center gap-3 transition-opacity hover:opacity-80 focus-visible:ring-offset-4"
+                    className="flex items-center gap-3 transition-opacity hover:opacity-85 focus-visible:outline-none"
                     onClick={() => setOpen(false)}
                   >
                     <img
                       src={brandAssets.tnPvcLogo}
-                      alt=""
-                      className="size-10 rounded-xl object-contain"
+                      alt="TN-PVC"
+                      className="size-9 rounded-xl object-contain ring-1 ring-black/10 bg-white p-1"
                     />
                     <div>
-                      <p className="text-base font-black tracking-tight text-foreground">
+                      <p className="text-sm font-black tracking-tight text-luxury-charcoal leading-none">
                         TN-PVC
                       </p>
-                      <p className="text-[10px] font-bold tracking-wide text-muted-foreground">
+                      <p className="text-[9px] font-bold tracking-widest uppercase text-luxury-stone leading-none mt-1">
                         Interiors
                       </p>
                     </div>
                   </Link>
+
+                  {/* Clean Minimalist Close Button Inside */}
+                  <SheetClose className="size-8 rounded-lg bg-black/5 border border-black/10 text-neutral-600 hover:text-black hover:bg-black/10 transition-colors flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                    <X className="size-4" />
+                    <span className="sr-only">Close menu</span>
+                  </SheetClose>
                 </div>
 
-                {/* Nav Links */}
-                <nav className="flex flex-col gap-1.5 mb-8" aria-label="Mobile navigation">
+                {/* Nav Links (Icons Removed as requested) */}
+                <nav className="flex flex-col gap-1 mb-6 relative z-10" aria-label="Mobile navigation">
                   {navItems.map((item) => {
-                    const navIcons: Record<string, React.ElementType> = {
-                      "/about": Sparkles,
-                      "/network": Globe,
-                      "/benefits": Sparkles,
-                      "/ai-pvc-groups": ShieldCheck,
-                      "/register": UserPlus,
-                    };
-
                     if (item.subItems) {
                       return (
-                        <div key={item.label} className="flex flex-col gap-1.5 mt-2 mb-2">
-                          <p className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">{item.label}</p>
+                        <div key={item.label} className="flex flex-col gap-1 my-1.5">
+                          <p className="px-4 py-1 text-[11px] font-bold text-luxury-stone uppercase tracking-wider">
+                            {item.label}
+                          </p>
                           {item.subItems.map((subItem) => {
-                            const SubIcon = navIcons[subItem.path] || LayoutGrid;
+                            const isActive = location.pathname === subItem.path;
                             return (
                               <SheetClose asChild key={subItem.path}>
                                 <NavLink
                                   to={subItem.path}
                                   className={cn(
-                                    "flex items-center justify-start text-left gap-4 px-4 py-3.5 rounded-2xl text-sm font-semibold transition-all",
-                                    location.pathname === subItem.path
-                                      ? "bg-primary/10 text-primary"
-                                      : "text-foreground hover:bg-muted/50"
+                                    "!flex !justify-between !items-center w-full px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150",
+                                    isActive
+                                      ? "bg-black/[0.06] text-black font-bold"
+                                      : "text-neutral-700 hover:text-black hover:bg-black/[0.03]"
                                   )}
                                 >
-                                  <SubIcon className={cn("size-5", location.pathname === subItem.path ? "text-primary" : "text-muted-foreground")} />
-                                  {subItem.label}
+                                  <span>{subItem.label}</span>
+                                  {isActive && <span className="size-1.5 rounded-full bg-black shrink-0" />}
                                 </NavLink>
                               </SheetClose>
                             );
@@ -352,7 +423,6 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                       );
                     }
 
-                    const Icon = item.path ? navIcons[item.path] || LayoutGrid : LayoutGrid;
                     const isHash = item.path?.startsWith("/#");
 
                     if (isHash && item.path) {
@@ -360,17 +430,15 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                         <SheetClose asChild key={item.path}>
                           <a
                             href={item.path}
-                            className={cn(
-                              "flex items-center justify-start text-left gap-4 px-4 py-3.5 rounded-2xl text-sm font-semibold transition-all",
-                              "text-foreground hover:bg-muted/50"
-                            )}
+                            className="!flex !justify-between !items-center w-full px-4 py-2.5 rounded-xl text-sm font-semibold text-neutral-700 hover:text-black hover:bg-black/[0.03] transition-all duration-150"
                           >
-                            <Icon className="size-5 text-muted-foreground" />
-                            {item.label}
+                            <span>{item.label}</span>
                           </a>
                         </SheetClose>
                       );
                     }
+
+                    const isActive = location.pathname === item.path;
 
                     return (
                       <SheetClose asChild key={item.path}>
@@ -378,35 +446,45 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
                           to={item.path!}
                           end={item.path === "/"}
                           className={cn(
-                            "flex items-center justify-start text-left gap-4 px-4 py-3.5 rounded-2xl text-sm font-semibold transition-all",
-                            location.pathname === item.path
-                              ? "bg-primary/10 text-primary"
-                              : "text-foreground hover:bg-muted/50"
+                            "!flex !justify-between !items-center w-full px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150",
+                            isActive
+                              ? "bg-black/[0.06] text-black font-bold"
+                              : "text-neutral-700 hover:text-black hover:bg-black/[0.03]"
                           )}
                         >
-                          <Icon className={cn("size-5", location.pathname === item.path ? "text-primary" : "text-muted-foreground")} />
-                          {item.label}
+                          <span>{item.label}</span>
+                          {isActive && <span className="size-1.5 rounded-full bg-black shrink-0" />}
                         </NavLink>
                       </SheetClose>
                     );
                   })}
                 </nav>
 
-                {/* Bottom Profile */}
-                <div className="mt-auto pt-6 border-t border-border/40 flex flex-col gap-4">
-                  <div>
-                    <p className="text-xs font-bold text-muted-foreground mb-3 px-1">Language</p>
-                    <div className="flex px-1">
-                      <LanguageSwitcher />
-                    </div>
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-muted-foreground mb-3 px-1">Need help?</p>
-                    <a href="tel:+918870826404" className="flex items-center gap-3 px-4 py-4 rounded-[1.25rem] border border-border/50 hover:bg-muted/50 transition-colors">
-                      <div className="size-9 rounded-full bg-primary flex items-center justify-center text-white text-[10px] font-black shrink-0">
-                        TN
-                      </div>
-                      <span className="text-sm font-bold text-foreground">TN-PVC Support</span>
+                {/* Minimalist Bottom Actions */}
+                <div className="mt-auto pt-4 border-t border-black/[0.08] flex flex-col gap-3 relative z-10">
+                  {/* Register Text Only (Black text as requested) */}
+                  <SheetClose asChild>
+                    <Link
+                      to="/register"
+                      className="text-black font-black text-sm tracking-wider uppercase hover:opacity-70 transition-opacity py-2 px-4 rounded-lg hover:bg-black/[0.04] text-center"
+                    >
+                      Register
+                    </Link>
+                  </SheetClose>
+
+                  {/* Utility Row: Language & Support */}
+                  <div className="flex items-center justify-between gap-2 pt-2 border-t border-black/[0.06]">
+                    <LanguageSwitcher
+                      className="h-8 text-xs bg-white/70 border-black/10 text-neutral-700 hover:text-black"
+                    />
+
+                    <a
+                      href="tel:+918870826404"
+                      className="inline-flex items-center gap-1.5 px-3 h-8 rounded-full bg-white/70 border border-black/10 text-xs font-semibold text-neutral-700 hover:text-black transition-colors"
+                      aria-label="Call support"
+                    >
+                      <Phone className="size-3 text-primary" />
+                      <span>Support</span>
                     </a>
                   </div>
                 </div>
@@ -419,7 +497,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
       {/* Social Island removed — now rendered inline in Hero */}
 
       {/* ─── Main ─── */}
-      <main id="main-content" className="relative pt-16">
+      <main id="main-content" className={cn("relative", !isDarkHeroPage && "pt-16")}>
         {children}
       </main>
 
@@ -485,27 +563,51 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
             {/* Contact support */}
             <div className="space-y-4">
               <p className="text-xs font-bold tracking-wide text-primary uppercase">Contact support</p>
-              <div className="flex flex-col gap-2">
-                <a className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="tel:+918870826404">
-                  Srinivasan · +91 8870826404
-                </a>
-                <a className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="tel:+918489143405">
-                  Siranthan Siran · +91 8489143405
-                </a>
-                <a className="!block w-full py-1 break-all text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" href="mailto:siranthan.siran.sk.1@gmail.com">
-                  siranthan.siran.sk.1@gmail.com
-                </a>
+              <div className="flex flex-col gap-1.5">
+                {[
+                  { href: "tel:+918870826404", label: "Srinivasan · +91 8870826404" },
+                  { href: "tel:+918489143405", label: "Siranthan Siran · +91 8489143405" },
+                  { href: "mailto:siranthan.siran.sk.1@gmail.com", label: "siranthan.siran.sk.1@gmail.com", isMail: true },
+                ].map((c) => (
+                  <a
+                    key={c.label}
+                    href={c.href}
+                    data-text-link
+                    className="group relative inline-flex items-center w-fit px-2.5 py-1 -mx-2.5 rounded-lg text-sm font-semibold text-muted-foreground transition-all duration-150 hover:text-white"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-0 rounded-lg bg-[rgb(130,117,255)] opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-150 ease-out pointer-events-none z-0"
+                    />
+                    <span className={cn("relative z-10 transition-colors duration-150", c.isMail && "break-all")}>{c.label}</span>
+                  </a>
+                ))}
               </div>
             </div>
             {/* Quick links */}
             <div className="space-y-4">
               <p className="text-xs font-bold tracking-wide text-primary uppercase">Quick links</p>
-              <nav className="flex flex-col gap-2" aria-label="Footer links">
-                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/about">About Us</Link>
-                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/network">Network & Members</Link>
-                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/benefits">Business Benefits</Link>
-                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/ai-pvc-groups">Partnership Transparency</Link>
-                <Link className="!block w-full py-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground" to="/register">Register as Member</Link>
+              <nav className="flex flex-col gap-1.5" aria-label="Footer links">
+                {[
+                  { to: "/about", label: "About Us" },
+                  { to: "/network", label: "Network & Members" },
+                  { to: "/benefits", label: "Business Benefits" },
+                  { to: "/ai-pvc-groups", label: "Partnership Transparency" },
+                  { to: "/register", label: "Register as Member" },
+                ].map((l) => (
+                  <Link
+                    key={l.to}
+                    to={l.to}
+                    data-text-link
+                    className="group relative inline-flex items-center w-fit px-2.5 py-1 -mx-2.5 rounded-lg text-sm font-semibold text-muted-foreground transition-all duration-150 hover:text-white"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-0 rounded-lg bg-[rgb(130,117,255)] opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-150 ease-out pointer-events-none z-0"
+                    />
+                    <span className="relative z-10 transition-colors duration-150">{l.label}</span>
+                  </Link>
+                ))}
               </nav>
             </div>
           </div>
@@ -519,8 +621,18 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
             </p>
             <p className="text-xs font-bold text-muted-foreground">
               Built by{" "}
-              <a href="https://www.dexaz.in" target="_blank" rel="noreferrer" className="text-primary hover:underline">
-                Dexaz Groups
+              <a
+                href="https://www.rimio.in/"
+                target="_blank"
+                rel="noreferrer"
+                data-text-link
+                className="group relative inline-flex items-center px-1.5 py-0.5 -mx-1.5 rounded-md text-primary font-bold transition-all duration-150 hover:text-white"
+              >
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-md bg-[rgb(130,117,255)] opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-150 ease-out pointer-events-none z-0"
+                />
+                <span className="relative z-10 transition-colors duration-150">Rimio</span>
               </a>
             </p>
           </div>

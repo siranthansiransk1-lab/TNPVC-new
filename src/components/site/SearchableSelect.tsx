@@ -50,12 +50,12 @@ export const SearchableSelect = ({
   );
 
   const triggerClass = cn(
-    "w-full h-12 px-4 rounded-xl bg-white border shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] flex items-center justify-between gap-2 cursor-pointer text-sm font-normal transition-all outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 select-none",
+    "w-full h-12 px-4 rounded-xl bg-transparent border flex items-center justify-between gap-2 cursor-pointer text-sm font-normal transition-all outline-none select-none hover:border-primary/40",
     hasError
-      ? "border-red-400 focus:border-red-500 ring-4 ring-red-500/10 bg-red-50/40"
+      ? "border-red-400 focus:border-red-500 ring-2 ring-red-500/20 bg-red-500/[0.03]"
       : open
-      ? "border-primary ring-4 ring-primary/10"
-      : "border-border/60 hover:border-primary/30"
+      ? "border-primary ring-2 ring-primary/20"
+      : "border-border/70"
   );
 
   return (
@@ -109,9 +109,9 @@ export const SearchableSelect = ({
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute z-50 mt-1.5 w-full rounded-xl border border-border/60 bg-white shadow-xl overflow-hidden">
+        <div className="absolute z-50 mt-1.5 w-full rounded-xl border border-border/70 bg-card shadow-xl overflow-hidden">
           {/* Search bar */}
-          <div className="flex items-center gap-2 px-3 py-2.5 border-b border-border/40 bg-slate-50/80">
+          <div className="flex items-center gap-2 px-3 py-2.5 border-b border-border/40 bg-muted/30">
             <Search className="size-4 text-muted-foreground shrink-0" />
             <input
               ref={searchRef}
@@ -135,7 +135,7 @@ export const SearchableSelect = ({
           {/* Options list */}
           <ul
             role="listbox"
-            className="max-h-52 overflow-y-auto overscroll-contain py-1"
+            className="max-h-52 overflow-y-auto overscroll-contain py-1 bg-card"
           >
             {filtered.length === 0 ? (
               <li className="px-4 py-3 text-sm text-muted-foreground text-center">
@@ -150,8 +150,8 @@ export const SearchableSelect = ({
                   className={cn(
                     "flex items-center justify-between px-4 py-2.5 text-sm cursor-pointer transition-colors",
                     value === opt
-                      ? "bg-primary/8 text-primary font-semibold"
-                      : "text-foreground hover:bg-slate-50 active:bg-slate-100"
+                      ? "bg-primary/10 text-primary font-semibold"
+                      : "text-foreground hover:bg-muted/50 active:bg-muted"
                   )}
                   onMouseDown={(e) => e.preventDefault()}
                   onClick={() => {
